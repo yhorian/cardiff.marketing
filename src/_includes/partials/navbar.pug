@@ -1,0 +1,12 @@
+
+nav(class="sticky top-0 bg-slate-50")
+    div(class="w-full flex items-center justify-between flex-wrap p-3 container mx-auto")
+        div(class="flex text-center flex-grow")
+            a(href="/" class="text-indigo-500 font-bold text-lg") Cardiff.marketing
+        div(class="flex text-center ")
+            if collections.page
+                ul(class="pt-0 list-reset flex justify-end flex-1 items-center")
+                    each item in nav.items
+                        li(class="nav__item mr-3")
+                            a(class="text-ml inline-block text-gray-500 no-underline hover:text-indigo-500 py-2 px-4" href=item.url) #{ item.title }
+

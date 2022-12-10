@@ -1,0 +1,83 @@
+backend:
+  # Use netlify identity as backend
+  name: git-gateway
+  branch: master
+site_url: https://cardiff.marketing
+display_url: https://cardiff.marketing
+logo_url: https://cardiff.marketing/favicon.ico
+show_preview_links: true
+locale: en-gb
+media_folder: "src/static/img"
+public_folder: "/static/img"
+
+# Please run "npx netlify-cms-proxy-server" for local backend
+local_backend: true
+publish_mode: editorial_workflow
+collections:
+  - label: "Blog posts"
+    name: "blog"
+    folder: "src/posts"
+    create: true
+    preview_path: /{{slug}}
+    editor:
+      preview: true
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Description", name: "description", widget: "string" }
+      - { label: "Author", name: "author", widget: "string", required: false }
+      - { label: "Publish Date", name: "date", widget: "datetime", required: false }
+      - label: "Tags"
+        name: "tags"
+        widget: "list"
+        default: ["Analytics", "Cloudflare"]
+        add_to_top: true
+        allow_add: true
+      - { label: "Body", name: "body", widget: "markdown" }
+  - label: "Pages"
+    name: "pages"
+    folder: "src/pages"
+    create: true
+    editor:
+      preview: true
+    preview_path: /{{permalink}}
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Description", name: "description", widget: "string" }
+      - { label: "Permalink", name: "permalink", widget: "string", required: true }
+      - { label: "Body", name: "body", widget: "markdown" }
+  - label: "Settings"
+    name: "settings"
+    editor:
+      preview: false
+    files:
+      - label: "Navigation"
+        name: "nav"
+        file: "src/_data/nav.json"
+        fields:
+          - label: Nav Items
+            name: items
+            widget: list
+            allow_add: true
+            collapsed: true
+            fields:
+              - { label: Title, name: title, widget: string }
+              - { label: URL, name: url, widget: string }
+      - label: "Footer"
+        name: "footer"
+        file: "src/_data/footer.json"
+        fields:
+          - label: Footer Links
+            name: items
+            widget: list
+            allow_add: true
+            collapsed: true
+            fields:
+              - { label: Title, name: title, widget: string }
+              - { label: URL, name: url, widget: string }
+      - label: "Blog Settings"
+        name: "settings"
+        file: "src/_data/settings.json"
+        fields:
+          - { label: Name, name: name, widget: string }
+          - { label: Author, name: author, widget: string }
+          - { label: URL, name: url, widget: string }

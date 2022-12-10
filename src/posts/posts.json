@@ -1,0 +1,5 @@
+{
+    "layout": "posts",
+    "tags": ["post"],
+    "permalink": "/{{ title | slugify }}/"
+}
