@@ -1,0 +1,1 @@
+Adding functions for Cloudflare
