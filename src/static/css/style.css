@@ -11,8 +11,12 @@ h1 {
 h2, h3 {
   @apply text-2xl font-bold mb-3; 
 }
-/* Syntax Highlighting*/
+/*Plan to implement this: https://www.joshwcomeau.com/css/full-bleed/*/
 
+/*Syntax Highlighting*/
+body {
+  @apply font-sans;
+}
 body :not(pre) > code[class*="language-"],
 body pre[class*="language-"] {
   @apply bg-gray-800;

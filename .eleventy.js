@@ -9,15 +9,16 @@ module.exports = function (eleventyConfig) {
   // Merge data instead of overriding
   eleventyConfig.setDataDeepMerge(true);
  
-  // Readable date transformation.
+  // Readable date transformation. 02 Sept 2020
   eleventyConfig.addFilter("readableDate", (dateObj) => {
-    return dateObj.toLocaleDateString("en-gb", {day: "numeric", month: "long", year: "numeric"});
+    return dateObj.toLocaleDateString("en-gb", {year: "numeric", day: "2-digit", month: "short"});
   });
 
   // Get current year.
   // Accessed in pug by doing "filters.year()"
   eleventyConfig.addShortcode("year", () => `${new Date().getFullYear()}`);
 
+  // Automatically add Lazy loading to markdown image tags
   eleventyConfig.amendLibrary("md", mdLib => mdLib.use(lazy_loading, { base_path: "./src" ,image_size: true,decoding: true}));
 
   // Syntax Highlighting for Code blocks
