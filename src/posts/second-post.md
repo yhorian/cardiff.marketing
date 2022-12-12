@@ -1,20 +1,18 @@
 ---
-title: This is my second post
-description: Bring to the table win-win survival strategies to ensure proactive domination. At the end of the day, going forward, a new normal that has evolved from generation X is on the runway heading towards a streamlined cloud solution.
-date: 2020-09-02
+title: GA4 into BigQuery into Datastudio - A Modern Marketing Stack
+description: If you're switching to GA4 then this guide shows you the best route
+  to move reports to Looker Studio (Previously Data Studio)
 author: Liam Martin
+date: 2022-12-02T00:00:00.000Z
 tag:
   - cloudflare
-  
+tags:
+  - analytics
 ---
+Looker Studio (rebranded from Data Studio) is Google's WYSWIG reporting editor. Having played with GA4s custom reports in an effort to represent all the brilliant default reports that Universal Analytics (GA3) offered I've come to a simple conclusion: Looker Studio is superior in every way:
 
-Leverage agile frameworks to provide a robust synopsis for high level overviews. Iterative approaches to corporate strategy foster collaborative thinking to further the overall value proposition. Organically grow the holistic world view of disruptive innovation via workplace diversity and empowerment.
+1. It's faster - with BigQuery powering the backend you don't have to wait minutes for your reports.
+2. It's prettier. You can style everything and still be presenting live data.
+3. It's more compatible. Data can be merged across sources, calculated upon and re-presented.
 
-## Section Header
-
-[First post]({{ '/this-is-my-first-post/' | url }})
-[Third post]({{ '/this-is-my-third-post/' | url }})
-
-Bring to the table win-win survival strategies to ensure proactive domination. At the end of the day, going forward, a new normal that has evolved from generation X is on the runway heading towards a streamlined cloud solution. User generated content in real-time will have multiple touchpoints for offshoring.
-
-Capitalize on low hanging fruit to identify a ballpark value added activity to beta test. Override the digital divide with additional clickthroughs from DevOps. Nanotechnology immersion along the information highway will close the loop on focusing solely on the bottom line.
+There's very little reason to be stuck in the past. This article is going to outline how you make the switch.
