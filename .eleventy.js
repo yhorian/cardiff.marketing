@@ -1,8 +1,6 @@
-const { DateTime } = require("luxon");
 const syntaxHighlight = require("@11ty/eleventy-plugin-syntaxhighlight");
 const PostCSSPlugin = require("eleventy-plugin-postcss");
 const lazy_loading = require('markdown-it-image-lazy-loading');
-
 
 module.exports = function (eleventyConfig) {
   // Disable automatic use of your .gitignore
@@ -10,13 +8,15 @@ module.exports = function (eleventyConfig) {
 
   // Merge data instead of overriding
   eleventyConfig.setDataDeepMerge(true);
-
-  // human readable date
+ 
+  // Readable date transformation.
   eleventyConfig.addFilter("readableDate", (dateObj) => {
-    return DateTime.fromJSDate(dateObj, { zone: "utc" }).toFormat(
-      "dd LLL yyyy"
-    );
+    return dateObj.toLocaleDateString("en-gb", {day: "numeric", month: "long", year: "numeric"});
   });
+
+  // Get current year.
+  // Accessed in pug by doing "filters.year()"
+  eleventyConfig.addShortcode("year", () => `${new Date().getFullYear()}`);
 
   eleventyConfig.amendLibrary("md", mdLib => mdLib.use(lazy_loading, { base_path: "./src" ,image_size: true,decoding: true}));
 
@@ -34,7 +34,8 @@ module.exports = function (eleventyConfig) {
   // Runs PostCSS as part of Eleventy's pipeline. Will respect postcss.config.js and tailwind.config.js
   eleventyConfig.addPlugin(PostCSSPlugin);
 
-  // Stops partial builds on eleventy's server. Necessary for Tailwind CSS updates to be refreshed.
+  // Stops partial builds on eleventy's server. Necessary for Tailwind CSS updates to be refreshed via Postcss plugin.
+  // Only a concern when you do 'npm run dev'
   eleventyConfig.setServerOptions({domdiff: false});
 
   // Copy Image Folder to /_site
@@ -44,19 +45,18 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy("./src/favicon.ico");
 
   //  fix for lack of filters access in pug.
+  // https://github.com/11ty/eleventy/issues/1523
   global.filters = eleventyConfig.javascriptFunctions; 
   eleventyConfig.setPugOptions({
       globals: ['filters'], 
       debug: false
   });
 
-  // Let Eleventy transform HTML files as pug templates.
   // Markdown files will be run through the nunjucks parser.
   return {
     dir: {
       input: "src",
     },
-    htmlTemplateEngine: "pug",
     markdownTemplateEngine: "njk"
   };
 };
