@@ -10,7 +10,8 @@ locale: en-gb
 media_folder: "src/static/img"
 public_folder: "/static/img"
 
-# Please run "npx netlify-cms-proxy-server" for local backend
+# Running 'npm run dev' will also open the local netlify serve.
+# Otherwise you'll need to do use 'npx netlify-cms-proxy-server' in a command terminal to get it running.
 local_backend: true
 publish_mode: editorial_workflow
 collections:
@@ -39,7 +40,7 @@ collections:
     create: true
     editor:
       preview: true
-    preview_path: /{{permalink}}
+    preview_path: /{{slug}}
     fields:
       - { label: "Title", name: "title", widget: "string" }
       - { label: "Description", name: "description", widget: "string" }
