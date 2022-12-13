@@ -8,6 +8,7 @@ tag:
   - cloudflare
 tags:
   - analytics
+thumbnail: /static/img/core-web-vitals.webp
 ---
 Looker Studio (rebranded from Data Studio) is Google's WYSWIG reporting editor. Having played with GA4s custom reports in an effort to represent all the brilliant default reports that Universal Analytics (GA3) offered I've come to a simple conclusion: Looker Studio is superior in every way:
 

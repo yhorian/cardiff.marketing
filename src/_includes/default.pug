@@ -1,5 +1,5 @@
 doctype html
-html(lang='en')
+html(lang='en' x-data="{ darkMode: localStorage.getItem('dark') === 'true'}" x-init="$watch('darkMode', val => localStorage.setItem('dark', val))" x-bind:class="{ 'dark': darkMode }")
   head
     meta(charset="UTF-8")
     meta(http-equiv="x-ua-compatible" content="ie=edge")
@@ -10,8 +10,21 @@ html(lang='en')
     link(rel="stylesheet" type="text/css" href="/static/css/style.css")
     if prism
       link(rel="stylesheet" type="text/css" href="/static/css/prism-tomorrow.css")
-    script(src="/static/js/alpine.js" defer) 
-  body
+    script(src="/static/js/alpine.js" defer)
+    script.
+      if (
+        localStorage.getItem('color-theme') === 'dark' ||
+        (!('color-theme' in localStorage) &&
+          window.matchMedia('(prefers-color-scheme: dark)').matches)
+      ) {
+        document.documentElement.classList.add('dark');
+
+      } else {
+
+        document.documentElement.classList.remove('dark');
+      }
+
+  body(class="bg-white dark:bg-black text-black dark:text-white")
     include ./partials/navbar.pug
 
     | !{content}

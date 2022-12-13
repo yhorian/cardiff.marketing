@@ -33,6 +33,11 @@ collections:
         default: ["Analytics", "Cloudflare"]
         add_to_top: true
         allow_add: true
+      - label: "Featured Image"
+        name: "thumbnail"
+        widget: "image"
+        choose_url: true
+        default: "static/img/core-web-vitals.webp"
       - { label: "Body", name: "body", widget: "markdown" }
   - label: "Pages"
     name: "pages"
@@ -45,6 +50,11 @@ collections:
       - { label: "Title", name: "title", widget: "string" }
       - { label: "Description", name: "description", widget: "string" }
       - { label: "Permalink", name: "permalink", widget: "string", required: true }
+      - label: "Hero Image"
+        name: "hero"
+        widget: "image"
+        choose_url: true
+        default: "static/img/core-web-vitals.webp"
       - { label: "Body", name: "body", widget: "markdown" }
   - label: "Settings"
     name: "settings"
