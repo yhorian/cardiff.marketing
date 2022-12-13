@@ -32,7 +32,7 @@ module.exports = function (eleventyConfig) {
       "./static/css/prism-tomorrow.css",
   });
 
-  // Runs PostCSS as part of Eleventy's pipeline. Will respect postcss.config.js and tailwind.config.js
+  // Runs PostCSS as part of Eleventy's pipeline. Will respect postcss.config.js. Also runs tailwind using tailwind.config.js.
   eleventyConfig.addPlugin(PostCSSPlugin);
 
   // Stops partial builds on eleventy's server. Necessary for Tailwind CSS updates to be refreshed via Postcss plugin.
@@ -45,7 +45,7 @@ module.exports = function (eleventyConfig) {
   // Copy favicon to route of /_site
   eleventyConfig.addPassthroughCopy("./src/favicon.ico");
 
-  //  fix for lack of filters access in pug.
+  // Fix for lack of filters access in pug.
   // https://github.com/11ty/eleventy/issues/1523
   global.filters = eleventyConfig.javascriptFunctions; 
   eleventyConfig.setPugOptions({
@@ -53,7 +53,7 @@ module.exports = function (eleventyConfig) {
       debug: false
   });
 
-  // Markdown files will be run through the nunjucks parser.
+  // Markdown files will be run through the nunjucks parser. Lets us embed {% nunjuck code %}.
   return {
     dir: {
       input: "src",
