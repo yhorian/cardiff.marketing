@@ -4,10 +4,11 @@ description: Events in GA4's BigQuery data are 'nested' - to make the best use
   of them you'll need to 'flatten' them into indivudal rows with this statement.
 author: Liam Martin
 permalink: /third-post/
-date: 2020-09-03
+date: 2022-12-04T00:00:00.000Z
 tags:
-  - analytics
-  - post
+  - bigquery
+  - datastudio
+  - SQL
 ---
 | event_name | event_params.key | event_params.value |
 | ---------- | ------------- | ------------- |
