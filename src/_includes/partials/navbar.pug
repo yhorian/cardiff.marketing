@@ -1,18 +1,18 @@
 
-nav(class="sticky top-0 bg-slate-50")
+nav(class="sticky top-0 dark:backdrop-brightness-150 backdrop-brightness-90")
     div(class="w-full flex items-center justify-between flex-wrap p-3 container mx-auto")
         div(class="flex text-center flex-grow")
-            a(href="/" class="text-indigo-500 font-bold text-lg") Cardiff.marketing
+            a(href="/" class="text-indigo-400 font-bold text-lg") Cardiff.Marketing
         div(class="flex text-center ")
             if collections.page
                 ul(class="pt-0 list-reset flex justify-end flex-1 items-center")
                     each item in nav.items
                         li(class="nav__item mr-3")
-                            a(class="text-ml inline-block text-gray-500 no-underline hover:text-indigo-500 py-2 px-4" href=item.url) #{ item.title }
+                            a(class="text-ml inline-block no-underline hover:text-indigo-500 py-2 px-4" href=item.url) #{ item.title }
         button(
         type="button"
-        class="mt-2 px-3 py-2 rounded-lg font-semibold text-black bg-white dark:bg-black dark:text-white focus:outline-none"
-        @click="darkMode = !darkMode"
+        class="mt-2 px-3 py-2 rounded-lg font-semibold focus:outline-none"
+        @click="darkMode = ! darkMode"
         )
             svg(id="theme-toggle-dark-icon" x-show="!darkMode" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg")
                 path(d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z")
