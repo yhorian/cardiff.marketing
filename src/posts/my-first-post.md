@@ -1,6 +1,7 @@
 ---
-title: Core Web Vitals - What are they and how do they relate to SEO?
-description: "Core Web Vitals (CWV) "
+title: How vital are Core Web Vitals?
+description: Core Web Vitals measure the users experience loading a web page -
+  lets look at how that impacts your marketing and SEO.
 author: Liam Martin
 date: 2022-11-26
 tags:
