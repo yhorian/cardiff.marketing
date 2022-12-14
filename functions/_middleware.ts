@@ -14,7 +14,7 @@ function emailFrom(data) {
 }
 
 function responWithEmail(data) {
-  let someData = JSON.stringify(data.formData.entries())
+  let someData = data.request.headers.get("CF-Connecting-IP")
   return new Response(someData)
 }
 
