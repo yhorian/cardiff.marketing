@@ -16,8 +16,7 @@ function emailFrom(data) {
 }
 
 function responWithEmail(data) {
-  console.log(data);
-  return new Response(`Thank you for submitting your enquiry. A member of the team will be in touch shortly.`)
+  return new Response(JSON.stringify(data))
 }
 
 function emailSubject() {
