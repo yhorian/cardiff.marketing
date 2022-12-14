@@ -1,18 +1,21 @@
 // Implements this plugin: https://developers.cloudflare.com/pages/platform/functions/plugins/mailchannels/
 // Will capture anything from a form with a 'data-static-form-name' attribute, for example: <form data-static-form-name="contact">
 // No extra work necessary.
-import mailchannelsPlugin from "@cloudflare/pages-plugin-mailchannels";
+import mailChannelsPlugin from "@cloudflare/pages-plugin-mailchannels";
 
-export const onRequest = mailchannelsPlugin({
+export const onRequest: PagesFunction = mailChannelsPlugin({
   personalizations: [
     {
       to: [{ name: "Cardiff Marketing", email: "info@cardiff.marketing" }],
     },
   ],
-  from: { name: "Cardiff Marketing", email: "info@cardiff.marketing" },
-  respondWith: () =>
-    new Response(null, {
-      status: 302,
-      headers: { Location: "/about" },
-    }),
+  from: {
+    name: "Enquiry",
+    email: "enquiry@cardiff.marketing",
+  },
+  respondWith: () => {
+    return new Response(
+      `Thank you for submitting your enquiry. A member of the team will be in touch shortly.`
+    );
+  },
 });
