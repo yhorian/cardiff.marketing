@@ -3,19 +3,23 @@
 // No extra work necessary.
 import mailChannelsPlugin from "@cloudflare/pages-plugin-mailchannels";
 
-export const onRequest: PagesFunction = mailChannelsPlugin({
-  personalizations: [
-    {
-      to: [{ name: "Cardiff Marketing", email: "info@cardiff.marketing" }],
+export const onRequest: PagesFunction = mailChannelsPlugin(formEmailArray());
+
+function formEmailArray(request, formdata, name) {
+    let personalizations = { personalizations:[
+      {
+        to: [{ name: "ACME Support", email: "support@example.com" }],
+      },
+    ],
+    from: {
+      name: "ACME Support",
+      email: "support@example.com",
     },
-  ],
-  from: {
-    name: "Enquiry",
-    email: "enquiry@cardiff.marketing",
-  },
-  respondWith: () =>
-    new Response(null, {
-      status: 302,
-      headers: { Location: "/thank-you" },
-    }),
-});
+    respondWith: () => {
+      return new Response(
+        `Thank you for submitting your enquiry. A member of the team will be in touch shortly.`
+      );
+    },
+  }
+  return personalizations
+}
