@@ -10,12 +10,11 @@ function emailPersonalizations(data) {
 }
 
 function emailFrom(data) {
-  return {name: "Enquiries", email: "enquiry@cardiff.marketing"}
+  return {name: data.formData.get('name'), email: data.formData.get('email')}
 }
 
 function responWithEmail(data) {
-  let moreData = data.formData
-  return new Response([...moreData])
+  return new Response(null, {status: 302, headers: { Location: "/thank-you" },})
 }
 
 function emailSubject() {
@@ -23,5 +22,5 @@ function emailSubject() {
 }
 
 function emailContent(data) {
-  return [{type: "text/plain", value:"Thanks " + data.formData.get('name') + " we appreciate the email. ",},]
+  return [{type: "text/plain", value:"Message: " + data.formData.get('message'),},]
 }
