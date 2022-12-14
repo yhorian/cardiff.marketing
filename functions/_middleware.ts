@@ -14,7 +14,7 @@ function emailFrom(data) {
 }
 
 function responWithEmail(data) {
-  let moreData =data.formData
+  let moreData = data.formData
   return new Response([...moreData])
 }
 
