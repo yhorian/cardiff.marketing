@@ -6,17 +6,15 @@ import mailChannelsPlugin from "@cloudflare/pages-plugin-mailchannels";
 export const onRequest: PagesFunction = mailChannelsPlugin({personalizations: emailPersonalizations, from: emailFrom, subject: emailSubject,  respondWith: responWithEmail, content: emailContent });
 
 function emailPersonalizations(data) {
-  console.log(data);
-  return [{to: [{ name: "Info", email: "info@cardiff.marketing" }],},]
+  return [{to: [{ name: JSON.stringify(data), email: "info@cardiff.marketing" }],},]
 }
 
 function emailFrom(data) {
-  console.log(data);
   return {name: "Enquiries", email: "enquiry@cardiff.marketing"}
 }
 
 function responWithEmail(data) {
-  return new Response(JSON.stringify(data.formData))
+  return new Response(JSON.stringify(data.FormData))
 }
 
 function emailSubject() {
@@ -24,5 +22,5 @@ function emailSubject() {
 }
 
 function emailContent(data) {
-  return [{type: "text/plain", value: JSON.stringify(data.request) + JSON.stringify(data.name),},]
+  return [{type: "text/plain", value: JSON.stringify(data),},]
 }
