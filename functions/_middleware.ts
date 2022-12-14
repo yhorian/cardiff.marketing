@@ -3,7 +3,7 @@
 // No extra work necessary.
 import mailChannelsPlugin from "@cloudflare/pages-plugin-mailchannels";
 
-export const onRequest: PagesFunction = mailChannelsPlugin(formEmailArray());
+export const onRequest: PagesFunction = mailChannelsPlugin({personalizations: formEmailArray});
 
 function formEmailArray(request, formdata, name) {
     let personalizations = { personalizations:[
