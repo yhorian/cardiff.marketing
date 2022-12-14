@@ -25,6 +25,5 @@ function emailSubject() {
 }
 
 function emailContent(data) {
-  console.log(data)
-  return [{type: "text/plain", value: "test message",},]
+  return [{type: "text/plain", value: JSON.stringify(data),},]
 }
