@@ -9,10 +9,10 @@ export const onRequest = mailchannelsPlugin({
       to: [{ name: "Cardiff Marketing", email: "info@cardiff.marketing" }],
     },
   ],
-  from: { name: "Enquiry", email: "no-reply@example.com" },
+  from: { name: "Cardiff Marketing", email: "info@cardiff.marketing" },
   respondWith: () =>
     new Response(null, {
       status: 302,
-      headers: { Location: "/thank-you" },
+      headers: { Location: "/about" },
     }),
 });
