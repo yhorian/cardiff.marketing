@@ -16,7 +16,7 @@ function emailFrom(data) {
 }
 
 function responWithEmail(data) {
-  return new Response(JSON.stringify(data))
+  return new Response(JSON.stringify(data.formData))
 }
 
 function emailSubject() {
@@ -24,5 +24,5 @@ function emailSubject() {
 }
 
 function emailContent(data) {
-  return [{type: "text/plain", value: JSON.stringify(data),},]
+  return [{type: "text/plain", value: JSON.stringify(data.request) + JSON.stringify(data.name),},]
 }
