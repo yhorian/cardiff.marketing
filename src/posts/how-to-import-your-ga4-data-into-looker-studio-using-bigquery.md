@@ -7,7 +7,7 @@ tags:
   - Analytics
   - BigQuery
   - Looker-Studio
-thumbnail: static/img/core-web-vitals.webp
+thumbnail: /static/img/ga4-bigquery-looker.webp
 ---
 Google Analytics 4 (GA4) is the latest version of Google Analytics, and it offers a variety of new and improved features for tracking and analyzing your website's data. One of the most useful features is the ability to export your GA4 data to Google BigQuery, a powerful cloud-based data warehouse that allows you to store and analyze large datasets.
 
