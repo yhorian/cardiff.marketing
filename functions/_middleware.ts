@@ -5,19 +5,19 @@ import mailChannelsPlugin from "@cloudflare/pages-plugin-mailchannels";
 
 export const onRequest: PagesFunction = mailChannelsPlugin({personalizations: [
   {
-    to: [{ name: "ACME Support", email: "support@example.com" }],
+    to: [{ name: "Info", email: "info@cardiff.marketing" }],
   },
-], from: emailFrom, subject: emailSubject,  respondWith: responWithEmail });
+], from: emailFrom(), subject: emailSubject(),  respondWith: responWithEmail() });
 
-function emailPersonalizations(data) {
+function emailPersonalizations() {
   return [{to: { name: "string", email: "string"}}]
 }
 
-function emailFrom(data) {
-  return {name: "ACME Support", email: "support@example.com"}
+function emailFrom() {
+  return {name: "Enquiry", email: "eqnuiry@cardiff.marketing"}
 }
 
-function responWithEmail(data) {
+function responWithEmail() {
   return new Response(`Thank you for submitting your enquiry. A member of the team will be in touch shortly.`)
 }
 
