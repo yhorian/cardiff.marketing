@@ -14,8 +14,8 @@ function emailFrom(data) {
 }
 
 function responWithEmail(data) {
-  let someData =  data.formData.entries()
-  return new Response(JSON.stringify(someData))
+  let someData = data.formData.entries()
+  return new Response(someData)
 }
 
 function emailSubject() {
