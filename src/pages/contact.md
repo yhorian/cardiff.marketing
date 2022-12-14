@@ -9,15 +9,15 @@ Email: <a class="underline" href="mailto:info@cardiff.marketing"> info@cardiff.m
 
 Or use our inquiry form:
 
-<form data-static-form-name="contact">
-      <div>
-        <label>Name<input type="text" name="name" /></label>
+<form data-static-form-name="contact" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+      <div class="mb-4">
+        <label class="block text-gray-700 text-sm font-bold mb-2">Name<input type="text" name="name" /></label>
       </div>
-      <div>
-        <label>Email<input type="email" name="email" /></label>
+      <div class="mb-4">
+        <label class="block text-gray-700 text-sm font-bold mb-2">Email<input type="email" name="email" /></label>
       </div>
-      <div>
-        <label>Message<textarea name="message"></textarea></label>
+      <div class="mb-4">
+        <label class="block text-gray-700 text-sm font-bold mb-2">Message<textarea name="message"></textarea></label>
       </div>
-      <button type="submit">Send!</button>
-    </form>
+      <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button">Send!</button>
+</form>
