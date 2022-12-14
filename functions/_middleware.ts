@@ -7,7 +7,7 @@ export const onRequest: PagesFunction = mailChannelsPlugin({personalizations: [
   {
     to: [{ name: "Info", email: "info@cardiff.marketing" }],
   },
-], from: emailFrom(), subject: emailSubject(),  respondWith: responWithEmail() });
+], from: emailFrom(), subject: emailSubject(),  respondWith: responWithEmail });
 
 function emailPersonalizations() {
   return [{to: { name: "string", email: "string"}}]
