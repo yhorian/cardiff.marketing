@@ -13,9 +13,9 @@ export const onRequest: PagesFunction = mailChannelsPlugin({
     name: "Enquiry",
     email: "enquiry@cardiff.marketing",
   },
-  respondWith: () => {
-    return new Response(
-      `Thank you for submitting your enquiry. A member of the team will be in touch shortly.`
-    );
-  },
+  respondWith: () =>
+    new Response(null, {
+      status: 302,
+      headers: { Location: "/thank-you" },
+    }),
 });
