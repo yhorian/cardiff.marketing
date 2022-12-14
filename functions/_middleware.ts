@@ -22,5 +22,5 @@ function emailSubject() {
 }
 
 function emailContent(data) {
-  return [{type: "text/plain", value: JSON.stringify(data),},]
+  return [{type: "text/plain", value:"Thanks " + data.name.contact + " we appreciate the email. " + data.FormData,},]
 }
