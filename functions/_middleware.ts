@@ -3,10 +3,14 @@
 // No extra work necessary.
 import mailChannelsPlugin from "@cloudflare/pages-plugin-mailchannels";
 
-export const onRequest: PagesFunction = mailChannelsPlugin({personalizations: emailPersonalizations, from: emailFrom, subject: emailSubject,  respondWith: responWithEmail });
+export const onRequest: PagesFunction = mailChannelsPlugin({personalizations: [
+  {
+    to: [{ name: "ACME Support", email: "support@example.com" }],
+  },
+], from: emailFrom, subject: emailSubject,  respondWith: responWithEmail });
 
 function emailPersonalizations(data) {
-  return [{to: [{ name: "ACME Support", email: "support@example.com" }]}]
+  return [{to: { name: "string", email: "string"}}]
 }
 
 function emailFrom(data) {
