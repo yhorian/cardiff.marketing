@@ -14,7 +14,7 @@ function emailFrom(data) {
 }
 
 function responWithEmail(data) {
-  let someData =  data.formData
+  let someData =  data.formData.entries()
   return new Response(JSON.stringify(someData))
 }
 
@@ -23,5 +23,5 @@ function emailSubject() {
 }
 
 function emailContent(data) {
-  return [{type: "text/plain", value:"Thanks " + data.name + " we appreciate the email. " + JSON.stringify(data.formData),},]
+  return [{type: "text/plain", value:"Thanks " + data.name + " we appreciate the email. ",},]
 }
