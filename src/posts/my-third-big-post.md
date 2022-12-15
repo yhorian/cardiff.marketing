@@ -9,7 +9,7 @@ tags:
   - bigquery
   - datastudio
   - SQL
-thumbnail: /static/img/core-web-vitals.webp
+thumbnail: /static/img/rain.jpeg
 ---
 | event_name | event_params.key | event_params.value |
 | ---------- | ------------- | ------------- |
