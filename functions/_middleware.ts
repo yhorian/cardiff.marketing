@@ -21,7 +21,7 @@ function emailFrom(data) {
 }
 
 function responWithEmail(data) {
-  return new Response(null, {status: 302, headers: { Location: "/thank-you" },})
+  return new Response(null, {status: 302, headers: { Location: "/about" },})
 }
 
 function emailSubject() {
