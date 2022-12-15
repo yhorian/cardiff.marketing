@@ -147,3 +147,5 @@ Where AI falls down is that it doesn't have that experience. It can't judge expe
 This happened when Google released its PPC AI for Google Adwords. They encouraged everyone to sign up and spend 💰thousands💰 to train it on their website. Those that said 'Yes' and let it fly had all kinds of experimental ads created to try and drive traffic. While I'm sure there was some success, the end result was easily outperformed by a PPC executive. If you are running a website with over 60k unique products then the Adwords AI is still there for you to use. But it's use-case is not nearly as broad as their reps made it seem.
 
 But this does tell us that ChatGPT has a use case - working at scale. A human cannot scan thousands of sources, process them and produce an accurate summary. ChatGPT absolutely can.
+
+If you haven't already given it a try, now is definitely the time. It's [currently free to use](https://chat.openai.com/chat). While it isn't going to be a magic bullet for content writing you're still going to be blown away by how good it is.
