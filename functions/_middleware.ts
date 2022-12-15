@@ -13,7 +13,7 @@ function emailPersonalizations() {
 }
 
 function emailFrom(data) {
-  return {name: data.formData.get("name"), email: myEmail}
+  return {name: "${ data.name } form", email: myEmail}
 }
 
 function formResponse() {
