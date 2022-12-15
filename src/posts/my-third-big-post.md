@@ -3,13 +3,13 @@ title: Exporting events from BigQuery to Datastudio using SQLs UNNEST
 description: Events in GA4's BigQuery data are 'nested' - to make the best use
   of them you'll need to 'flatten' them into indivudal rows with this statement.
 author: Liam Martin
-permalink: /third-post/
 date: 2022-12-04T00:00:00.000Z
 tags:
   - bigquery
   - datastudio
   - SQL
-thumbnail: /static/img/rain.jpeg
+thumbnail: src/static/img/rain.jpeg
+thumbnaildesc: rain
 ---
 | event_name | event_params.key | event_params.value |
 | ---------- | ------------- | ------------- |

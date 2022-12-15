@@ -1,6 +1,30 @@
 const syntaxHighlight = require("@11ty/eleventy-plugin-syntaxhighlight");
 const PostCSSPlugin = require("eleventy-plugin-postcss");
-const lazy_loading = require('markdown-it-image-lazy-loading');
+// const lazy_loading = require('markdown-it-image-lazy-loading');
+const Image = require("@11ty/eleventy-img");
+
+function imageShortcode(src, alt="", sizes="100vw", widths=[300,500,800,1200], formats=["webp", "avif", "jpeg"]) {
+  let metadata = Image.statsSync(src, {
+    widths: widths,
+    formats: formats,
+    urlPath: "/static/img/",
+    outputDir: "./_site/static/img/",
+  });
+  Image(src, {
+    widths: widths,
+    formats: formats,
+    urlPath: "/static/img/",
+    outputDir: "./_site/static/img/"
+  });
+  let imageAttributes = {
+    alt,
+    sizes,
+    loading: "lazy",
+    decoding: "async",
+  };
+
+  return Image.generateHTML(metadata, imageAttributes);
+}
 
 module.exports = function (eleventyConfig) {
   // Disable automatic use of your .gitignore
@@ -18,8 +42,11 @@ module.exports = function (eleventyConfig) {
   // Accessed in pug by doing "filters.year()"
   eleventyConfig.addShortcode("year", () => `${new Date().getFullYear()}`);
 
+  // Image processing
+  eleventyConfig.addShortcode('image', imageShortcode);
+
   // Automatically add Lazy loading to markdown image tags
-  eleventyConfig.amendLibrary("md", mdLib => mdLib.use(lazy_loading, { base_path: "./src" ,image_size: true,decoding: true}));
+  // eleventyConfig.amendLibrary("md", mdLib => mdLib.use(lazy_loading, { base_path: "./src" ,image_size: true,decoding: true}));
 
   // Syntax Highlighting for Code blocks
   eleventyConfig.addPlugin(syntaxHighlight);
