@@ -17,7 +17,7 @@ function emailFrom(data) {
 }
 
 function formResponse() {
-  return Response.redirect("about/", 302)
+  return new Response(null, {status: 302, headers: {Location: "about/"} })
 }
 
 function emailSubject(data) {
