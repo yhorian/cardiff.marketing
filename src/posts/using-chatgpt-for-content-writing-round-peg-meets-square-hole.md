@@ -22,7 +22,10 @@ Let's go through the content creation process. We'll start with the standard wor
    * What is it they want?
    * How does that relate to your service/product/site?
    * What are they going to do next?
-3. Content research. Look at existing results and what you'll need to achieve to beat them to rank higher.
+3. Content research. Look at existing results and determine:
+   * What they're writing about and how it fits the query
+   * How good the quality of their content is
+   * What you'll need to produce to beat it
 4. Article outline. Create an outline of the article you're creating based on the content research.
 5. Content writing. Flesh out your content with everything you researched so far.
 6. Review. Make sure your content harmoniously does everything you need it to:
@@ -32,19 +35,23 @@ Let's go through the content creation process. We'll start with the standard wor
    * Meet the user's expectations for both content and quality.
    * Predict their next step and try fulfilling that too. Your call-to-action/internal links go here.
 
-Lets go through each of these steps and see where ChatGPT can help.
+Let's go through each of these steps and see where ChatGPT can help.
 
 ## Can ChatGPT help me do keyword research?
 
 No. 
 
-It has no ability to access that data. While you could theoretically design an AI to do this (and I'm sure someone is working on it) there are so many factors that it's difficult to design one AI to meet everyone's needs. That means sadly a keyword research AI is not likely to be commercially viable for a while.
+It has no ability to access that data. While you could theoretically design an AI to do this (and I'm sure someone is working on it) there are so many factors that it's difficult to design one AI to meet everyone's needs. That means sadly a keyword research AI is not likely to be commercially viable for a while. Watch this space though.
 
 ## Can ChatGPT figure out search intent for me?
 
 No.
 
-Humans can intuit things about other humans that machines cannot. The classic example is to search 'House shifting'. Google results will be about moving house because "shift" is synonymous with "move". As in "to shift a crate". As you've already likely guessed this is entirely the wrong answer: If you're searching for information on the house itself moving/shifting then you're looking for articles on *subsidence*. A human gets this because of their real-world experience. A computer does not.
+Humans can intuit things about other humans that machines cannot. The classic example is to search 'House shifting'.
+
+<img src="/static/img/house shifting.png" alt="Deep Space Nine's Quark looking fabulous in a shockingly bright lycra dress with costume jewelry." height="200px">
+
+Google results will be about moving house because "shift" is synonymous with "move". As in "to shift a crate". As you've already likely guessed this is entirely the wrong answer: If you're searching for information on the house itself moving/shifting then you're looking for articles on *subsidence*. A human gets this because of their real-world experience. A computer does not.
 
 This goes to a whole new level when we talk about emotions. What can look innocuous to DALL-E can be shocking or offensive to us. We may not even be able to explain why. This is a consistent plot point in many Sci-fi series. Even aliens don't get our culture or how we will react to theirs. Case in point:
 
@@ -94,19 +101,11 @@ Unfortunately, ChatGPT hasn't made much progress. It's call-to-action would have
 
 The answer is still 'No, ChatGPT cannot created finished content.' Next question...
 
-## ChatGPT create a content template for content writer to expand on?
+## ChatGPT do content research?
 
-Yes! As a summary engine, this fits into the content-writing process perfectly.
+Maybe! As a summary engine, ChatGPT does have the ability to summarise everything it's read in mere seconds. This saves a human having to trawl through the available research data to find what they'd need to understand and expand upon a topic.
 
-Step 1 of creating high-performance SEO content is to **do your research**. But what if ChatGPT could do the research for you?\
-\
-It also cannot look at the keyword space and tell you which keyword is the best to optimise around. You'll still be using GSC, Ahrefs, Semrush, Sistrix, etc. to look at content targets.
-
-What it cannot do is look at the top results and say why they are top results. You'll be doing that when it comes to the final stages of optimisation.
-
-What it absolutely can do is research topics and produce a structure. The theory is that it's easy to edit a mediocre article than to create a great one from scratch. Let's look at an example:
-
-**Create a headline and subheadings for a blog post about ChatGPT and how it can help write content:**
+But that's not really what we want here. While a part of content research is getting to grips with a topic there are two parts to this task. 
 
 > Headline: "ChatGPT: The AI Writing Assistant That Makes Content Creation a Breeze"
 >
