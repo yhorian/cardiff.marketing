@@ -12,9 +12,45 @@ thumbnail: /static/img/dall·e-fighting-chatgpt.png
 ---
 ChatGPT is an evolution of GPT3 with the ability to adapt its work based on chat history. It's a huge leap and there is no doubt it's shaking up the world already. But how does that relate to SEO and marketing in general?
 
-There is one huge drawback that AIs can't overcome - they are not innovators. As creative as DALL-E can appear (see the article image above), it is still taking existing elements and mashing them together in an attempt to 'dream up' something that closely matches the user's request. Compare that to how an artist references in order to create something and you might not think the process is too different. And yet what DALL-E produces is almost childlike in its naivety: It understands using references to create an image but it has no **emotional abstraction**. It cannot predict how that image is going to make usfeel.
+Thankfully that's easy to test and that's what we'll be doing today.
 
-This exact same issue is present in ChatGPT. It takes a vast number of references and can summarise them accurately in mere seconds. This can be helpful if you want a content summary - and it will absolutely produce an executive summary on any subject you want. If there are enough sources it'll even be a great one. But there's a lot of questions left before we know where it's place in marketing is.
+Let's go through the content creation process. We'll start with the standard workflow for producing a new article that will be converting an organic search user:
+
+1. Keyword research. Pick out your target terms and get their search volume.
+2. Intent extrapolation. Figure out why people are searching that term and how you can service it.
+
+   * What is it they want?
+   * How does that relate to your service/product/site?
+   * What are they going to do next?
+3. Content research. Look at existing results and what you'll need to achieve to beat them to rank higher.
+4. Article outline. Create an outline of the article you're creating based on the content research.
+5. Content writing. Flesh out your content with everything you researched so far.
+6. Review. Make sure your content harmoniously does everything you need it to:
+
+   * Fit the keyword you're optimising around.
+   * Match the user's search intent.
+   * Meet the user's expectations for both content and quality.
+   * Predict their next step and try fulfilling that too. Your call-to-action/internal links go here.
+
+Lets go through each of these steps and see where ChatGPT can help.
+
+## Can ChatGPT help me do keyword research?
+
+No. 
+
+It has no ability to access that data. While you could theoretically design an AI to do this (and I'm sure someone is working on it) there are so many factors that it's difficult to design one AI to meet everyone's needs. That means sadly a keyword research AI is not likely to be commercially viable for a while.
+
+## Can ChatGPT figure out search intent for me?
+
+No.
+
+Humans can intuit things about other humans that machines cannot. The classic example is to search 'House shifting'. Google results will be about moving house because "shift" is synonymous with "move". As in "to shift a crate". As you've already likely guessed this is entirely the wrong answer: If you're searching for information on the house itself moving/shifting then you're looking for articles on *subsidence*. A human gets this because of their real-world experience. A computer does not.
+
+This goes to a whole new level when we talk about emotions. What can look innocuous to DALL-E can be shocking or offensive to us. We may not even be able to explain why. This is a consistent plot point in many Sci-fi series. Even aliens don't get our culture or how we will react to theirs. Case in point:
+
+<img src="/static/img/quark_as_lumba.webp" alt="Deep Space Nine's Quark looking fabulous in a shockingly bright lycra dress with costume jewelry." height="200px">
+
+You can make some predictions on how others would feel about this image. A computer cannot.
 
 ## Can ChatGPT create Search Optimised Content?
 
@@ -32,11 +68,7 @@ When we optimise content, we're trying to relate it to what we think a user is l
 >
 > [How to change the locks yourself.](https://www.youtube.com/watch?v=paW8YFpSHns)
 
-The first issue we run into is that ChatGPT has given a wrong answer. For legal questions, that's an easy way to not get your page listed. It did not trust the correct sources. But because that is a matter of AI training we're going to ignore that and go on to why this isn't a search optimised answer:
-
-1. Brevity - People need answers fast and they need to be condensed and optimised for delivery. No one wants to read the law itself. They want a simple, short answer back.
-2. Formatting - I've highlighted the **not** in my answer to be clearer. Faster info processing means happier customers.
-3. Search Intent - Because ChatGPT has not correctly intuited why people are searching this, it hasn't added any calls to action. It hasn't tried to predict their next step. An SEO executive's goal is to stop that person going back to Google by predicting their next move. This is why links within your answers are so important.
+The first issue we run into is that ChatGPT has given a wrong answer. For legal questions, that's an easy way to not get your page listed. It did not trust the correct sources. But because that is a matter of AI training we're going to ignore that and go on to why this isn't a search optimised answer
 
 This is where things get interesting. ChatGPT is an evolution of it's predecessors because you can get it to modify it's answers by *talking things over*. To make this a fair test, lets try giving it feedback:
 
@@ -59,3 +91,59 @@ This is where things get interesting. ChatGPT is an evolution of it's predecesso
 > It is not illegal for a tenant to change the locks on a rental property in Wales. However, it is important to get written permission from your landlord before making any changes to the property, including changing the locks. It is also a good idea to follow the terms of your rental agreement and to communicate with your landlord to avoid any potential misunderstandings. If you have any further questions, we recommend contacting a legal professional for more detailed advice.
 
 Unfortunately, ChatGPT hasn't made much progress. It's call-to-action would have been adequate if it got the answer correct so we'll give it half marks. However, it failed to keep the answer as concise as mine and it failed to correct the answer when prompted.
+
+The answer is still 'No, ChatGPT cannot created finished content.' Next question...
+
+## ChatGPT create a content template for content writer to expand on?
+
+Yes! As a summary engine, this fits into the content-writing process perfectly.
+
+Step 1 of creating high-performance SEO content is to **do your research**. But what if ChatGPT could do the research for you?\
+\
+It also cannot look at the keyword space and tell you which keyword is the best to optimise around. You'll still be using GSC, Ahrefs, Semrush, Sistrix, etc. to look at content targets.
+
+What it cannot do is look at the top results and say why they are top results. You'll be doing that when it comes to the final stages of optimisation.
+
+What it absolutely can do is research topics and produce a structure. The theory is that it's easy to edit a mediocre article than to create a great one from scratch. Let's look at an example:
+
+**Create a headline and subheadings for a blog post about ChatGPT and how it can help write content:**
+
+> Headline: "ChatGPT: The AI Writing Assistant That Makes Content Creation a Breeze"
+>
+> Subheadings:
+>
+> * "Introducing ChatGPT: The AI Writing Assistant"
+> * "How ChatGPT Can Help You Write Better Content"
+> * "Real-time Collaboration with ChatGPT"
+> * "ChatGPT and Your Content Marketing Strategy"
+> * "Try ChatGPT Today and See the Difference It Can Make"
+
+Amazing start. They're even emotionally weighted to catch the eye of the reader. Let's see if we can expand upon that:
+
+**Can you write the introduction for this blog post:**
+
+> Sure, here's a possible introduction for the blog post:
+>
+> Are you tired of struggling to come up with the right words for your content? Do you wish you had a writing assistant to help you craft engaging and compelling text? Look no further than ChatGPT, the AI writing assistant that makes content creation a breeze.
+>
+> ChatGPT is a state-of-the-art language processing technology developed by OpenAI. It uses advanced natural language processing techniques to assist you with your writing, providing suggestions and completing sentences in real-time as you type. With ChatGPT, you can easily create high-quality content that engages and informs your audience.
+>
+> In this blog post, we'll introduce you to ChatGPT and show you how it can help you write better content. We'll also discuss how ChatGPT can be used for real-time collaboration and how it fits into your content marketing strategy. Plus, we'll offer some tips on how to get started with ChatGPT and see the difference it can make for your content. So read on to learn more about this powerful AI writing assistant!
+
+There is two huge drawback that AIs can't overcome:
+
+1. They are not innovators. Nothing they do is original in their current form.
+
+2. They don't understand humans. We have an emotional and cultural filter it cannot predict.
+
+As creative as DALL-E can appear (see the article image above), it is still taking existing elements and mashing them together in an attempt to 'dream up' something that closely matches the user's request. Compare that to how an artist references in order to create something and you might not think the process is too different. And yet what DALL-E produces is almost childlike in its naivety: It understands using references to create an image but it has no **emotional abstraction**. It cannot predict how that image is going to make usfeel.
+
+This exact same issue is present in ChatGPT. The longer the task you give it the more obvious this becomes. ChatGPTs innovation is that it's easier to split tasks into chunks and create a back-and-forth editing process. It has no ability to understand these very human things:
+
+1. Brevity - We know where we can make assumptions about our audience. ChatGPT does not. The longer an answer is then the less engaged with it people will be.
+2. Intent - 
+3. The next step - A big part of SEO is predicting what the user wants next. If you are not producing a be-all-and-end-all guide to something then you're going to need follow up links and resources. This is often where your call to action comes in. An AI can't predict this user flow. It can't alter your UX/UI around this need. And it can't produce content that will funnel people without some human intervention. Having tested it myself, I've found this is more work than you might initially think.
+
+If ChatGPT can't produce unique or purposeful content, what is ChatGPT good at?
+
+In a word: **Summarisation.**
