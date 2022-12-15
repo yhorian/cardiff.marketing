@@ -5,15 +5,10 @@
 const myEmail = "info@cardiff.marketing"
 
 import mailChannelsPlugin from "@cloudflare/pages-plugin-mailchannels";
-import assetNegotiationPlugin from "pages-plugin-asset-negotiation";
 
-export const onRequest: PagesFunction = [
-  assetNegotiationPlugin({
-	formats: ['jxl', 'avif', 'webp'], // The formats you want to support, in order of preference. This is the default configuration and will serve a jxl image if the browser supports it (and it was found) first, followed by avif and then webp.
-}),
 // Expects object literal with properties for: "Personalizations" with a 'to' field, "from": with name + email, "respondWith" as a response or promise of a response object.
 // Optional Properties: subject, content. Define the subject/content for the email.
-mailChannelsPlugin({personalizations: emailPersonalizations, from: emailFrom, subject: emailSubject,  respondWith: formResponse, content: emailContent})];
+export const onRequest: PagesFunction = mailChannelsPlugin({personalizations: emailPersonalizations, from: emailFrom, subject: emailSubject,  respondWith: formResponse, content: emailContent});
 
 function emailPersonalizations() {
   return [{to: [{ name: "Me", email: myEmail }],},]
@@ -24,7 +19,7 @@ function emailFrom(data) {
 }
 
 function formResponse() {
-  return new Response('Thank you for getting in touch.')
+  return Response.redirect('https://cardiff.marketing/about', 302)
 }
 
 function emailSubject(data) {
