@@ -17,7 +17,7 @@ function emailFrom(data) {
 }
 
 function formResponse() {
-  let response = new Response(null, {status: 302, headers: {Location: "https://cardiff.marketing/about/"} })
+  let response = new Response("Redirect", {status: 302, headers: {Location: "about/"} })
   return response
 }
 
