@@ -10,7 +10,7 @@ function emailPersonalizations(data) {
 }
 
 function emailFrom(data) {
-  return {name: data.formData.get('name'), email: "enquiries@cardiff.marketing"}
+  return {name: data.formData.get('name'), email: data.formData.get('email')}
 }
 
 function responWithEmail(data) {
