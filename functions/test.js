@@ -1,4 +1,4 @@
 export function onRequest(context) {
-    return Response.redirect("/about", 302)
+    return Response.redirect("https://cardiff.marketing/about/", 302)
   }
   
