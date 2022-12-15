@@ -6,7 +6,7 @@ const myEmail = "info@cardiff.marketing"
 
 import mailChannelsPlugin from "@cloudflare/pages-plugin-mailchannels";
 
-export const onRequest: PagesFunction = mailChannelsPlugin({personalizations: emailPersonalizations, from: emailFrom, subject: emailSubject,  respondWith: responWithEmail,});
+export const onRequest: PagesFunction = mailChannelsPlugin({personalizations: emailPersonalizations, from: emailFrom, subject: emailSubject,  respondWith: Response.redirect("/about", 302),});
 
 function emailPersonalizations() {
   return [{to: [{ name: "Me", email: myEmail }],},]
@@ -17,7 +17,7 @@ function emailFrom() {
 }
 
 function responWithEmail() {
-  return Response.redirect("/about", 302)
+  return 
 }
 
 function emailSubject(data) {
