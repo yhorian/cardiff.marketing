@@ -19,8 +19,7 @@ function emailFrom(data) {
 }
 
 function formResponse() {
-  return Response.error()
-  // return Response.redirect('https://cardiff.marketing/about', 302)
+  return Response.redirect('https://cardiff.marketing/about', 204)
 }
 
 function emailSubject(data) {
