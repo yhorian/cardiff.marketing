@@ -24,7 +24,7 @@ function emailFrom(data) {
 }
 
 function formResponse() {
-  return Response.redirect("https://cardiff.marketing/about/", 302)
+  return new Response('Thank you for getting in touch.')
 }
 
 function emailSubject(data) {
