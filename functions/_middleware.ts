@@ -13,7 +13,7 @@ function emailPersonalizations() {
 }
 
 function emailFrom(data) {
-  return {name: "${ data.name } form", email: myEmail}
+  return {name: `${ data.name } form`, email: myEmail}
 }
 
 function formResponse() {
@@ -22,5 +22,5 @@ function formResponse() {
 }
 
 function emailSubject(data) {
-  return "${ data.name } form submission from: " + data.formData.get("name")
+  return `${ data.name } form submission from: ` + data.formData.get("name")
 }
