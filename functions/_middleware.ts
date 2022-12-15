@@ -17,10 +17,9 @@ function emailFrom(data) {
 }
 
 function formResponse() {
-  let response = new Response("Redirect", {status: 302, headers: {Location: "about/"} })
-  return response
+  return Response("about/", 302)
 }
 
 function emailSubject(data) {
-  return `${ data.name } form submission from: ` + data.formData.get("name")
+  return `${ data.name } form submission from: ` + data.formData.get("email")
 }
