@@ -8,7 +8,7 @@ tags:
   - GPT3
   - AI
   - Content-writing
-thumbnail: /static/img/dall·e-fighting-chatgpt.png
+thumbnail: src/static/img/dall·e-fighting-chatgpt.png
 ---
 ChatGPT is an evolution of GPT3 with the ability to adapt its work based on chat history. It's a huge leap and there is no doubt it's shaking up the world already. But how does that relate to SEO and marketing in general?
 
