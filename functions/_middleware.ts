@@ -1,9 +1,11 @@
 // Implements this plugin: https://developers.cloudflare.com/pages/platform/functions/plugins/mailchannels/
 // Will capture anything from a form with a 'data-static-form-name' attribute, for example: <form data-static-form-name="contact">
 // No extra work necessary.
-// replace this with your email:
+// replace this with your details:
 const myEmail = "info@cardiff.marketing"
+
 import mailChannelsPlugin from "@cloudflare/pages-plugin-mailchannels";
+import { data } from "autoprefixer";
 
 export const onRequest: PagesFunction = mailChannelsPlugin({personalizations: emailPersonalizations, from: emailFrom, subject: emailSubject,  respondWith: () =>
   new Response(null, {
@@ -24,6 +26,6 @@ function responWithEmail(data) {
   return new Response(null, {status: 302, headers: { Location: "/about" },})
 }
 
-function emailSubject() {
-  return "Test Subject " + Math.random()
+function emailSubject(data) {
+  return "Cardiff.Marketing Enquiry from: " + data.formData.get("name")
 }
