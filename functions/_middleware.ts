@@ -19,7 +19,7 @@ function emailFrom(data) {
 }
 
 function formResponse() {
-  return new Response("whoops", {status: 500, headers: {Location: "https://cardiff.marketing/about/"} })
+  return Response.redirect('https://cardiff.marketing/about', 302)
 }
 
 function emailSubject(data) {
