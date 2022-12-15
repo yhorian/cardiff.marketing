@@ -13,16 +13,16 @@ export const onRequest: PagesFunction = mailChannelsPlugin({personalizations: em
   })
 });
 
-function emailPersonalizations(data) {
+function emailPersonalizations() {
   return [{to: [{ name: "Me", email: myEmail }],},]
 }
 
-function emailFrom(data) {
+function emailFrom() {
   return {name: "Form Submission", email: myEmail}
 }
 
-function responWithEmail(data) {
-  return new Response(null, {status: 302, headers: { Location: "/about" },})
+function responWithEmail() {
+  return Response.redirect("/about", 302)
 }
 
 function emailSubject(data) {
