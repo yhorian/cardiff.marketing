@@ -3,7 +3,7 @@ const PostCSSPlugin = require("eleventy-plugin-postcss");
 // const lazy_loading = require('markdown-it-image-lazy-loading');
 const Image = require("@11ty/eleventy-img");
 
-function imageShortcode(src, alt="", sizes="", widths=["300w","500w","800w","1200w"], formats=["webp", "jpeg"]) {
+function imageShortcode(src, alt="", sizes="100vw", widths=["300w","500w","800w","1200w"], formats=["webp", "jpeg"]) {
   let metadata = Image.statsSync(src, {
     widths: widths,
     formats: formats,

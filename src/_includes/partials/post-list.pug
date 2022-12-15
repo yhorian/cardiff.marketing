@@ -1,5 +1,5 @@
 each post in collections.post
     a(href=post.url class="p-5 border rounded-2xl border-gray-200 hover:border-purple-400")
-        | !{ filters.image(post.data.thumbnail, post.data.thumbnaildesc, "1200px") }
+        | !{ filters.image(post.data.thumbnail, post.data.thumbnaildesc) }
         h2 #{ post.data.title }
         p #{ post.data.description }
