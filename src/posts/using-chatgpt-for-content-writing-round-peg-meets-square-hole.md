@@ -104,3 +104,18 @@ Especially if you didn't lean on it up until this point. You'll already have a h
 That's not bad. It's actually pretty good. "Makes content creation a breeze" is a great lead in that has **emotional weight**. It may not understand emotions but it's managed to learn from its sources that blog titles with emotional weight perform better. For that reason, this here is an A+ blog title. From ChatGPT. 
 
 At this stage, I'm starting to wonder if I should have used it to help me write this article. 😕
+One of the best features of ChatGPT is that you can give it feedback and it'll take it on board. Just like a real content writer. Let's try it:
+
+### Can you write the introduction for this blog post:
+
+> Sure, here's a possible introduction for the blog post:
+>
+> Are you tired of struggling to come up with the right words for your content? Do you wish you had a writing assistant to help you craft engaging and compelling text? Look no further than ChatGPT, the AI writing assistant that makes content creation a breeze.
+>
+> ChatGPT is a state-of-the-art language processing technology developed by OpenAI. It uses advanced natural language processing techniques to assist you with your writing, providing suggestions and completing sentences in real-time as you type. With ChatGPT, you can easily create high-quality content that engages and informs your audience.
+>
+> In this blog post, we'll introduce you to ChatGPT and show you how it can help you write better content. We'll also discuss how ChatGPT can be used for real-time collaboration and how it fits into your content marketing strategy. Plus, we'll offer some tips on how to get started with ChatGPT and see the difference it can make for your content. So read on to learn more about this powerful AI writing assistant!
+
+At some point, this AI had to start performing. This actually sounds like a real blog intro! Surely now we can consider getting rid of content writers?
+
+<img src="/static/img/ai-detected.png" alt="Google results for a search on 'house subsidence'" height="200px">
