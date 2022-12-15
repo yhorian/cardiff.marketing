@@ -77,7 +77,30 @@ We can get ChatGPT to produce a great executive summary on the subject. This is 
 
 Wrong. You'll still need to look at the top results for the other two steps. You need to be able to judge their quality and how high a bar has been set to beat it.
 
-Sometimes, you're up against a beast with a ton of authority and high-quality content. You can hang your head in shame knowing that any attempt you make to beat them will still only get you 3-4 ranks behind. But you do it anyway, because some traffic is better than no traffic. At this stage you can weight your efforts according to their return. Maybe the best offering is literally empty of content. Yes, it happens:
+Sometimes, you're up against a beast with a ton of authority and high-quality content. You can hang your head in shame knowing that any attempt you make to beat them will still only get you 3-4 ranks behind. But you do it anyway, because some traffic is better than no traffic. At this stage you can weight your efforts according to their return. Maybe the best offering is literally empty of content and you could rank for a high-value term with a picture and a paragraph. Seriously, it happens:
 
 <img src="/static/img/empty-page.png" alt="Google results for a search on 'house subsidence'" height="200px">
 
+Maybe at this stage, ChatGPT's stab at content would actually be enough. Which leads us into:
+
+## Can ChatGPT produce an article outline?
+
+Surprisingly, yes.
+
+Especially if you didn't lean on it up until this point. You'll already have a handle on your topic, target, competition and what you'll need to produce. At this stage ChatGPT can absolutely step in and give it a bash. Let's see how it does:
+
+### Can you create a blog post outline for an article on how ChatGPT can help you write content?
+
+> Headline: "ChatGPT: The AI Writing Assistant That Makes Content Creation a Breeze"
+>
+> Subheadings:
+>
+> * "Introducing ChatGPT: The AI Writing Assistant"
+> * "How ChatGPT Can Help You Write Better Content"
+> * "Real-time Collaboration with ChatGPT"
+> * "ChatGPT and Your Content Marketing Strategy"
+> * "Try ChatGPT Today and See the Difference It Can Make"
+
+That's not bad. It's actually pretty good. "Makes content creation a breeze" is a great lead in that has **emotional weight**. It may not understand emotions but it's managed to learn from its sources that blog titles with emotional weight perform better. For that reason, this here is an A+ blog title. From ChatGPT. 
+
+At this stage, I'm starting to wonder if I should have used it to help me write this article. 😕
