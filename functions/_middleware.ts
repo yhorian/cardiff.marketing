@@ -22,5 +22,5 @@ function formResponse() {
 }
 
 function emailSubject(data) {
-  return "Cardiff.Marketing Enquiry from: " + data.formData.get("name")
+  return "${ data.name } form submission from: " + data.formData.get("name")
 }
