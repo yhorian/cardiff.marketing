@@ -426,50 +426,6 @@ var textHTMLContent = ({ request, formData, name }) => {
     </body>
   </html>`;
 };
-var onRequest = async (context) => {
-  const { request, pluginArgs } = context;
-  return await template_plugin_default({
-    respondWith: async ({ formData, name }) => {
-      const submission = { formData, name, request };
-      const personalizations = typeof pluginArgs.personalizations === "function" ? pluginArgs.personalizations(submission) : pluginArgs.personalizations;
-      const from = typeof pluginArgs.from === "function" ? pluginArgs.from(submission) : pluginArgs.from;
-      const subject = typeof pluginArgs.subject === "function" ? pluginArgs.subject(submission) : pluginArgs.subject || `New ${name} form submission`;
-      const content = pluginArgs.content ? pluginArgs.content(submission) : [
-        {
-          type: "text/plain",
-          value: textPlainContent(submission)
-        },
-        {
-          type: "text/html",
-          value: textHTMLContent(submission)
-        }
-      ];
-      const { success } = await sendEmail({
-        personalizations,
-        from,
-        subject,
-        content
-      });
-      if (success) {
-        return pluginArgs.respondWith(submission);
-      }
-      return new Response(`Could not send your email. Please try again.`, {
-        status: 512
-      });
-    }
-  })(context);
-};
-
-// ../../../../../../var/folders/ww/hfjqy4gs3p12j4qfrlf026lr0000gp/T/functionsRoutes.mjs
-var routes2 = [
-  {
-    routePath: "/",
-    mountPath: "/",
-    method: "",
-    middlewares: [onRequest],
-    modules: []
-  }
-];
 
 // ../../node_modules/path-to-regexp/dist.es2015/index.js
 function lexer2(str) {
@@ -631,11 +587,6 @@ function parse2(str, options) {
   }
   return result;
 }
-function match2(str, options) {
-  var keys = [];
-  var re = pathToRegexp2(str, keys, options);
-  return regexpToFunction2(re, keys, options);
-}
 function regexpToFunction2(re, keys, options) {
   if (options === void 0) {
     options = {};
@@ -759,80 +710,6 @@ function pathToRegexp2(path, keys, options) {
   return stringToRegexp2(path, keys, options);
 }
 
-// ../../node_modules/wrangler/pages/functions/template-plugin.ts
-function* executeRequest2(request, relativePathname) {
-  for (const route of [...routes2].reverse()) {
-    if (route.method && route.method !== request.method) {
-      continue;
-    }
-    const routeMatcher = match2(route.routePath, { end: false });
-    const mountMatcher = match2(route.mountPath, { end: false });
-    const matchResult = routeMatcher(relativePathname);
-    const mountMatchResult = mountMatcher(relativePathname);
-    if (matchResult && mountMatchResult) {
-      for (const handler of route.middlewares.flat()) {
-        yield {
-          handler,
-          params: matchResult.params,
-          path: mountMatchResult.path
-        };
-      }
-    }
-  }
-  for (const route of routes2) {
-    if (route.method && route.method !== request.method) {
-      continue;
-    }
-    const routeMatcher = match2(route.routePath, { end: true });
-    const mountMatcher = match2(route.mountPath, { end: false });
-    const matchResult = routeMatcher(relativePathname);
-    const mountMatchResult = mountMatcher(relativePathname);
-    if (matchResult && mountMatchResult && route.modules.length) {
-      for (const handler of route.modules.flat()) {
-        yield {
-          handler,
-          params: matchResult.params,
-          path: matchResult.path
-        };
-      }
-      break;
-    }
-  }
-}
-function template_plugin_default2(pluginArgs) {
-  const onRequest2 = async (workerContext) => {
-    let { request } = workerContext;
-    const { env, next, data } = workerContext;
-    const url = new URL(request.url);
-    const relativePathname = `/${url.pathname.split(workerContext.functionPath)[1] || ""}`.replace(/^\/\//, "/");
-    const handlerIterator = executeRequest2(request, relativePathname);
-    const pluginNext = async (input, init) => {
-      if (input !== void 0) {
-        request = new Request(input, init);
-      }
-      const result = handlerIterator.next();
-      if (result.done === false) {
-        const { handler, params, path } = result.value;
-        const context = {
-          request,
-          functionPath: workerContext.functionPath + path,
-          next: pluginNext,
-          params,
-          data,
-          pluginArgs,
-          env,
-          waitUntil: workerContext.waitUntil.bind(workerContext)
-        };
-        const response = await handler(context);
-        return new Response([101, 204, 205, 304].includes(response.status) ? null : response.body, { ...response, headers: new Headers(response.headers) });
-      } else {
-        return next();
-      }
-    };
-    return pluginNext();
-  };
-  return onRequest2;
-}
 export {
   template_plugin_default as default
 };
