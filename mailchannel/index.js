@@ -1,4 +1,57 @@
-// functions/_middleware.ts
+
+// api/index.ts
+var sendEmail = async (payload) => {
+  const response = await fetch("https://api.mailchannels.net/tx/v1/send", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(payload)
+  });
+  if (response.status === 202)
+    return { success: true };
+  try {
+    const { errors } = await response.clone().json();
+    return { success: false, errors };
+  } catch {
+    return { success: false, errors: [response.statusText] };
+  }
+};
+
+var onRequest = async (context) => {
+  const { request, pluginArgs } = context;
+  return await template_plugin_default({
+    respondWith: async ({ formData, name }) => {
+      const submission = { formData, name, request };
+      const personalizations = typeof pluginArgs.personalizations === "function" ? pluginArgs.personalizations(submission) : pluginArgs.personalizations;
+      const from = typeof pluginArgs.from === "function" ? pluginArgs.from(submission) : pluginArgs.from;
+      const subject = typeof pluginArgs.subject === "function" ? pluginArgs.subject(submission) : pluginArgs.subject || `New ${name} form submission`;
+      const content = pluginArgs.content ? pluginArgs.content(submission) : [
+        {
+          type: "text/plain",
+          value: textPlainContent(submission)
+        },
+        {
+          type: "text/html",
+          value: textHTMLContent(submission)
+        }
+      ];
+      const { success } = await sendEmail({
+        personalizations,
+        from,
+        subject,
+        content
+      });
+      if (success) {
+        return pluginArgs.respondWith(submission);
+      }
+      return new Response(`Could not send your email. Please try again.`, {
+        status: 512
+      });
+    }
+  })(context);
+};
+
 var onRequestPost = async ({
   request,
   next,
@@ -28,14 +81,12 @@ var onRequestGet = async ({ next }) => {
     }
   }).transform(response);
 };
-
-// ../../../../../../var/folders/ww/hfjqy4gs3p12j4qfrlf026lr0000gp/T/functionsRoutes.mjs
 var routes = [
   {
     routePath: "/",
     mountPath: "/",
     method: "GET",
-    middlewares: [onRequestGet],
+    middlewares: [onRequestGet, onRequest],
     modules: []
   },
   {
@@ -44,7 +95,7 @@ var routes = [
     method: "POST",
     middlewares: [onRequestPost],
     modules: []
-  }
+  },
 ];
 
 // ../../node_modules/path-to-regexp/dist.es2015/index.js
@@ -375,7 +426,6 @@ function* executeRequest(request, relativePathname) {
     }
   }
 }
-
 function template_plugin_default(pluginArgs) {
   const onRequest = async (workerContext) => {
     let { request } = workerContext;
@@ -413,3 +463,4 @@ function template_plugin_default(pluginArgs) {
 export {
   template_plugin_default as default
 };
+
