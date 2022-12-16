@@ -375,6 +375,7 @@ function* executeRequest(request, relativePathname) {
     }
   }
 }
+
 function template_plugin_default(pluginArgs) {
   const onRequest = async (workerContext) => {
     let { request } = workerContext;
