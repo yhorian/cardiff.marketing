@@ -15,6 +15,29 @@ var onRequestGet = async ({
   }).transform(response);
 };
 
+var textPlainContent = ({ request, formData, name }) => {
+  return `At ${new Date().toISOString()}, you received a new ${name} form submission from ${request.headers.get("CF-Connecting-IP")}:
+
+${[...formData.entries()].map(([field, value]) => `${field}
+${value}
+`).join("\n")}`;
+};
+
+var textHTMLContent = ({ request, formData, name }) => {
+  return `<!DOCTYPE html>
+  <html>
+    <body>
+      <h1>New contact form submission</h1>
+      <div>At ${new Date().toISOString()}, you received a new ${name} form submission from ${request.headers.get("CF-Connecting-IP")}:</div>
+      <table>
+      <tbody>
+      ${[...formData.entries()].map(([field, value]) => `<tr><td><strong>${field}</strong></td><td>${value}</td></tr>`).join("\n")}
+      </tbody>
+      </table>
+    </body>
+  </html>`;
+};
+
 var onFormSubmit = async ({
   request,
   next,
