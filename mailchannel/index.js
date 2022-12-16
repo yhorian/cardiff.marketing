@@ -834,5 +834,5 @@ function template_plugin_default2(pluginArgs) {
   return onRequest2;
 }
 export {
-  template_plugin_default2 as default
+  template_plugin_default as default
 };
