@@ -5,4 +5,4 @@ export const onRequest: PagesFunction = staticFormsPlugin({
     const email = formData.get('email')
     return new Response(`Hello, ${email}! Thank you for submitting the ${name} form.`)
   }
-});
+}); 
