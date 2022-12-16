@@ -15,7 +15,40 @@ var onRequestGet = async ({
   }).transform(response);
 };
 
-var textPlainContent = ({ request, formData, name }) => {
+// api/index.ts
+var sendEmail = async (payload) => {
+  const response = await fetch("https://api.mailchannels.net/tx/v1/send", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(payload)
+  });
+  if (response.status === 202)
+    return {
+      success: true
+    };
+  try {
+    const {
+      errors
+    } = await response.clone().json();
+    return {
+      success: false,
+      errors
+    };
+  } catch {
+    return {
+      success: false,
+      errors: [response.statusText]
+    };
+  }
+};
+
+var textPlainContent = ({
+  request,
+  formData,
+  name
+}) => {
   return `At ${new Date().toISOString()}, you received a new ${name} form submission from ${request.headers.get("CF-Connecting-IP")}:
 
 ${[...formData.entries()].map(([field, value]) => `${field}
@@ -23,7 +56,11 @@ ${value}
 `).join("\n")}`;
 };
 
-var textHTMLContent = ({ request, formData, name }) => {
+var textHTMLContent = ({
+  request,
+  formData,
+  name
+}) => {
   return `<!DOCTYPE html>
   <html>
     <body>
@@ -47,11 +84,14 @@ var onFormSubmit = async ({
   try {
     formData = await request.formData();
     name = formData.get("static-form-name").toString();
-  } catch {
-  }
+  } catch {}
   if (name) {
     formData.delete("static-form-name");
-    const submission = { formData, name, request };
+    const submission = {
+      formData,
+      name,
+      request
+    };
     const personalizations = typeof pluginArgs.personalizations === "function" ? pluginArgs.personalizations(submission) : pluginArgs.personalizations;
     const from = typeof pluginArgs.from === "function" ? pluginArgs.from(submission) : pluginArgs.from;
     const subject = typeof pluginArgs.subject === "function" ? pluginArgs.subject(submission) : pluginArgs.subject || `New ${name} form submission`;
