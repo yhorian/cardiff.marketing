@@ -72,7 +72,7 @@ var routes = [{
     routePath: "/",
     mountPath: "/",
     method: "POST",
-    middlewares: [onRequestPost, onFormSubmit],
+    middlewares: [onFormSubmit],
     modules: []
   }
 ];
