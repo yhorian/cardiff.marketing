@@ -81,6 +81,7 @@ var onRequestGet = async ({ next }) => {
     }
   }).transform(response);
 };
+
 var routes = [
   {
     routePath: "/",
@@ -460,6 +461,7 @@ function template_plugin_default(pluginArgs) {
   };
   return onRequest;
 }
+
 export {
   template_plugin_default as default
 };
