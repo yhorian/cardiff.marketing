@@ -202,11 +202,6 @@ function parse(str, options) {
   }
   return result;
 }
-function match(str, options) {
-  var keys = [];
-  var re = pathToRegexp(str, keys, options);
-  return regexpToFunction(re, keys, options);
-}
 function regexpToFunction(re, keys, options) {
   if (options === void 0) {
     options = {};
