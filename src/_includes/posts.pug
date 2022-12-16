@@ -9,7 +9,7 @@ div(class="container max-w-4xl mt-6 px-6")
         p(class="text-center text-base leading-6 font-thin text-gray-500") Published 
             time #{ filters.readableDate(date) } 
             | by 
-            a.underline(href="/about") #{ author }
-    img( src=thumbnail class="mx-auto")
-    article(class="prose lg:prose-xl mx-auto") 
+            a.underline(href="/about") #{ settings.author }
+    | !{ filters.image(thumbnail, thumbnaildesc) }
+    article(class="prose lg:prose-xl mx-auto dark:prose-invert") 
         | !{ content }

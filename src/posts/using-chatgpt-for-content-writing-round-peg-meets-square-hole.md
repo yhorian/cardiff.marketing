@@ -1,5 +1,5 @@
 ---
-title: Using ChatGPT for Content Writing - Round Peg Meets Square Hole
+title: Using ChatGPT for Content Writing
 description: ChatGPT, like GPT3, is a summary engine. Use the round peg in the
   round hole and use it to do summarising tasks.
 date: 2022-12-15T12:48:48.475Z
@@ -10,6 +10,7 @@ tags:
   - Content-writing
 thumbnail: src/static/img/dall·e-fighting-chatgpt.png
 ---
+## Round Peg Meets Square Hole
 ChatGPT is an evolution of GPT3 with the ability to adapt its work based on chat history. It's a huge leap and there is no doubt it's shaking up the world already. But how does that relate to SEO and marketing in general?
 
 Thankfully that's easy to test and that's what we'll be doing today.

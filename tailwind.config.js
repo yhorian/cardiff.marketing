@@ -1,5 +1,5 @@
 module.exports = {
-  content: ["./**/*.html", "./**/*.pug", "./**/*.md, ./src/static/**/*.js"],
+  content: ["./**/*.html", "./**/*.pug", "./**/*.md, ./src/static/**/*.js", "./.eleventy.js"],
   darkMode: 'class',
   theme: {
     container: {
