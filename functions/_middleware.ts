@@ -8,7 +8,7 @@ import mailChannelsPlugin from "@cloudflare/pages-plugin-mailchannels";
 
 // Expects object literal with properties for: "Personalizations" with a 'to' field, "from": with name + email, "respondWith" as a response or promise of a response object.
 // Optional Properties: subject, content. Define the subject/content for the email.
-export const onRequest: PagesFunction = mailChannelsPlugin({personalizations: emailPersonalizations, from: emailFrom, subject: emailSubject,  respondWith: formResponse, content: emailContent});
+export const onRequest: PagesFunction = mailChannelsPlugin({personalizations: emailPersonalizations, from: emailFrom, subject: emailSubject,  respondWith: formResponse});
 
 function emailPersonalizations() {
   return [{to: [{ name: "Me", email: myEmail }],},]
