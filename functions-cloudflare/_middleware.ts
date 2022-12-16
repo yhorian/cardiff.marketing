@@ -1,23 +1,14 @@
-// Implements this plugin: https://developers.cloudflare.com/pages/platform/functions/plugins/mailchannels/
-// Will capture anything from a form with a 'data-static-form-name' attribute, for example: <form data-static-form-name="contact">
-// No extra work necessary.
-// Replace this with your details:
 const myEmail = "info@cardiff.marketing"
+import mailChannelsPlugin from "@cardiff.marketing/pages-plugin-mailchannels";
 
-import mailChannelsPlugin from "pages-plugin-mailchannels-bugfix";
-
-// Expects object literal with properties for: "Personalizations" with a 'to' field, "from": with name + email, "respondWith" as a response or promise of a response object.
-// Optional Properties: subject, content. Define the subject/content for the email.
 export const onRequest: PagesFunction = mailChannelsPlugin({personalizations: emailPersonalizations, from: emailFrom, subject: emailSubject,  respondWith: formResponse});
 
 function emailPersonalizations() {
   return [{to: [{ name: "Me", email: myEmail }],},]
 }
-
 function emailFrom(data) {
   return {name: `${ data.name } form`, email: myEmail}
 }
-
 function formResponse() {
   return Response.redirect('https://cardiff.marketing/about/', 302)
 }
@@ -26,7 +17,6 @@ function emailSubject(data) {
   return `${ data.name } form submission from: ` + data.formData.get("email")
 }
 
-// This is the default template you get if 'content' isn't set, I've just extracted it to make it easier to understand and edit.
 function emailContent(data) {
   return `<!DOCTYPE html>
   <html>
