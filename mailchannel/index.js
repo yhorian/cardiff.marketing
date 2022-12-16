@@ -1,57 +1,4 @@
-
-// api/index.ts
-var sendEmail = async (payload) => {
-  const response = await fetch("https://api.mailchannels.net/tx/v1/send", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify(payload)
-  });
-  if (response.status === 202)
-    return { success: true };
-  try {
-    const { errors } = await response.clone().json();
-    return { success: false, errors };
-  } catch {
-    return { success: false, errors: [response.statusText] };
-  }
-};
-
-var onRequest = async (context) => {
-  const { request, pluginArgs } = context;
-  return await template_plugin_default({
-    respondWith: async ({ formData, name }) => {
-      const submission = { formData, name, request };
-      const personalizations = typeof pluginArgs.personalizations === "function" ? pluginArgs.personalizations(submission) : pluginArgs.personalizations;
-      const from = typeof pluginArgs.from === "function" ? pluginArgs.from(submission) : pluginArgs.from;
-      const subject = typeof pluginArgs.subject === "function" ? pluginArgs.subject(submission) : pluginArgs.subject || `New ${name} form submission`;
-      const content = pluginArgs.content ? pluginArgs.content(submission) : [
-        {
-          type: "text/plain",
-          value: textPlainContent(submission)
-        },
-        {
-          type: "text/html",
-          value: textHTMLContent(submission)
-        }
-      ];
-      const { success } = await sendEmail({
-        personalizations,
-        from,
-        subject,
-        content
-      });
-      if (success) {
-        return pluginArgs.respondWith(submission);
-      }
-      return new Response(`Could not send your email. Please try again.`, {
-        status: 512
-      });
-    }
-  })(context);
-};
-
+// ../static-forms/index.js
 var onRequestPost = async ({
   request,
   next,
@@ -69,7 +16,6 @@ var onRequestPost = async ({
   }
   return next();
 };
-
 var onRequestGet = async ({ next }) => {
   const response = await next();
   return new HTMLRewriter().on("form", {
@@ -81,13 +27,12 @@ var onRequestGet = async ({ next }) => {
     }
   }).transform(response);
 };
-
 var routes = [
   {
     routePath: "/",
     mountPath: "/",
     method: "GET",
-    middlewares: [onRequestGet, onRequest],
+    middlewares: [onRequestGet],
     modules: []
   },
   {
@@ -96,10 +41,8 @@ var routes = [
     method: "POST",
     middlewares: [onRequestPost],
     modules: []
-  },
+  }
 ];
-
-// ../../node_modules/path-to-regexp/dist.es2015/index.js
 function lexer(str) {
   var tokens = [];
   var i = 0;
@@ -295,12 +238,6 @@ function regexpToFunction(re, keys, options) {
     return { path, index, params };
   };
 }
-function escapeString(str) {
-  return str.replace(/([.+*?=^!:${}()[\]|/\\])/g, "\\$1");
-}
-function flags(options) {
-  return options && options.sensitive ? "" : "i";
-}
 function regexpToRegexp(path, keys) {
   if (!keys)
     return path;
@@ -387,9 +324,141 @@ function pathToRegexp(path, keys, options) {
   return stringToRegexp(path, keys, options);
 }
 
+function template_plugin_default(pluginArgs) {
+  const onRequest2 = async (workerContext) => {
+    let { request } = workerContext;
+    const { env, next, data } = workerContext;
+    const url = new URL(request.url);
+    const relativePathname = `/${url.pathname.split(workerContext.functionPath)[1] || ""}`.replace(/^\/\//, "/");
+    const handlerIterator = executeRequest(request, relativePathname);
+    const pluginNext = async (input, init) => {
+      if (input !== void 0) {
+        request = new Request(input, init);
+      }
+      const result = handlerIterator.next();
+      if (result.done === false) {
+        const { handler, params, path } = result.value;
+        const context = {
+          request,
+          functionPath: workerContext.functionPath + path,
+          next: pluginNext,
+          params,
+          data,
+          pluginArgs,
+          env,
+          waitUntil: workerContext.waitUntil.bind(workerContext)
+        };
+        const response = await handler(context);
+        return new Response([101, 204, 205, 304].includes(response.status) ? null : response.body, { ...response, headers: new Headers(response.headers) });
+      } else {
+        return next();
+      }
+    };
+    return pluginNext();
+  };
+  return onRequest2;
+}
+
+// api/index.ts
+var sendEmail = async (payload) => {
+  const response = await fetch("https://api.mailchannels.net/tx/v1/send", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(payload)
+  });
+  if (response.status === 202)
+    return { success: true };
+  try {
+    const { errors } = await response.clone().json();
+    return { success: false, errors };
+  } catch {
+    return { success: false, errors: [response.statusText] };
+  }
+};
+
+// functions/_middleware.ts
+var textPlainContent = ({ request, formData, name }) => {
+  return `At ${new Date().toISOString()}, you received a new ${name} form submission from ${request.headers.get("CF-Connecting-IP")}:
+
+${[...formData.entries()].map(([field, value]) => `${field}
+${value}
+`).join("\n")}`;
+};
+var textHTMLContent = ({ request, formData, name }) => {
+  return `<!DOCTYPE html>
+  <html>
+    <body>
+      <h1>New contact form submission</h1>
+      <div>At ${new Date().toISOString()}, you received a new ${name} form submission from ${request.headers.get("CF-Connecting-IP")}:</div>
+      <table>
+      <tbody>
+      ${[...formData.entries()].map(([field, value]) => `<tr><td><strong>${field}</strong></td><td>${value}</td></tr>`).join("\n")}
+      </tbody>
+      </table>
+    </body>
+  </html>`;
+};
+var onRequest = async (context) => {
+  const { request, pluginArgs } = context;
+  return await template_plugin_default({
+    respondWith: async ({ formData, name }) => {
+      const submission = { formData, name, request };
+      const personalizations = typeof pluginArgs.personalizations === "function" ? pluginArgs.personalizations(submission) : pluginArgs.personalizations;
+      const from = typeof pluginArgs.from === "function" ? pluginArgs.from(submission) : pluginArgs.from;
+      const subject = typeof pluginArgs.subject === "function" ? pluginArgs.subject(submission) : pluginArgs.subject || `New ${name} form submission`;
+      const content = pluginArgs.content ? pluginArgs.content(submission) : [
+        {
+          type: "text/plain",
+          value: textPlainContent(submission)
+        },
+        {
+          type: "text/html",
+          value: textHTMLContent(submission)
+        }
+      ];
+      const { success } = await sendEmail({
+        personalizations,
+        from,
+        subject,
+        content
+      });
+      if (success) {
+        return pluginArgs.respondWith(submission);
+      }
+      return new Response(`Could not send your email. Please try again.`, {
+        status: 512
+      });
+    }
+  })(context);
+};
+
+// ../../../../../../var/folders/ww/hfjqy4gs3p12j4qfrlf026lr0000gp/T/functionsRoutes.mjs
+var routes2 = [
+  {
+    routePath: "/",
+    mountPath: "/",
+    method: "",
+    middlewares: [onRequest],
+    modules: []
+  }
+];
+
+function match(str, options) {
+  var keys = [];
+  var re = pathToRegexp(str, keys, options);
+  return regexpToFunction(re, keys, options);
+}
+function escapeString(str) {
+  return str.replace(/([.+*?=^!:${}()[\]|/\\])/g, "\\$1");
+}
+function flags(options) {
+  return options && options.sensitive ? "" : "i";
+}
 // ../../node_modules/wrangler/pages/functions/template-plugin.ts
 function* executeRequest(request, relativePathname) {
-  for (const route of [...routes].reverse()) {
+  for (const route of [...routes2].reverse()) {
     if (route.method && route.method !== request.method) {
       continue;
     }
@@ -407,7 +476,7 @@ function* executeRequest(request, relativePathname) {
       }
     }
   }
-  for (const route of routes) {
+  for (const route of routes2) {
     if (route.method && route.method !== request.method) {
       continue;
     }
@@ -427,8 +496,8 @@ function* executeRequest(request, relativePathname) {
     }
   }
 }
-function template_plugin_default(pluginArgs) {
-  const onRequest = async (workerContext) => {
+function template_plugin_default2(pluginArgs) {
+  const onRequest2 = async (workerContext) => {
     let { request } = workerContext;
     const { env, next, data } = workerContext;
     const url = new URL(request.url);
@@ -459,10 +528,8 @@ function template_plugin_default(pluginArgs) {
     };
     return pluginNext();
   };
-  return onRequest;
+  return onRequest2;
 }
-
 export {
-  template_plugin_default as default
+  template_plugin_default2 as default
 };
-
