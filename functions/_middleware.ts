@@ -4,7 +4,7 @@
 // Replace this with your details:
 const myEmail = "info@cardiff.marketing"
 
-import mailChannelsPlugin from "@cloudflare/pages-plugin-mailchannels";
+import mailChannelsPlugin from "mailchannel/pages-plugin-mailchannels-bugfix";
 
 // Expects object literal with properties for: "Personalizations" with a 'to' field, "from": with name + email, "respondWith" as a response or promise of a response object.
 // Optional Properties: subject, content. Define the subject/content for the email.
