@@ -1,5 +1,21 @@
-// ../static-forms/index.js
-var onRequestPost = async ({
+// functions/_middleware.ts
+var onRequestGet = async ({
+  next
+}) => {
+  const response = await next();
+  return new HTMLRewriter().on("form", {
+    element(form) {
+      const formName = form.getAttribute("data-static-form-name");
+      form.setAttribute("method", "POST");
+      form.removeAttribute("action");
+      form.append(`<input type="hidden" name="static-form-name" value="${formName}" />`, {
+        html: true
+      });
+    }
+  }).transform(response);
+};
+
+var onFormSubmit = async ({
   request,
   next,
   pluginArgs
@@ -12,23 +28,40 @@ var onRequestPost = async ({
   }
   if (name) {
     formData.delete("static-form-name");
-    return pluginArgs.respondWith({ formData, name });
+    const submission = { formData, name, request };
+    const personalizations = typeof pluginArgs.personalizations === "function" ? pluginArgs.personalizations(submission) : pluginArgs.personalizations;
+    const from = typeof pluginArgs.from === "function" ? pluginArgs.from(submission) : pluginArgs.from;
+    const subject = typeof pluginArgs.subject === "function" ? pluginArgs.subject(submission) : pluginArgs.subject || `New ${name} form submission`;
+    const content = pluginArgs.content ? pluginArgs.content(submission) : [{
+        type: "text/plain",
+        value: textPlainContent(submission)
+      },
+      {
+        type: "text/html",
+        value: textHTMLContent(submission)
+      }
+    ];
+    const {
+      success
+    } = await sendEmail({
+      personalizations,
+      from,
+      subject,
+      content
+    });
+    if (success) {
+      return pluginArgs.respondWith(submission);
+    }
+    return new Response(`Could not send your email. Please try again.`, {
+      status: 512
+    });
   }
   return next();
 };
-var onRequestGet = async ({ next }) => {
-  const response = await next();
-  return new HTMLRewriter().on("form", {
-    element(form) {
-      const formName = form.getAttribute("data-static-form-name");
-      form.setAttribute("method", "POST");
-      form.removeAttribute("action");
-      form.append(`<input type="hidden" name="static-form-name" value="${formName}" />`, { html: true });
-    }
-  }).transform(response);
-};
-var routes = [
-  {
+
+
+// ../../../../../../var/folders/ww/hfjqy4gs3p12j4qfrlf026lr0000gp/T/functionsRoutes.mjs
+var routes = [{
     routePath: "/",
     mountPath: "/",
     method: "GET",
@@ -39,29 +72,47 @@ var routes = [
     routePath: "/",
     mountPath: "/",
     method: "POST",
-    middlewares: [onRequestPost],
+    middlewares: [onRequestPost, onFormSubmit],
     modules: []
   }
 ];
+
+// ../../node_modules/path-to-regexp/dist.es2015/index.js
 function lexer(str) {
   var tokens = [];
   var i = 0;
   while (i < str.length) {
     var char = str[i];
     if (char === "*" || char === "+" || char === "?") {
-      tokens.push({ type: "MODIFIER", index: i, value: str[i++] });
+      tokens.push({
+        type: "MODIFIER",
+        index: i,
+        value: str[i++]
+      });
       continue;
     }
     if (char === "\\") {
-      tokens.push({ type: "ESCAPED_CHAR", index: i++, value: str[i++] });
+      tokens.push({
+        type: "ESCAPED_CHAR",
+        index: i++,
+        value: str[i++]
+      });
       continue;
     }
     if (char === "{") {
-      tokens.push({ type: "OPEN", index: i, value: str[i++] });
+      tokens.push({
+        type: "OPEN",
+        index: i,
+        value: str[i++]
+      });
       continue;
     }
     if (char === "}") {
-      tokens.push({ type: "CLOSE", index: i, value: str[i++] });
+      tokens.push({
+        type: "CLOSE",
+        index: i,
+        value: str[i++]
+      });
       continue;
     }
     if (char === ":") {
@@ -77,7 +128,11 @@ function lexer(str) {
       }
       if (!name)
         throw new TypeError("Missing parameter name at " + i);
-      tokens.push({ type: "NAME", index: i, value: name });
+      tokens.push({
+        type: "NAME",
+        index: i,
+        value: name
+      });
       i = j;
       continue;
     }
@@ -111,38 +166,54 @@ function lexer(str) {
         throw new TypeError("Unbalanced pattern at " + i);
       if (!pattern)
         throw new TypeError("Missing pattern at " + i);
-      tokens.push({ type: "PATTERN", index: i, value: pattern });
+      tokens.push({
+        type: "PATTERN",
+        index: i,
+        value: pattern
+      });
       i = j;
       continue;
     }
-    tokens.push({ type: "CHAR", index: i, value: str[i++] });
+    tokens.push({
+      type: "CHAR",
+      index: i,
+      value: str[i++]
+    });
   }
-  tokens.push({ type: "END", index: i, value: "" });
+  tokens.push({
+    type: "END",
+    index: i,
+    value: ""
+  });
   return tokens;
 }
+
 function parse(str, options) {
   if (options === void 0) {
     options = {};
   }
   var tokens = lexer(str);
-  var _a = options.prefixes, prefixes = _a === void 0 ? "./" : _a;
+  var _a = options.prefixes,
+    prefixes = _a === void 0 ? "./" : _a;
   var defaultPattern = "[^" + escapeString(options.delimiter || "/#?") + "]+?";
   var result = [];
   var key = 0;
   var i = 0;
   var path = "";
-  var tryConsume = function(type) {
+  var tryConsume = function (type) {
     if (i < tokens.length && tokens[i].type === type)
       return tokens[i++].value;
   };
-  var mustConsume = function(type) {
+  var mustConsume = function (type) {
     var value2 = tryConsume(type);
     if (value2 !== void 0)
       return value2;
-    var _a2 = tokens[i], nextType = _a2.type, index = _a2.index;
+    var _a2 = tokens[i],
+      nextType = _a2.type,
+      index = _a2.index;
     throw new TypeError("Unexpected " + nextType + " at " + index + ", expected " + type);
   };
-  var consumeText = function() {
+  var consumeText = function () {
     var result2 = "";
     var value2;
     while (value2 = tryConsume("CHAR") || tryConsume("ESCAPED_CHAR")) {
@@ -202,25 +273,34 @@ function parse(str, options) {
   }
   return result;
 }
+
+function match(str, options) {
+  var keys = [];
+  var re = pathToRegexp(str, keys, options);
+  return regexpToFunction(re, keys, options);
+}
+
 function regexpToFunction(re, keys, options) {
   if (options === void 0) {
     options = {};
   }
-  var _a = options.decode, decode = _a === void 0 ? function(x) {
-    return x;
-  } : _a;
-  return function(pathname) {
+  var _a = options.decode,
+    decode = _a === void 0 ? function (x) {
+      return x;
+    } : _a;
+  return function (pathname) {
     var m = re.exec(pathname);
     if (!m)
       return false;
-    var path = m[0], index = m.index;
+    var path = m[0],
+      index = m.index;
     var params = /* @__PURE__ */ Object.create(null);
-    var _loop_1 = function(i2) {
+    var _loop_1 = function (i2) {
       if (m[i2] === void 0)
         return "continue";
       var key = keys[i2 - 1];
       if (key.modifier === "*" || key.modifier === "+") {
-        params[key.name] = m[i2].split(key.prefix + key.suffix).map(function(value) {
+        params[key.name] = m[i2].split(key.prefix + key.suffix).map(function (value) {
           return decode(value, key);
         });
       } else {
@@ -230,9 +310,22 @@ function regexpToFunction(re, keys, options) {
     for (var i = 1; i < m.length; i++) {
       _loop_1(i);
     }
-    return { path, index, params };
+    return {
+      path,
+      index,
+      params
+    };
   };
 }
+
+function escapeString(str) {
+  return str.replace(/([.+*?=^!:${}()[\]|/\\])/g, "\\$1");
+}
+
+function flags(options) {
+  return options && options.sensitive ? "" : "i";
+}
+
 function regexpToRegexp(path, keys) {
   if (!keys)
     return path;
@@ -251,22 +344,32 @@ function regexpToRegexp(path, keys) {
   }
   return path;
 }
+
 function arrayToRegexp(paths, keys, options) {
-  var parts = paths.map(function(path) {
+  var parts = paths.map(function (path) {
     return pathToRegexp(path, keys, options).source;
   });
   return new RegExp("(?:" + parts.join("|") + ")", flags(options));
 }
+
 function stringToRegexp(path, keys, options) {
   return tokensToRegexp(parse(path, options), keys, options);
 }
+
 function tokensToRegexp(tokens, keys, options) {
   if (options === void 0) {
     options = {};
   }
-  var _a = options.strict, strict = _a === void 0 ? false : _a, _b = options.start, start = _b === void 0 ? true : _b, _c = options.end, end = _c === void 0 ? true : _c, _d = options.encode, encode = _d === void 0 ? function(x) {
-    return x;
-  } : _d;
+  var _a = options.strict,
+    strict = _a === void 0 ? false : _a,
+    _b = options.start,
+    start = _b === void 0 ? true : _b,
+    _c = options.end,
+    end = _c === void 0 ? true : _c,
+    _d = options.encode,
+    encode = _d === void 0 ? function (x) {
+      return x;
+    } : _d;
   var endsWith = "[" + escapeString(options.endsWith || "") + "]|$";
   var delimiter = "[" + escapeString(options.delimiter || "/#?") + "]";
   var route = start ? "^" : "";
@@ -311,6 +414,7 @@ function tokensToRegexp(tokens, keys, options) {
   }
   return new RegExp(route, flags(options));
 }
+
 function pathToRegexp(path, keys, options) {
   if (path instanceof RegExp)
     return regexpToRegexp(path, keys);
@@ -319,146 +423,18 @@ function pathToRegexp(path, keys, options) {
   return stringToRegexp(path, keys, options);
 }
 
-function template_plugin_default(pluginArgs) {
-  const onRequest2 = async (workerContext) => {
-    let { request } = workerContext;
-    const { env, next, data } = workerContext;
-    const url = new URL(request.url);
-    const relativePathname = `/${url.pathname.split(workerContext.functionPath)[1] || ""}`.replace(/^\/\//, "/");
-    const handlerIterator = executeRequest(request, relativePathname);
-    const pluginNext = async (input, init) => {
-      if (input !== void 0) {
-        request = new Request(input, init);
-      }
-      const result = handlerIterator.next();
-      if (result.done === false) {
-        const { handler, params, path } = result.value;
-        const context = {
-          request,
-          functionPath: workerContext.functionPath + path,
-          next: pluginNext,
-          params,
-          data,
-          pluginArgs,
-          env,
-          waitUntil: workerContext.waitUntil.bind(workerContext)
-        };
-        const response = await handler(context);
-        return response
-      } else {
-        return next();
-      }
-    };
-    return pluginNext();
-  };
-  return onRequest2;
-}
-
-// api/index.ts
-var sendEmail = async (payload) => {
-  const response = await fetch("https://api.mailchannels.net/tx/v1/send", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify(payload)
-  });
-  if (response.status === 202)
-    return { success: true };
-  try {
-    const { errors } = await response.clone().json();
-    return { success: false, errors };
-  } catch {
-    return { success: false, errors: [response.statusText] };
-  }
-};
-
-// functions/_middleware.ts
-var textPlainContent = ({ request, formData, name }) => {
-  return `At ${new Date().toISOString()}, you received a new ${name} form submission from ${request.headers.get("CF-Connecting-IP")}:
-
-${[...formData.entries()].map(([field, value]) => `${field}
-${value}
-`).join("\n")}`;
-};
-var textHTMLContent = ({ request, formData, name }) => {
-  return `<!DOCTYPE html>
-  <html>
-    <body>
-      <h1>New contact form submission</h1>
-      <div>At ${new Date().toISOString()}, you received a new ${name} form submission from ${request.headers.get("CF-Connecting-IP")}:</div>
-      <table>
-      <tbody>
-      ${[...formData.entries()].map(([field, value]) => `<tr><td><strong>${field}</strong></td><td>${value}</td></tr>`).join("\n")}
-      </tbody>
-      </table>
-    </body>
-  </html>`;
-};
-var onRequest = async (context) => {
-  const { request, pluginArgs } = context;
-  return await template_plugin_default({
-    respondWith: async ({ formData, name }) => {
-      const submission = { formData, name, request };
-      const personalizations = typeof pluginArgs.personalizations === "function" ? pluginArgs.personalizations(submission) : pluginArgs.personalizations;
-      const from = typeof pluginArgs.from === "function" ? pluginArgs.from(submission) : pluginArgs.from;
-      const subject = typeof pluginArgs.subject === "function" ? pluginArgs.subject(submission) : pluginArgs.subject || `New ${name} form submission`;
-      const content = pluginArgs.content ? pluginArgs.content(submission) : [
-        {
-          type: "text/plain",
-          value: textPlainContent(submission)
-        },
-        {
-          type: "text/html",
-          value: textHTMLContent(submission)
-        }
-      ];
-      const { success } = await sendEmail({
-        personalizations,
-        from,
-        subject,
-        content
-      });
-      if (success) {
-        return pluginArgs.respondWith(submission);
-      }
-      return new Response(`Could not send your email. Please try again.`, {
-        status: 512
-      });
-    }
-  })(context);
-};
-
-// ../../../../../../var/folders/ww/hfjqy4gs3p12j4qfrlf026lr0000gp/T/functionsRoutes.mjs
-var routes2 = [
-  {
-    routePath: "/",
-    mountPath: "/",
-    method: "",
-    middlewares: [onRequest],
-    modules: []
-  }
-];
-
-function match(str, options) {
-  var keys = [];
-  var re = pathToRegexp(str, keys, options);
-  return regexpToFunction(re, keys, options);
-}
-function escapeString(str) {
-  return str.replace(/([.+*?=^!:${}()[\]|/\\])/g, "\\$1");
-}
-function flags(options) {
-  return options && options.sensitive ? "" : "i";
-}
 // ../../node_modules/wrangler/pages/functions/template-plugin.ts
 function* executeRequest(request, relativePathname) {
-  for (const route of [...routes2].reverse()) {
+  for (const route of [...routes].reverse()) {
     if (route.method && route.method !== request.method) {
       continue;
     }
-    const routeMatcher = match(route.routePath, { end: false });
-    const mountMatcher = match(route.mountPath, { end: false });
+    const routeMatcher = match(route.routePath, {
+      end: false
+    });
+    const mountMatcher = match(route.mountPath, {
+      end: false
+    });
     const matchResult = routeMatcher(relativePathname);
     const mountMatchResult = mountMatcher(relativePathname);
     if (matchResult && mountMatchResult) {
@@ -471,12 +447,16 @@ function* executeRequest(request, relativePathname) {
       }
     }
   }
-  for (const route of routes2) {
+  for (const route of routes) {
     if (route.method && route.method !== request.method) {
       continue;
     }
-    const routeMatcher = match(route.routePath, { end: true });
-    const mountMatcher = match(route.mountPath, { end: false });
+    const routeMatcher = match(route.routePath, {
+      end: true
+    });
+    const mountMatcher = match(route.mountPath, {
+      end: false
+    });
     const matchResult = routeMatcher(relativePathname);
     const mountMatchResult = mountMatcher(relativePathname);
     if (matchResult && mountMatchResult && route.modules.length) {
@@ -491,10 +471,17 @@ function* executeRequest(request, relativePathname) {
     }
   }
 }
-function template_plugin_default2(pluginArgs) {
-  const onRequest2 = async (workerContext) => {
-    let { request } = workerContext;
-    const { env, next, data } = workerContext;
+
+function template_plugin_default(pluginArgs) {
+  const onRequest = async (workerContext) => {
+    let {
+      request
+    } = workerContext;
+    const {
+      env,
+      next,
+      data
+    } = workerContext;
     const url = new URL(request.url);
     const relativePathname = `/${url.pathname.split(workerContext.functionPath)[1] || ""}`.replace(/^\/\//, "/");
     const handlerIterator = executeRequest(request, relativePathname);
@@ -504,7 +491,11 @@ function template_plugin_default2(pluginArgs) {
       }
       const result = handlerIterator.next();
       if (result.done === false) {
-        const { handler, params, path } = result.value;
+        const {
+          handler,
+          params,
+          path
+        } = result.value;
         const context = {
           request,
           functionPath: workerContext.functionPath + path,
@@ -523,8 +514,9 @@ function template_plugin_default2(pluginArgs) {
     };
     return pluginNext();
   };
-  return onRequest2;
+  return onRequest;
 }
 export {
-  template_plugin_default2 as default
+  template_plugin_default as
+  default
 };
