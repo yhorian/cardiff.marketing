@@ -1,16 +1,18 @@
 const syntaxHighlight = require("@11ty/eleventy-plugin-syntaxhighlight");
-// const lazy_loading = require('markdown-it-image-lazy-loading');
+const lazy_loading = require('markdown-it-image-lazy-loading');
 const Image = require("@11ty/eleventy-img");
 const postcss = require('postcss');
 const fs = require('fs');
-const cssPath = "./src/static/css/style.css"
-const cssOutpath = "./src/static/css/tailwind.css"
-const css = fs.readFileSync(cssPath, 'utf8');
 const postcss_import = require("postcss-import");
 const tailwindcss_nesting = require("tailwindcss/nesting");
 const tailwindcss = require("tailwindcss");
 const autoprefixer = require("autoprefixer");
 const cssnano = require("cssnano");
+
+const cssPath = "./src/static/css/style.css"
+const cssOutpath = "./src/static/css/tailwind.css"
+
+const css = fs.readFileSync(cssPath, 'utf8');
 
 var plugins = [postcss_import, tailwindcss_nesting, tailwindcss, autoprefixer, cssnano];
 
@@ -48,15 +50,21 @@ function imageShortcode({src, alt="", sizes="(max-width: 600px) 500px, (max-widt
 }
 
 module.exports = function (eleventyConfig) {
+
+  eleventyConfig.on('eleventy.before', createCSSFile);
+
   // Disable automatic use of your .gitignore
   eleventyConfig.setUseGitIgnore(false);
 
-  eleventyConfig.on('eleventy.before', createCSSFile);
-  
+  // Prevent any loops with async file writes to tailwind.
+  eleventyConfig.watchIgnores.add(cssOutpath);
+
+  // Optional filter to inline tailwind css
   eleventyConfig.addFilter("inlineTailwind", function() {
     return fs.readFileSync(cssOutpath, 'utf8');
   });  
   
+  // Optional filter to inline Alpine.js
   eleventyConfig.addFilter('inlineAlpine', function(filePath) {
     return fs.readFileSync(filePath, 'utf8');
   });
@@ -77,7 +85,7 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addShortcode('image', imageShortcode);
 
   // Automatically add Lazy loading to markdown image tags
-  // eleventyConfig.amendLibrary("md", mdLib => mdLib.use(lazy_loading, { base_path: "./src" ,image_size: true,decoding: true}));
+  eleventyConfig.amendLibrary("md", mdLib => mdLib.use(lazy_loading, { base_path: "./src" ,image_size: true,decoding: true}));
 
   // Syntax Highlighting for Code blocks
   eleventyConfig.addPlugin(syntaxHighlight);
