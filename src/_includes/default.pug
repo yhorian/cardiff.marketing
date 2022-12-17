@@ -7,10 +7,11 @@ html(lang='en' x-data="{ darkMode: localStorage.getItem('dark') === 'true'}" x-b
     title #{ title }
     meta(name="description" content=description)
     link(rel="canonical" href=filters.url(settings.url + page.url))
-    link(rel="stylesheet" type="text/css" href="/static/css/style.css")
+    // link(rel="stylesheet" type="text/css" href="/static/css/style.css")
+    style!= filters.inlineTailwind()
     if prism
       link(rel="stylesheet" type="text/css" href="/static/css/prism-tomorrow.css")
-    script(src="/static/js/alpine.js" defer)
+    script!= filters.inlineAlpine('./node_modules/alpinejs/dist/cdn.min.js')
   body(class="bg-white dark:bg-gray-800 text-gray-600 dark:text-white")
     include ./partials/navbar.pug
 
