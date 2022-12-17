@@ -24,7 +24,7 @@ async function createCSSFile() {
   fs.writeFileSync(cssOutpath, tailwindCss);
 }
 
-function imageShortcode(src, alt="", sizes="(max-width: 600px) 500px, (max-width: 1200px) 800px, 1200px", widths=["500","800", "1200"], formats=["webp", "jpeg"]) {
+function imageShortcode({src, alt="", sizes="(max-width: 600px) 500px, (max-width: 1200px) 800px, 1200px", widths=["500","800", "1200"], formats=["webp", "jpeg"], lazy=true}) {
   let metadata = Image.statsSync(src, {
     widths: widths,
     formats: formats,
@@ -40,7 +40,7 @@ function imageShortcode(src, alt="", sizes="(max-width: 600px) 500px, (max-width
   let imageAttributes = {
     alt,
     sizes,
-    loading: "lazy",
+    loading: (lazy) ? "lazy" : true,
     decoding: "async"
     
   };
