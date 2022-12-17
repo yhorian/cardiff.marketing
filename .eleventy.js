@@ -19,7 +19,7 @@ async function getTailwindCSS() {
   return result.css;
 }
 
-async function createCssFile() {
+async function createCSSFile() {
   const tailwindCss = await getTailwindCSS();
   fs.writeFileSync(cssOutpath, tailwindCss);
 }
@@ -52,7 +52,7 @@ module.exports = function (eleventyConfig) {
   // Disable automatic use of your .gitignore
   eleventyConfig.setUseGitIgnore(false);
 
-  eleventyConfig.on('eleventy.before', createCssFile);
+  eleventyConfig.on('eleventy.before', createCSSFile);
   
   eleventyConfig.addFilter("inlineTailwind", function() {
     return fs.readFileSync(cssOutpath, 'utf8');
@@ -85,7 +85,7 @@ module.exports = function (eleventyConfig) {
 
   // Copy Static Files to /_Site
   // alpine.js and style.css are being passed just in case you want to stop inlining them.
-  // This could be handy
+  // You can switch from inline tailwind and a separate file if it gets too large (80kb+). This will speed up loading the site.
   eleventyConfig.addPassthroughCopy({
     "./src/admin/config.yml": "./admin/config.yml",
     "./node_modules/alpinejs/dist/cdn.min.js": "./static/js/alpine.js",
