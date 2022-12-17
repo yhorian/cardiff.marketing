@@ -42,7 +42,6 @@ function imageShortcode({src, alt="", sizes="(max-width: 600px) 500px, (max-widt
     sizes,
     loading: (lazy) ? "lazy" : true,
     decoding: "async"
-    
   };
 
   return Image.generateHTML(metadata, imageAttributes);
