@@ -10,5 +10,6 @@ div(class="container max-w-4xl mt-6 px-6")
             time #{ filters.readableDate(date) } 
             | by 
             a.underline(href="/about") #{ settings.author }
+    | !{ filters.image({ src: thumbnail, alt: thumbnaildesc, lazy: false}) }
     article(class="prose lg:prose-xl mx-auto dark:prose-invert") 
         | !{ content }

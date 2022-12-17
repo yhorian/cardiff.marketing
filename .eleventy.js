@@ -1,9 +1,30 @@
 const syntaxHighlight = require("@11ty/eleventy-plugin-syntaxhighlight");
-const PostCSSPlugin = require("eleventy-plugin-postcss");
 // const lazy_loading = require('markdown-it-image-lazy-loading');
 const Image = require("@11ty/eleventy-img");
+const postcss = require('postcss');
+const fs = require('fs');
+const cssPath = "./src/static/css/style.css"
+const cssOutpath = "./src/static/css/tailwind.css"
+const css = fs.readFileSync(cssPath, 'utf8');
+const postcss_import = require("postcss-import");
+const tailwindcss_nesting = require("tailwindcss/nesting");
+const tailwindcss = require("tailwindcss");
+const autoprefixer = require("autoprefixer");
+const cssnano = require("cssnano");
 
-function imageShortcode(src, alt="", sizes="(max-width: 600px) 500px, (max-width: 1200px) 800px, 1200px", widths=["500","800", "1200"], formats=["webp", "jpeg"]) {
+var plugins = [postcss_import, tailwindcss_nesting, tailwindcss, autoprefixer, cssnano];
+
+async function getTailwindCSS() {
+  const result = await postcss(plugins).process(css, { from: cssPath });
+  return result.css;
+}
+
+async function createCSSFile() {
+  const tailwindCss = await getTailwindCSS();
+  fs.writeFileSync(cssOutpath, tailwindCss);
+}
+
+function imageShortcode({src, alt="", sizes="(max-width: 600px) 500px, (max-width: 1200px) 800px, 1200px", widths=["500","800", "1200"], formats=["webp", "jpeg"], lazy=true}) {
   let metadata = Image.statsSync(src, {
     widths: widths,
     formats: formats,
@@ -19,9 +40,8 @@ function imageShortcode(src, alt="", sizes="(max-width: 600px) 500px, (max-width
   let imageAttributes = {
     alt,
     sizes,
-    loading: "lazy",
+    loading: (lazy) ? "lazy" : true,
     decoding: "async"
-    
   };
 
   return Image.generateHTML(metadata, imageAttributes);
@@ -30,6 +50,16 @@ function imageShortcode(src, alt="", sizes="(max-width: 600px) 500px, (max-width
 module.exports = function (eleventyConfig) {
   // Disable automatic use of your .gitignore
   eleventyConfig.setUseGitIgnore(false);
+
+  eleventyConfig.on('eleventy.before', createCSSFile);
+  
+  eleventyConfig.addFilter("inlineTailwind", function() {
+    return fs.readFileSync(cssOutpath, 'utf8');
+  });  
+  
+  eleventyConfig.addFilter('inlineAlpine', function(filePath) {
+    return fs.readFileSync(filePath, 'utf8');
+  });
 
   // Merge data instead of overriding
   eleventyConfig.setDataDeepMerge(true);
@@ -53,15 +83,16 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addPlugin(syntaxHighlight);
 
   // Copy Static Files to /_Site
+  // alpine.js and style.css are being passed just in case you want to stop inlining them.
+  // You can switch from inline tailwind and a separate file if it gets too large (80kb+). This will speed up loading the site.
   eleventyConfig.addPassthroughCopy({
     "./src/admin/config.yml": "./admin/config.yml",
     "./node_modules/alpinejs/dist/cdn.min.js": "./static/js/alpine.js",
     "./node_modules/prismjs/themes/prism-tomorrow.css":
       "./static/css/prism-tomorrow.css",
+      "./src/static/css/tailwind.css":
+        "./static/css/style.css",
   });
-
-  // Runs PostCSS as part of Eleventy's pipeline. Will respect postcss.config.js. Also runs tailwind using tailwind.config.js.
-  eleventyConfig.addPlugin(PostCSSPlugin);
 
   // Stops partial builds on eleventy's server. Necessary for Tailwind CSS updates to be refreshed via Postcss plugin.
   // Only a concern when you do 'npm run dev'
@@ -84,7 +115,7 @@ module.exports = function (eleventyConfig) {
   // Markdown files will be run through the nunjucks parser. Lets us embed {% nunjuck code %}.
   return {
     dir: {
-      input: "src",
+      input: "src", 
     },
     markdownTemplateEngine: "njk"
   };
