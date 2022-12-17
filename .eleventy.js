@@ -109,7 +109,7 @@ module.exports = function (eleventyConfig) {
   global.filters = eleventyConfig.javascriptFunctions; 
   eleventyConfig.setPugOptions({
       globals: ['filters'], 
-      debug: false
+      debug: true
   });
 
   // Markdown files will be run through the nunjucks parser. Lets us embed {% nunjuck code %}.
