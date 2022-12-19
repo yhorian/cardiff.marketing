@@ -2,10 +2,7 @@ backend:
   name: github
   branch: master
   repo: yhorian/cardiff.marketing
-auth_endpoint: /login
 site_url: https://cardiff.marketing
-site_domain: https://cardiff.marketing
-base_url: https://cardiff.marketing
 display_url: https://cardiff.marketing
 logo_url: https://cardiff.marketing/favicon.ico
 show_preview_links: true
