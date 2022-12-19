@@ -30,7 +30,7 @@ a {
 }
 
 img {
-  @apply object-scale-down rounded-xl hover:object-contain;
+  @apply rounded-xl hover:object-contain;
   max-height: calc(400/16)em;
 }
 

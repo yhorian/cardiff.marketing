@@ -63,10 +63,8 @@ function articleImageProcess({
       height="${(height) ? height : highsrc.height}"
       alt="${alt}"
       ${(lazy) ? 'loading="lazy"': ''}
-      ${(_class) ? 'class="' + _class + '"' : ''}
-      decoding="async">
-    </picture>
-    ${(label) ? '<p class="image-label">'+ alt + '</p>' : ''}`
+      ${(_class) ? 'class="' + _class + '"' : ''}decoding="async"> </picture> 
+      ${(label) ? '<p class="image-label">'+ alt + '</p>' : ''}`
 }
 
 module.exports = function (eleventyConfig) {
@@ -104,17 +102,10 @@ module.exports = function (eleventyConfig) {
 
   // Get current year.
   // Accessed in pug by doing "filters.year()"
-  eleventyConfig.addShortcode("year", () => `${new Date().getFullYear()}`);
+  eleventyConfig.addFilter("year", () => `${new Date().getFullYear()}`);
 
   // Image processing
-  eleventyConfig.addShortcode('image', articleImageProcess);
-
-  // Automatically add Lazy loading to markdown image tags
-  eleventyConfig.amendLibrary("md", mdLib => mdLib.use(lazy_loading, {
-    base_path: "./src",
-    image_size: true,
-    decoding: true
-  }));
+  eleventyConfig.addFilter('image', articleImageProcess);
 
   // Syntax Highlighting for Code blocks
   eleventyConfig.addPlugin(syntaxHighlight);
