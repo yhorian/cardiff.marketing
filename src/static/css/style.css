@@ -3,13 +3,12 @@
 @tailwind utilities;
 
 /*Your Custom CSS Goes here*/
-
 h1 {
   @apply text-3xl md:text-5xl tracking-tighter mb-3 text-center lg:text-6xl;
 }
 
 h2, h3 {
-  @apply text-2xl font-bold mb-3; 
+  @apply text-2xl font-bold mb-3;
 }
 /*Plan to implement this: https://www.joshwcomeau.com/css/full-bleed/*/
 
@@ -19,5 +18,11 @@ body {
 }
 body :not(pre) > code[class*="language-"],
 body pre[class*="language-"] {
-  @apply bg-gray-800;
+  @apply bg-gray-800; 
+}
+a {
+  @apply hover:text-indigo-500;
+}
+picture {
+  @apply mx-auto;
 }

@@ -1,5 +1,6 @@
-const myEmail = "info@cardiff.marketing"
 import mailChannelsPlugin from "@cardiff.marketing/pages-plugin-mailchannels";
+
+const myEmail = "info@cardiff.marketing";
 
 export const onRequest: PagesFunction = mailChannelsPlugin({personalizations: emailPersonalizations, from: emailFrom, subject: emailSubject,  respondWith: formResponse});
 
