@@ -52,7 +52,7 @@ No.
 
 Humans can intuit things about other humans that machines cannot. This is common among machines and is one of Google's failings as well. The classic example is to search 'House shifting'.
 
-{{ {src: "src/static/img/house-shifting.png", _class: "rounded-3xl",  alt: "Results of searching for 'House shifting' on Google in 2022 - containing references to moving house", height: "25em", label:true} | image | safe }}
+{{ {src: "src/static/img/house-shifting.png", _class: "rounded-3xl",  alt: "Results of searching for 'House shifting' on Google in 2022 - containing references to moving house", height: "15em", label:true} | image | safe }}
 
 Google results will be about moving house because "shift" is synonymous with "move". As in "to shift a crate". Yet this is entirely the wrong answer: If you're searching for information on your *house shifting* then you're looking for articles on *house subsidence*. The house itself has moved! The difference between you and Google's synonym engine? Experience. Until AI can walk in a human's shoes, it is always going to make slip-ups like this.
 
@@ -60,7 +60,7 @@ Google results will be about moving house because "shift" is synonymous with "mo
 
 This goes to a whole new level when we talk about emotions. What can look innocuous to DALL-E can be shocking or offensive to us. We may not even be able to explain why. This is a consistent plot point in many Sci-fi series. Even aliens don't get our culture or how we will react to theirs. Case in point:
 
-<img src="src/static/img/quark_as_lumba.webp" alt="Deep Space Nine's Quark looking fabulous in a shockingly bright lycra dress with costume jewelry." height="200px">
+{{ {src: "src/static/img/quark_as_lumba.webp", _class: "rounded-3xl",  alt: "Deep Space Nine's Quark looking fabulous in a shockingly bright lycra dress with costume jewelry.", height: "15em", label:true} | image | safe }}
 
 You have feelings about this image. You can intuit what another's reaction might be.
 
@@ -84,7 +84,7 @@ Wrong. You'll still need to look at the top results for the other two steps. You
 
 Sometimes, you're up against a beast with a ton of authority and high-quality content. You can hang your head in shame knowing that any attempt you make to beat them will still only get you 3-4 ranks behind. But you do it anyway, because some traffic is better than no traffic. At this stage you can weight your efforts according to their return. Maybe the best offering is literally empty of content and you could rank for a high-value term with a picture and a paragraph. Seriously, it happens:
 
-<img src="src/static/img/empty-page.png" alt="Google results for a search on 'house subsidence'" height="200px">
+{{ {src: "src/static/img/empty-page.png", _class: "rounded-3xl",  alt: "Someone ranking for a money term with no content on their page.", height: "15em", label:true} | image | safe }}
 
 Maybe at this stage, ChatGPT's stab at content would actually be enough. Which leads us into:
 
@@ -133,7 +133,7 @@ There are AI detectors out there. [Originality.ai](originality.ai) and [writer.c
 
 At some point, this AI had to start performing. This actually sounds like a real blog intro! Surely now we can consider getting rid of content writers?
 
-<img src="src/static/img/ai-detected.png" alt="Google results for a search on 'house subsidence'" height="200px">
+{{ {src: "src/static/img/ai-detected.png", _class: "rounded-3xl",  alt: "Originality.ai has no doubt that ChatGPT wrote this text.", height: "15em", label:true} | image | safe }}
 
 Oh, dear. As good as this introduction was, it has been flagged as AI content. A few months ago that might not have meant much but many sites are now getting penalised for exactly this. more AI generated your content appears then the [more likely you are to incur a penalty](https://www.searchenginejournal.com/google-says-ai-generated-content-is-against-guidelines/444916/). We *could* use this and hope that we don't get stung. But is it worth the risk?
 
