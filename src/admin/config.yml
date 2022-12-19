@@ -1,5 +1,4 @@
 backend:
-  # Use netlify identity as backend
   name: github
   branch: master
   repo: yhorian/cardiff.marketing

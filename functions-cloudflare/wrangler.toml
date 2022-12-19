@@ -1,3 +1,0 @@
-name = "functions-cloudflare"
-main = "src/index.ts"
-compatibility_date = "2022-12-19"
