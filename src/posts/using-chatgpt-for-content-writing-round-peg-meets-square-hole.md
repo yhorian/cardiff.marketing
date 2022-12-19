@@ -9,27 +9,29 @@ tags:
   - AI
   - Content-writing
 thumbnail: src/static/img/dall·e-fighting-chatgpt.png
+thumbnaildesc: Two robots pulling on paper - courtesy of DALL-E 2.
 ---
 ## Round Peg Meets Square Hole
+
 ChatGPT is an evolution of GPT3 with the ability to adapt its work based on chat history. It's a huge leap and there is no doubt it's shaking up the world already. But how does that relate to SEO and marketing in general?
 
 Thankfully that's easy to test and that's what we'll be doing today.
 
 Let's go through the content creation process. We'll start with the standard workflow for producing a new article that will be converting an organic search user:
 
-1. Keyword research. Pick out your target terms and get their search volume.
-2. Intent extrapolation. Figure out why people are searching that term and how you can service it.
+1. **Keyword research**. Pick out your target terms and get their search volume.
+2. **Intent extrapolation**. Figure out why people are searching that term and how you can service it.
 
    * What is it they want?
    * How does that relate to your service/product/site?
    * What are they going to do next?
-3. Content research. Look at existing results and determine:
+3. **Content research**. Look at existing results and determine:
    * What they're writing about and how it fits the query
    * How good the quality of their content is
    * What you'll need to produce to beat it
-4. Article outline. Create an outline of the article you're creating based on the content research.
-5. Content writing. Flesh out your content with everything you researched so far.
-6. Review. Make sure your content harmoniously does everything you need it to:
+4. **Article Plan**. Create an outline of the article you're creating based on the content research. If possible add headers that target popular queries.
+5. **Content writing**. Flesh out your content with everything you researched so far.
+6. **Review**. Make sure your content harmoniously does everything you need it to:
 
    * Fit the keyword you're optimising around.
    * Match the user's search intent.
@@ -40,15 +42,15 @@ Let's go through each of these steps and see where ChatGPT can help.
 
 ## Can ChatGPT help me do keyword research?
 
-No. 
+No.
 
 It has no ability to access that data. While you could theoretically design an AI to do this (and I'm sure someone is working on it) there are so many factors that it's difficult to design one AI to meet everyone's needs. That means sadly a keyword research AI is not likely to be commercially viable for a while. Watch this space though.
 
 ## Can ChatGPT figure out search intent for me?
 
-No. Sometimes Google can't even get that right.
+No.
 
-Humans can intuit things about other humans that machines cannot. The classic example is to search 'House shifting'.
+Humans can intuit things about other humans that machines cannot. This is common among machines and is one of Google's failings as well. The classic example is to search 'House shifting'.
 
 <img src="/static/img/house-shifting.png" alt="Results of searching for 'House shifting' on Google in 2022 - containing references to moving house" height="200px">
 
@@ -66,7 +68,9 @@ An AI cannot. It has no cultural or emotional context. Which probably gives it b
 
 ## ChatGPT help with content research?
 
-Maybe! As a summary engine, ChatGPT does have the ability to summarise everything it's read in mere seconds. This saves a human having to trawl through the available research data to find what they'd need to understand and expand upon a topic.
+Maybe!
+
+As a summary engine, ChatGPT does have the ability to summarise everything it's read in mere seconds. This saves a human having to trawl through the available research data to find what they'd need to understand and expand upon a topic.
 
 But that's not really what we want here. While a part of content research is getting to grips with a topic there are three parts to this task:
 
@@ -151,4 +155,4 @@ But this experience does tell us that ChatGPT has a use case - **working at scal
 
 Use the round peg in the round hole - if you need outlines or summaries then ChatGPT is the way to go. 
 
-If you haven't already given it a try, now is definitely the time. It has strong applications outside of SEO, Marketing and Content writing that are already making the headlines. It's [currently free to use](https://chat.openai.com/chat). While it isn't going to be a magic bullet for content writing you're still going to be blown away by how good it is. 
+If you haven't already given it a try, now is definitely the time. It has strong applications outside of SEO, Marketing and Content writing that are already making the headlines. It's [currently free to use](https://openai.com/). While it isn't going to be a magic bullet for content writing you're still going to be blown away by how good it is. 

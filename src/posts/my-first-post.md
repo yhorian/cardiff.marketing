@@ -7,6 +7,7 @@ date: 2022-11-26
 tags:
   - core-web-vitals
 thumbnail: src/static/img/core-web-vitals.webp
+thumbnaildesc: A good score on core web vitals. But is it worth the effort?
 ---
 Core Web Vitals (CWV) are a set of metrics that measure the speed at which web pages can be displayed and interacted with by a user. As an evolution of Pagespeed, these metrics how quickly a user can view and interact with a webpage and are designed to help developers prioritize and improve the user experience on their sites. 
 

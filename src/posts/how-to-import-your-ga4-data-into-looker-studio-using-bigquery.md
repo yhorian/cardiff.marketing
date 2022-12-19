@@ -8,7 +8,10 @@ tags:
   - BigQuery
   - Looker-Studio
 thumbnail: src/static/img/ga4-bigquery-looker.webp
+thumbnaildesc: Google Analytics 4 to BigQuery to Looker Studio 
 ---
+## Taking data the long way around
+
 Google Analytics 4 (GA4) is the latest version of Google Analytics, and it offers a variety of new and improved features for tracking and analyzing your website's data. One of the most useful features is the ability to export your GA4 data to Google BigQuery, a powerful cloud-based data warehouse that allows you to store and analyze large datasets.
 
 Once you have your GA4 data in BigQuery, you can use Google Looker Studio (Previously Data Studio) to create beautiful, interactive reports and dashboards that help you better understand your website's performance. In this article, we'll show you how to export your GA4 data to BigQuery and then connect it to Data Studio.

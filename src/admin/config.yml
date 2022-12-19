@@ -8,7 +8,7 @@ logo_url: https://cardiff.marketing/favicon.ico
 show_preview_links: true
 locale: en-gb
 media_folder: "src/static/img"
-public_folder: "/static/img"
+public_folder: "src/static/img"
 
 # Running 'npm run dev' will also open the local netlify serve.
 # Otherwise you'll need to do use 'npx netlify-cms-proxy-server' in a command terminal to get it running.
@@ -37,7 +37,7 @@ collections:
         name: "thumbnail"
         widget: "image"
         choose_url: true
-        default: "static/img/core-web-vitals.webp"
+        default: "src/static/img/core-web-vitals.webp"
       - { label: "Body", name: "body", widget: "markdown" }
   - label: "Pages"
     name: "pages"
@@ -54,7 +54,7 @@ collections:
         name: "hero"
         widget: "image"
         choose_url: true
-        default: "static/img/core-web-vitals.webp"
+        default: "src/static/img/core-web-vitals.webp"
       - { label: "Body", name: "body", widget: "markdown" }
   - label: "Settings"
     name: "settings"
