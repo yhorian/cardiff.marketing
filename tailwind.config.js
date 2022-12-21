@@ -6,7 +6,13 @@ module.exports = {
       center: true,
     },
     extend: {
-      colors: {},
+      typography: (theme) => ({
+        DEFAULT: {
+          css: {
+            maxWidth: "70ch",
+          },
+        },
+      })
     },
   },
   variants: {

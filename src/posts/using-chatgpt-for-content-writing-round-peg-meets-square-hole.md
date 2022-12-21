@@ -1,5 +1,5 @@
 ---
-title: Using ChatGPT to Write SEO worth Content
+title: ChatGPT is not a content producer - it's an information funnel
 description: ChatGPT, like GPT3, is a summary engine. Use the round peg in the
   round hole and use it to do summarising tasks.
 date: 2022-12-15T12:48:48.475Z
@@ -10,20 +10,31 @@ tags:
   - Content-writing
 thumbnail: src/static/img/dall·e-fighting-chatgpt.png
 thumbnaildesc: Two robots pulling on paper - courtesy of DALL-E 2.
+permalink: "/ChatGPT-is-not-a-content producer/"
+alpine: false
+prism: false
 ---
 ## Round Peg Meets Square Hole
 
 ChatGPT is an evolution of GPT3 with the ability to adapt its work based on chat history. It's a huge leap and there is no doubt it's shaking up the world already. The biggest question in the SEO community is: Can ChatGPT do my work for me?
 
-Thankfully that's easy to test and that's what we'll be doing today.
+The answer is **maybe**. And that's because ChatGPT's biggest problem is: People are trying to force the round peg into the square hole.
 
-As an industry professional with 10 years of experience, I've seen a lot of changes in the way search engines work. Marketers want to rank high in search results, but Google wants to prioritize user satisfaction. In order to combat the tactics used by marketers to game the system, Google has invested heavily in detecting and punishing shortcuts that produce low quality results.
+ChatGPT is not a content producer - it's an **information funnel**.
 
-While some techniques like private blog networks still exist, they have become risky and expensive to use and reputable SEO strategists avoid them for this reason. If AI wants to replace someones job then they need to prove not only that they can do it faster but better too. And to add an extra hurdle they need to avoid the latest penalty Google has introduced for them: The Helpful Content update.
+It can produce executive summaries from broad sources within seconds but it cannot then turn that information into a step-by-step guide or a top 10. In all my tests, I find that the longer the content format, the worse it performs. It can scale by hitting lots of topics with summaries but it can't innovate. It can't skyscraper. It can't convince me it's an authority or an educator.
 
-## Can ChatGPT lower costs without introducing more risk?
+After 12 years experience in SEO, I've seen a lot of changes in the game. Marketers want cheap results but Google wants to prioritize user satisfaction. This leads to gaming the system - the entire basis of the SEO industry. To counter, Google invests heavily in detecting and punishing shortcuts that produce low quality results. While techniques like PBNs (private blog networks) still exist, they have become too *risky and expensive* to use in common strategies. Google has drawn the line when it comes to AI's involvement in content production with the Helpful Content Update that now penalises content it deems to be 'AI produced spam'. Consider yourself forewarned: leaning too heavily on an automated written content will result in a penalty if caught.
 
-To answer this question, we need to go through the **content creation process**. We'll start with a standard workflow for an advice article related to a product/service:
+But you know what it is good at? It's really good at knowledge queries. ChatGPT is a potential replacement for **Google search** itself.
+
+In that context, ChatGPT absolutely can help you write content. But to understand it better lets look at the whole process and where it fits.
+
+## Can ChatGPT produce cheaper content without introducing more risk?
+
+To answer this question, we need to go through the content creation process and assess where time/money can be saved.
+
+We'll start with a standard workflow for an advice article related to a product/service:
 
 1. **Keyword research**. Pick out your target terms and get their search volume.
 2. **Intent extrapolation**. Figure out why people are searching that term and how you can service it.

@@ -64,7 +64,7 @@ function articleImageProcess({
       alt="${alt}"
       ${(lazy) ? 'loading="lazy"': ''}
       ${(_class) ? 'class="' + _class + '"' : ''}decoding="async"> </picture> 
-      ${(label) ? '<p class="image-label">'+ alt + '</p>' : ''}`
+      ${(label) ? '<figcaption>'+ alt + '</figcaption>' : ''}`
 }
 
 module.exports = function (eleventyConfig) {

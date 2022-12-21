@@ -10,12 +10,7 @@ h1 {
 h2, h3 {
   @apply text-2xl font-bold mb-3;
 }
-h2 {
-  @apply text-center;
-}
-/*Plan to implement this: https://www.joshwcomeau.com/css/full-bleed/*/
 
-/*Syntax Highlighting*/
 body {
   @apply font-sans;
 }
@@ -29,20 +24,12 @@ a {
   @apply hover:text-indigo-500;
 }
 
-img {
-  @apply rounded-xl hover:object-contain;
-}
-
-picture {
-  @apply bg-slate-300 py-5 dark:bg-slate-600;
-}
-
 .hero {
-  @apply mx-auto mb-10;
+  @apply mx-auto;
   max-width: calc(500/16)rem;
   max-height: calc(400/16)rem;
 }
 
-.image-label {
-  @apply text-sm text-center italic;
+figcaption {
+  @apply mt-2 text-sm text-center italic;
 }
