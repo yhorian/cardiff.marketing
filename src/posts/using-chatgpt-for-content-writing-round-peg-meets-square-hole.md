@@ -1,5 +1,5 @@
 ---
-title: Using ChatGPT for Content Writing
+title: Using ChatGPT to Write SEO worth Content
 description: ChatGPT, like GPT3, is a summary engine. Use the round peg in the
   round hole and use it to do summarising tasks.
 date: 2022-12-15T12:48:48.475Z
