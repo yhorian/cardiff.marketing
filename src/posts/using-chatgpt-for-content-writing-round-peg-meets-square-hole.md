@@ -13,11 +13,17 @@ thumbnaildesc: Two robots pulling on paper - courtesy of DALL-E 2.
 ---
 ## Round Peg Meets Square Hole
 
-ChatGPT is an evolution of GPT3 with the ability to adapt its work based on chat history. It's a huge leap and there is no doubt it's shaking up the world already. But how does that relate to SEO and marketing in general?
+ChatGPT is an evolution of GPT3 with the ability to adapt its work based on chat history. It's a huge leap and there is no doubt it's shaking up the world already. The biggest question in the SEO community is: Can ChatGPT do my work for me?
 
 Thankfully that's easy to test and that's what we'll be doing today.
 
-Let's go through the content creation process. We'll start with the standard workflow for producing a new article that will be converting an organic search user:
+As an industry professional with 10 years of experience, I've seen a lot of changes in the way search engines work. Marketers want to rank high in search results, but Google wants to prioritize user satisfaction. In order to combat the tactics used by marketers to game the system, Google has invested heavily in detecting and punishing shortcuts that produce low quality results.
+
+While some techniques like private blog networks still exist, they have become risky and expensive to use and reputable SEO strategists avoid them for this reason. If AI wants to replace someones job then they need to prove not only that they can do it faster but better too. And to add an extra hurdle they need to avoid the latest penalty Google has introduced for them: The Helpful Content update.
+
+## Can ChatGPT lower costs without introducing more risk?
+
+To answer this question, we need to go through the **content creation process**. We'll start with a standard workflow for an advice article related to a product/service:
 
 1. **Keyword research**. Pick out your target terms and get their search volume.
 2. **Intent extrapolation**. Figure out why people are searching that term and how you can service it.
@@ -25,10 +31,13 @@ Let's go through the content creation process. We'll start with the standard wor
    * What is it they want?
    * How does that relate to your service/product/site?
    * What are they going to do next?
+
 3. **Content research**. Look at existing results and determine:
+
    * What they're writing about and how it fits the query
    * How good the quality of their content is
    * What you'll need to produce to beat it
+
 4. **Article Plan**. Create an outline of the article you're creating based on the content research. If possible add headers that target popular queries.
 5. **Content writing**. Flesh out your content with everything you researched so far.
 6. **Review**. Make sure your content harmoniously does everything you need it to:
@@ -38,61 +47,73 @@ Let's go through the content creation process. We'll start with the standard wor
    * Meet the user's expectations for both content and quality.
    * Predict their next step and try fulfilling that too. Your call-to-action/internal links go here.
 
-Let's go through each of these steps and see where ChatGPT can help.
+Let's go through each of these steps and see where ChatGPT can help lower our costs without impacting quality.
 
 ## Can ChatGPT help me do keyword research?
 
 No.
 
-It has no ability to access that data. While you could theoretically design an AI to do this (and I'm sure someone is working on it) there are so many factors that it's difficult to design one AI to meet everyone's needs. That means sadly a keyword research AI is not likely to be commercially viable for a while. Watch this space though.
+It has no ability to access that data. ChatGPTs datasets were finalised in 2021 using a variety of sources. It has no access to 'live' search data and keyword research tools were not part of those datasets. Even if ChatGPT correctly guesses which keywords are relevant to the sites marketing, it can't tell you their volume, value or relevance to your service/product. Take this example:
+
+{{ {src: "src/static/img/chatgpt-keyword-research.png", _class: "rounded-3xl",  alt: "ChatGPT's keyword suggestions for TicketSource.co.uk", label:true} | image | safe }}
+
+Having written TicketSource.co.uk's strategy, I can tell you that out of all of those searches none of them would generate new business. They're an event ticket software provider - and while their site serves as the platform for selling those tickets their largest returns are from targeting terms that increase the number of ticket selling accounts created. Not a single term there does that. ChatGPT has failed right out of the gate.
+
+This means you'll still need to use a keyword tool. But there is good news! Google already produces volumes of 'related search data' to speed that research up. Google Ads has been making 'related search suggestions' for year. The "People Also Ask" feature is an extension of this logic and appears on more SERPs than ever. Tools such as Ahrefs and Semrush will already pull similar queries out on their SERP analysis pages. While there isn't yet an AI that pulls all of these in, scans your site and outputs relevant results it's not in the real of impossibility that someone could put one together. Watch this space.
 
 ## Can ChatGPT figure out search intent for me?
 
 No.
 
-Humans can intuit things about other humans that machines cannot. This is common among machines and is one of Google's failings as well. The classic example is to search 'House shifting'.
+You'll still need a human to make sure your marketing is on target.
 
-{{ {src: "src/static/img/house-shifting.png", _class: "rounded-3xl",  alt: "Results of searching for 'House shifting' on Google in 2022 - containing references to moving house", height: "15em", label:true} | image | safe }}
+Humans can intuit things about other humans that machines cannot. We have cultural and emotional biases that AI consistantly fail to take into account. This is common among machines and is one of Google's failings as well. The classic example is to search 'House shifting'.
 
-Google results will be about moving house because "shift" is synonymous with "move". As in "to shift a crate". Yet this is entirely the wrong answer: If you're searching for information on your *house shifting* then you're looking for articles on *house subsidence*. The house itself has moved! The difference between you and Google's synonym engine? Experience. Until AI can walk in a human's shoes, it is always going to make slip-ups like this.
+{{ {src: "src/static/img/house-shifting.png", _class: "rounded-3xl",  alt: "A search for 'House shifting' on Google in 2022 references 'moving house'", height: "15em", label:true} | image | safe }}
 
-{{ {src: "src/static/img/house-subsidence.png", _class: "rounded-3xl",  alt: "Google results for a search on 'house subsidence'", height: "15em", label:true} | image | safe }}
+Google results will be about "moving house" because "shift" is synonymous with "move".
 
-This goes to a whole new level when we talk about emotions. What can look innocuous to DALL-E can be shocking or offensive to us. We may not even be able to explain why. This is a consistent plot point in many Sci-fi series. Even aliens don't get our culture or how we will react to theirs. Case in point:
+Reading that you probably already know it's the wrong answer: If your *house is shifting* then you're looking for articles on **house subsidence**. The house itself has moved! Why can we understand this but Google's synonym engine fails? Experience. We understand the context and common useage of the synonym. Until Google can walk and talk like a human, it will always slip up in this way.
 
-{{ {src: "src/static/img/quark_as_lumba.webp", _class: "rounded-3xl",  alt: "Deep Space Nine's Quark looking fabulous in a shockingly bright lycra dress with costume jewelry.", height: "15em", label:true} | image | safe }}
+{{ {src: "src/static/img/house-subsidence.png", _class: "rounded-3xl",  alt: "Google results for a search on 'house subsidence' - that's better", label:true} | image | safe }}
 
-You have feelings about this image. You can intuit what another's reaction might be.
+Human based custom service will always be better because as the old adage goes: 
 
-An AI cannot. It has no cultural or emotional context. Which probably gives it better taste than Quark.
+It takes one to know one.
 
-## ChatGPT help with content research?
+## Can ChatGPT help with content research?
 
 Maybe!
 
-As a summary engine, ChatGPT does have the ability to summarise everything it's read in mere seconds. This saves a human having to trawl through the available research data to find what they'd need to understand and expand upon a topic.
+As a summary engine, ChatGPT does have the ability to summarise vast datasets in mere seconds. Where this is a cost saver, is it would take a human hours to dive in and research a topic. Our ability to build internal datasets and an understanding of them is a drawback that ChatGPT can definitely assist with.
 
-But that's not really what we want here. While a part of content research is getting to grips with a topic there are three parts to this task:
+But that's not really what we want here. While content research is about getting to grips with a topic there are three parts to this task:
 
-   * What they're writing about and how it fits the query
+   * What others are writing about and how it fits the query
    * How good the quality of their content is
-   * What you'll need to produce to beat it
+   * What you'll need to produce to beat your competitors
 
 We can get ChatGPT to produce a great executive summary on the subject. This is information we would have gained from looking at the top results. Surely we're saving time now, right?
 
-Wrong. You'll still need to look at the top results for the other two steps. You need to be able to judge their quality and how high a bar has been set to beat it.
+Wrong. You'll still need to look at the top results for the other two steps. You need to be able to judge their quality and how high a bar has been set to beat it. Cost savings are in time saving and we'll have save little to no time.
 
-Sometimes, you're up against a beast with a ton of authority and high-quality content. You can hang your head in shame knowing that any attempt you make to beat them will still only get you 3-4 ranks behind. But you do it anyway, because some traffic is better than no traffic. At this stage you can weight your efforts according to their return. Maybe the best offering is literally empty of content and you could rank for a high-value term with a picture and a paragraph. Seriously, it happens:
+To illustrate this point: You're up against a beastly article that's been no.1 for years. It's high-quality content with a lot of authority. You can hang your head in shame knowing that any attempt you make to beat them will still only get you 3-4 ranks behind. It'll take years of development just to catch up.
+
+But you do it anyway, because some traffic is better than no traffic. You go in with a **cost-to-benefit analysis** to weight the time you're investing and ensure a return. Why invest 3 days when you can achieve your expected result in 3 hours?
+
+Or perhaps the opposite is true. Someone is ranking on a high value term with literally no content. I'm not joking here, this **actually happens**:
 
 {{ {src: "src/static/img/empty-page.png", _class: "rounded-3xl",  alt: "Someone ranking for a money term with no content on their page.", height: "15em", label:true} | image | safe }}
 
-Maybe at this stage, ChatGPT's stab at content would actually be enough. Which leads us into:
+Don't spend 5 hours writing a 20 minute article. At this stage, ask yourself if ChatGPT's quality of content would be high enough. In this case it probably is.
+
+Which leads us into:
 
 ## Can ChatGPT produce an article outline?
 
 Surprisingly, yes.
 
-Especially if you didn't lean on it up until this point. You'll already have a handle on your topic, target, competition and what you'll need to produce. At this stage ChatGPT can absolutely step in and give it a bash. Let's see how it does:
+Especially if you didn't lean on it up until this point. You'll already have a handle on your topic, target audience, SERP competition and how to beat it. At this stage ChatGPT can absolutely step in and give it a bash. Let's see how it does with a basic prompt:
 
 ### Can you create a blog post outline for an article on how ChatGPT can help you write content?
 
@@ -106,22 +127,22 @@ Especially if you didn't lean on it up until this point. You'll already have a h
 > * "ChatGPT and Your Content Marketing Strategy"
 > * "Try ChatGPT Today and See the Difference It Can Make"
 
-That's not bad. It's actually pretty good. "Makes content creation a breeze" is a great lead in that has **emotional weight**. It may not understand emotions but it's managed to learn from its sources that blog titles with emotional weight perform better. For that reason, this here is an A+ blog title. From ChatGPT. 
+That's not bad. It's actually pretty good. "Makes content creation a breeze" is a great lead in that has **emotional weight**. It may not understand emotions but it's managed to learn from its sources that blog titles with emotional weight **perform better**. Nice.
 
 At this stage, I'm starting to wonder if I should have used it to help me write this article. 😕
 One of the best features of ChatGPT is that you can give it feedback and it'll take it on board. Just like a real content writer. So could that fit into our content writing workflow?
 
 ## Can ChatGPT help you write better content?
 
-Maybe. It does have the ability to expand upon content ideas in a conversational manner but since the [Helpful Content Update](https://developers.google.com/search/blog/2022/08/helpful-content-update) you need to be wary of getting a penalty from Google for AI generated content.
+Maybe. It has the ability to expand upon content ideas in a conversational manner but since the [Helpful Content Update](https://developers.google.com/search/blog/2022/08/helpful-content-update) you need to be wary of getting a penalty from Google for AI generated content.
 
-But wait a minute, I recognise that subheading! 
+But wait a minute, I recognise that subheading!  
 
 *How do we know an AI didn't write this paragraph?*
 
 There are AI detectors out there. [Originality.ai](originality.ai) and [writer.com](writer.com) both have tools that can help you spot AI written content. Lets see Originality.ai in action:
 
-### ChatGPT - Can you write the introduction for this blog post:
+#### ChatGPT - Can you write the introduction for this blog post:
 
 > Sure, here's a possible introduction for the blog post:
 >
@@ -131,7 +152,7 @@ There are AI detectors out there. [Originality.ai](originality.ai) and [writer.c
 >
 > In this blog post, we'll introduce you to ChatGPT and show you how it can help you write better content. We'll also discuss how ChatGPT can be used for real-time collaboration and how it fits into your content marketing strategy. Plus, we'll offer some tips on how to get started with ChatGPT and see the difference it can make for your content. So read on to learn more about this powerful AI writing assistant!
 
-At some point, this AI had to start performing. This actually sounds like a real blog intro! Surely now we can consider getting rid of content writers?
+At some point, this AI had to start performing. This actually sounds like a real blog intro! At long last we can ditch all our content writers and lavish the budget on stocking an office mini-fridge instead. Lets just check for plagiarism...
 
 {{ {src: "src/static/img/ai-detected.png", _class: "rounded-3xl",  alt: "Originality.ai has no doubt that ChatGPT wrote this text.", height: "15em", label:true} | image | safe }}
 
@@ -139,20 +160,20 @@ Oh, dear. As good as this introduction was, it has been flagged as AI content. A
 
 If you want to future-proof your content, then producing an outline may be as far as ChatGPT can go.
 
-*editors note: I did play with ChatGPT and get it to rewrite this to sound more human, it got as low as 90% after 15 minutes of effort. After writing my own version in 5 minutes, it got a 70% originality rating. In our modern world that's a very safe pass. If you're doing better, [drop me a line](mailto:info@cardiff.marketing) because I'd love to know how!*
+*editors note: I did play with ChatGPT and get it to rewrite this to sound more human, it got as low as 90% after 15 minutes of effort. After writing my own version in 5 minutes, it got a 70% originality rating. In our modern world that's a very safe pass. If you're doing better, [drop me a line](/contact) because I'd love to know how!*
 
 ## Can ChatGPT help me review and search optimise content?
 
 Sadly, no.
 
-As much as we'd love to have our jobs automated away, AI often relies on iteration to get things right. This is an internal process of trial and error in which they judge and compare their own results to a 'good' standard generated by the data set they're trained on. This isn't too different from Marketing. We learn from our mistakes and get better.
+As much as we'd love to automate our jobs and retire: AI often relies on iteration to get things right. This is an internal process of trial and error in which they judge and compare their own results to a 'good' standard generated by the data set they're trained on. This isn't too different from Marketing. We learn from our mistakes and get better.
 
-Where AI falls down is that it doesn't have that experience. It can't judge experiments without *public* feedback. It won't learn from case studies that aren't a close match for the circumstances.
+Where AI falls down is that it doesn't have that experience. It can't judge experiments without formulaic **feedback**.
 
-This situation already occured when Google released its PPC AI for Google Adwords circa 2015. They encouraged everyone to sign up and spend 💰thousands💰 to train it on their website. Those that said 'Yes' and let it fly had all kinds of experimental ads created to try and drive traffic. While I'm sure there was some success, the end result was easily outperformed by a PPC executive in most situations. If you are running a website with over 60k unique products then the Adwords AI is still there for you to use. But its use-case is not nearly as broad as their reps made it seem.
+This situation already occured when Google released its PPC AI for Google Adwords circa 2015. They encouraged everyone to sign up and spend 💰thousands💰 to train it on their existing content. Those that said 'Yes' and let it fly had all kinds of experimental ads created to try and drive traffic. The feedback came in the form of conversions. While there was some success, the AI was easily outperformed by a human in most situations. If you are running a website with over 60k unique products then the Adwords AI is still there for you to use. But in order to reach an optimal state, the AI has to make mistakes **with your money**. It has to trial and error until it wins and each iteration of that process was at the expense of your wallet. The cost of doing that in many businesses was above and beyond hiring a PPC executive to set it up in the first place.
 
-But this experience does tell us that ChatGPT has a use case - **working at scale**. A human cannot scan thousands of sources, process them and produce an accurate summary in seconds. ChatGPT absolutely can. 
+But this experience does tell us that ChatGPT has a use case - **working at scale**. A human cannot scan thousands of sources, process them and produce an accurate summary in seconds. ChatGPT absolutely can.
 
-Use the round peg in the round hole - if you need outlines or summaries then ChatGPT is the way to go. 
+Use the round peg in the round hole - if you need outlines or summaries then ChatGPT can help.
 
-If you haven't already given it a try, now is definitely the time. It has strong applications outside of SEO, Marketing and Content writing that are already making the headlines. It's [currently free to use](https://openai.com/). While it isn't going to be a magic bullet for content writing you're still going to be blown away by how good it is. 
+If you haven't already given it a try, now is definitely the time. It has strong applications outside of SEO, Marketing and Content writing that are already making the headlines. It's [currently free to use](https://openai.com/). While it isn't going to be a magic bullet for content writing you're still going to be blown away by how good it is.

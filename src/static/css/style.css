@@ -31,7 +31,6 @@ a {
 
 img {
   @apply rounded-xl hover:object-contain;
-  max-height: calc(400/16)em;
 }
 
 picture {
@@ -40,15 +39,10 @@ picture {
 
 .hero {
   @apply mx-auto mb-10;
-  max-width: calc(500/16)em;
-  max-height: calc(400/16)em;
+  max-width: calc(500/16)rem;
+  max-height: calc(400/16)rem;
 }
 
 .image-label {
-  @apply text-sm text-center;
-}
-
-.prose > img {
-  @apply transition-all hover:scale-125 focus:scale-125;
-  
+  @apply text-sm text-center italic;
 }
