@@ -24,7 +24,6 @@ No matter what system you use - be it Bootstrap, Tailwind or plan Vanilla CSS - 
 
 Lets start with an unstyled page:
 
-
 ## External CSS
 
 * Definition and explanation of external CSS
