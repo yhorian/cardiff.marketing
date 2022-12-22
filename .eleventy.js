@@ -1,6 +1,5 @@
 const brokenLinksPlugin = require("eleventy-plugin-broken-links");
 const syntaxHighlight = require("@11ty/eleventy-plugin-syntaxhighlight");
-const lazy_loading = require('markdown-it-image-lazy-loading');
 const Image = require("@11ty/eleventy-img");
 const postcss = require('postcss');
 const fs = require('fs');
@@ -54,7 +53,7 @@ function articleImageProcess({
   });
   let lowsrc = metadata.webp[0];
   let highsrc = metadata.webp[metadata.webp.length - 1];
-  return `<picture> ${Object.values(metadata).map(imageFormat => {
+  return `<figure><picture> ${Object.values(metadata).map(imageFormat => {
   return `<source type="${imageFormat[0].sourceType}" srcset="${imageFormat.map(entry => entry.srcset).join(", ")}" sizes="${sizes}">`;
     }).join("\n")}
     <img
@@ -64,7 +63,8 @@ function articleImageProcess({
       alt="${alt}"
       ${(lazy) ? 'loading="lazy"': ''}
       ${(_class) ? 'class="' + _class + '"' : ''}decoding="async"> </picture> 
-      ${(label) ? '<figcaption>'+ alt + '</figcaption>' : ''}`
+      ${(label) ? '<figcaption>'+ alt + '</figcaption>' : ''}
+      </figure>`
 }
 
 module.exports = function (eleventyConfig) {
