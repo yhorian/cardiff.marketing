@@ -12,10 +12,9 @@ html(lang='en' x-data="{ darkMode: localStorage.getItem('dark') === 'true'}" x-b
     style!= filters.inlineTailwind()
     if prism
       link(rel="stylesheet" type="text/css" href="/static/css/prism-tomorrow.css")
-    // Option between inline or external Alpine.js. If statement checks if it's switched on for the template.
-    if alpine
-     script(src="/static/js/alpine.js" defer)
-     // script(defer)!= filters.inlineAlpine('./node_modules/alpinejs/dist/cdn.min.js')
+    // Option between inline or external Alpine.js.
+    script(src="/static/js/alpine.js" defer)
+    // script(defer)!= filters.inlineAlpine('./node_modules/alpinejs/dist/cdn.min.js')
   body(class="bg-white dark:bg-gray-800 text-gray-700 dark:text-white")
     include ./partials/navbar.pug
 

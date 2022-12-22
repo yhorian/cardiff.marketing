@@ -1,5 +1,5 @@
 ---
-title: ChatGPT is not a content producer - it's an information funnel
+title: ChatGPT is not a content producer
 description: ChatGPT, like GPT3, is a summary engine. Use the round peg in the
   round hole and use it to do summarising tasks.
 date: 2022-12-15T12:48:48.475Z
@@ -10,7 +10,7 @@ tags:
   - Content-writing
 thumbnail: src/static/img/dall·e-fighting-chatgpt.png
 thumbnaildesc: Two robots pulling on paper - courtesy of DALL-E 2.
-permalink: "/ChatGPT-is-not-a-content producer/"
+permalink: "/ChatGPT-is-not-a-content-producer/"
 alpine: false
 prism: false
 ---

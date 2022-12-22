@@ -71,6 +71,8 @@ module.exports = function (eleventyConfig) {
 
   eleventyConfig.on('eleventy.before', getTailwindCSS);
 
+  eleventyConfig.setLayoutResolution(false);
+
   // Disable automatic use of your .gitignore
   eleventyConfig.setUseGitIgnore(false);
 
