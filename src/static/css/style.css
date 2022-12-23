@@ -10,7 +10,9 @@ h1 {
 h2, h3 {
   @apply text-2xl font-bold mb-3;
 }
-
+html {
+  scroll-behavior: smooth;
+}
 body {
   @apply font-sans;
 }

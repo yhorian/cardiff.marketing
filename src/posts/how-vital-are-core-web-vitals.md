@@ -1,26 +1,42 @@
 ---
+prism: false
 title: How vital are Core Web Vitals?
-description: Core Web Vitals measure the users experience loading a web page -
-  lets look at how that impacts your marketing and SEO.
 author: Liam Martin
 date: 2022-11-26
 tags:
   - core-web-vitals
 thumbnail: src/static/img/core-web-vitals.webp
-thumbnaildesc: A good score on core web vitals. But is it worth the effort?
 alpine: false
-prism: false
+description: Core Web Vitals measure the users experience loading a web page -
+  lets look at how that impacts your marketing and SEO.
+thumbnaildesc: A good score on core web vitals. But is it worth the effort?
 ---
-Core Web Vitals (CWV) are a set of metrics that measure the speed at which web pages can be displayed and interacted with by a user. As an evolution of Pagespeed, these metrics how quickly a user can view and interact with a webpage and are designed to help developers prioritize and improve the user experience on their sites. 
+Website performance has never been more important. In 2022, [Google updated their documentation](https://developers.google.com/search/docs/appearance/ranking-systems-guide) to better explain what factors feed into their algorithm. Google's Core Web Vitals (CWV) are part of Google's Page Experience measuring system. They measure user experience factors including page loading speed, interactivity, and visual stability. In conjunction with other factors, the Page Experience algorithm is consistently ranked the 3rd most important ranking factor by SEO professionals; beaten out only by "backlinks" and "content quality".
 
-By breaking them down into simple score categories, Google allowed people to quickly identify shortfalls and make improvements. The rebranding of this umbrella of page speed statistics to include the terms **core** and **vital** seems to be a move by Google to introduce more focus on the technical side of page delivery.
+## Are Core Web Vitals? 
+Core Web Vitals are a set of metrics that measure how quickly a website loads, how interactive it is for users, and how visually stable it is. These metrics are based on three main characteristics: loading time (Largest Contentful Paint), interactivity (First Input Delay) and visual stability (Cumulative Layout Shift). The goal of these metrics is to provide users with an optimal experience while they navigate a website. 
 
-As someone who cares about the web and the user experience, I can't stress enough how important it is to prioritize core web vitals. These metrics, which include loading speed, interactivity, and visual stability, directly impact how users perceive and interact with a website.
+## Why Are Core Web Vitals Important For SEO? 
+Google looks at these core web vitals when it evaluates your website's performance. If your site is slow or visually unstable, Google may penalize you in its search rankings. Additionally, if your website takes too long to load or if the layout shifts around as users interact with it, visitors may be less likely to stay on your site and explore what you have to offer. This could lead to higher bounce rates and lower conversion rates which will ultimately hurt your business in the long run. 
 
-I won't rehash the vast number of studies that indicate faster pages convert better. There's [no shortage of references](https://www.google.com/search?q=website+performance+and+conversion+rates).
+## How Can You Monitor Core Web Vitals?
 
-What I do want to highlight is that interactivity is also crucial for a positive user experience. If a website is slow to respond to user input, it can be frustrating and lead to users abandoning the site. Their opinion of your brand slides when something isn't smooth or responsive.
 
-This extends beyond just loading the page - one of the greatest annoyances for a user is shifting content. When a page loads and there's pop-in for either content or ads. Cumulative layout shift isn't only an issue at load time.
+## What Can You Do To Improve Your Core Web Vitals? 
+This is a very open question and the answer can depend heavily on your needs and resources. It can be as simple as optimizing images for faster loading times or as complex as changing your entire Web Stack to support faster page load. Here's a shortlist of places to start looking for performance gains:
 
-While every site should strive to get the perfect loading score you should never lose site of the goal: **A better user experience**
+1.  Improve server response time
+2.  Reduce the size of your HTML, CSS, and JavaScript files
+3.  Use a content delivery network (CDN)
+4.  Minimize page redirects
+5.  Optimize images
+6.  Leverage browser/server caching
+7.  Reduce the use of javascript and plugins
+8.  Avoid excessive DOM manipulation
+9.  Defer non-critical resources/assets
+10. Inline critical CSS and Javascript
+
+## Hire a technical SEO specialist
+Improving these scores can help increase visibility in search engine results pages as well as make sure visitors have a positive experience when they visit your site. Taking steps such as compressing images and monitoring page performance can go a long way towards improving your CWV scores and overall SEO ranking in the long run!
+
+If you need assistance finding issues and planning fixes, then you can [request an audit](/contact) from a technical SEO professional.

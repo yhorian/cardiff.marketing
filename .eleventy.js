@@ -9,6 +9,8 @@ const tailwindcss = require("tailwindcss");
 const autoprefixer = require("autoprefixer");
 const cssnano = require("cssnano");
 const emojiReadTime = require("@11tyrocks/eleventy-plugin-emoji-readtime");
+const markdownIt = require('markdown-it');
+const markdownItAnchor = require('markdown-it-anchor');
 
 const cssPath = "./src/static/css/style.css"
 const cssOutpath = "./src/static/css/tailwind.css"
@@ -67,10 +69,25 @@ function articleImageProcess({
       </figure>`
 }
 
+/** @param {import("@11ty/eleventy").UserConfig} eleventyConfig */
 module.exports = function (eleventyConfig) {
+   // Set up markdown-it instance with anchor plugin
+   let markdownLib = markdownIt({
+    html: true,
+    breaks: true,
+    linkify: true
+  }).use(markdownItAnchor, {
+    permalink: false
+  });
 
+  // Set Eleventy to use our markdown-it instance
+  eleventyConfig.setLibrary('md', markdownLib);
+  
+  eleventyConfig.addFilter("uppercase", function(string) {
+    return string.toUpperCase();
+  });
   eleventyConfig.on('eleventy.before', getTailwindCSS);
-
+  eleventyConfig.setQuietMode(true);
   eleventyConfig.setLayoutResolution(false);
 
   // Disable automatic use of your .gitignore
@@ -139,7 +156,7 @@ module.exports = function (eleventyConfig) {
 
   // Copy favicon to route of /_site
   eleventyConfig.addPassthroughCopy("./src/favicon.ico");
-
+  
   // Fix for lack of filters access in pug.
   // https://github.com/11ty/eleventy/issues/1523
   global.filters = eleventyConfig.javascriptFunctions;
