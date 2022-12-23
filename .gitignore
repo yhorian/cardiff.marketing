@@ -5,7 +5,7 @@ node_modules/
 package-lock.json
 .env
 docs/
-.cache/
+.cache/*
 
 # Local Netlify folder
 .netlify
