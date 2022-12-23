@@ -69,25 +69,33 @@ function articleImageProcess({
       </figure>`
 }
 
+// Set up markdown-it instance with anchor plugin
+let markdownLib = markdownIt({
+ html: true,
+ breaks: true,
+ linkify: true
+}).use(markdownItAnchor, {
+ permalink: false
+});
+
 /** @param {import("@11ty/eleventy").UserConfig} eleventyConfig */
 module.exports = function (eleventyConfig) {
-   // Set up markdown-it instance with anchor plugin
-   let markdownLib = markdownIt({
-    html: true,
-    breaks: true,
-    linkify: true
-  }).use(markdownItAnchor, {
-    permalink: false
-  });
 
   // Set Eleventy to use our markdown-it instance
   eleventyConfig.setLibrary('md', markdownLib);
   
+  // Test function
   eleventyConfig.addFilter("uppercase", function(string) {
     return string.toUpperCase();
   });
+  
+  // Run PostCSS and get the output
   eleventyConfig.on('eleventy.before', getTailwindCSS);
+
+  // Less terminal output
   eleventyConfig.setQuietMode(true);
+
+  // Force the use of full layout file names to speed building
   eleventyConfig.setLayoutResolution(false);
 
   // Disable automatic use of your .gitignore

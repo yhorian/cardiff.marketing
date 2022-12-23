@@ -12,18 +12,19 @@ h2, h3 {
 }
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
 }
 body {
   @apply font-sans;
 }
 
-body :not(pre) > code[class*="language-"],
-body pre[class*="language-"] {
-  @apply bg-gray-800; 
-}
-
 a {
   @apply hover:text-indigo-500;
+}
+
+/* Code blocks */
+pre[class*="language-"] {
+  @apply dark:bg-slate-900 ;
 }
 
 .hero {
@@ -34,4 +35,13 @@ a {
 
 figcaption {
   @apply mt-2 text-sm text-center italic;
+}
+
+.unstyled {
+  @apply bg-slate-500 dark:bg-white overflow-hidden;
+}
+
+.unstyled * {
+  @apply bg-slate-500 dark:bg-white;
+  all:initial;padding:5px;font-size:20px;
 }

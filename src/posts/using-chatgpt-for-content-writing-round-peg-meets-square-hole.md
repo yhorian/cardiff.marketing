@@ -7,10 +7,8 @@ tags:
   - GPT3
   - AI
   - Content-writing
-thumbnail: src/static/img/dall·e-fighting-chatgpt.png
-thumbnaildesc: Two robots pulling on paper - courtesy of DALL-E 2.
-permalink: "/ChatGPT-is-not-a-content-producer/"
-alpine: false
+thumbnail: src/static/img/chatgpt1.png
+thumbnaildesc: A robot writing with a pen - courtesy of DALL-E 2.
 prism: false
 ---
 ## Round Peg Meets Square Hole
@@ -150,7 +148,7 @@ But wait a minute, I recognise that subheading!
 
 *How do we know an AI didn't write this paragraph?*
 
-There are AI detectors out there. [Originality.ai](originality.ai) and [writer.com](writer.com) both have tools that can help you spot AI written content. Lets see Originality.ai in action:
+There are AI detectors out there. [Originality.ai](https://originality.ai) and [writer.com](https://writer.com) both have tools that can help you spot AI written content. Lets see Originality.ai in action:
 
 #### ChatGPT - Can you write the introduction for this blog post:
 
@@ -186,4 +184,4 @@ But this experience does tell us that ChatGPT has a use case - **working at scal
 
 Use the round peg in the round hole - if you need outlines or summaries then ChatGPT can help.
 
-If you haven't already given it a try, now is definitely the time. It has strong applications outside of SEO, Marketing and Content writing that are already making the headlines. It's [currently free to use](https://openai.com/). While it isn't going to be a magic bullet for content writing you're still going to be blown away by how good it is.
+If you haven't already given it a try, now is definitely the time. It has strong applications outside of SEO, Marketing and Content writing that are already making the headlines. It's [currently free to use](https://openai.com). While it isn't going to be a magic bullet for content writing you're still going to be blown away by how good it is.

@@ -1,5 +1,6 @@
 {
     "layout": "page.pug",
     "tags": ["page"],
-    "permalink": "/{{ title | slugify }}/"
+    "permalink": "/{{ title | slugify }}/",
+    "author": "{{ settings.author }}"
 }

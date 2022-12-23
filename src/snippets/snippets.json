@@ -2,5 +2,6 @@
     "layout": "snippet.pug",
     "tags": ["snippet"],
     "permalink": "/{{ title | slugify }}/",
-    "prism": true
+    "prism": true,
+    "author": "{% settings.author %}"
 }
