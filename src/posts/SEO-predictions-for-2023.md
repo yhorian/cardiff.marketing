@@ -13,7 +13,7 @@ tags:
   - PageExperience
   - Static-site-generation
 thumbnail: src/static/img/2023.png
-thumbnaildesc: Image by xvector on Freepik. Celebrating a new year - 2023.
+thumbnaildesc: Celebrating a new year in SEO - 2023! Image by xvector on Freepik. 
 prism: false
 ---
 
