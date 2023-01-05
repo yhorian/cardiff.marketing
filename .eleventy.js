@@ -12,11 +12,15 @@ const emojiReadTime = require("@11tyrocks/eleventy-plugin-emoji-readtime");
 const markdownIt = require('markdown-it');
 const markdownItAnchor = require('markdown-it-anchor');
 
+const favGen = require("eleventy-plugin-gen-favicons/favicon-gen");
+const favHtml = require("eleventy-plugin-gen-favicons/html-gen");
+
 const cssPath = "./src/static/css/style.css"
 const cssOutpath = "./src/static/css/tailwind.css"
 var cssStore = ""
+var favicons = ""
 
-var plugins = [postcss_import, tailwindcss_nesting, tailwindcss, autoprefixer, cssnano];
+const plugins = [postcss_import, tailwindcss_nesting, tailwindcss, autoprefixer, cssnano];
 
 async function getTailwindCSS() {
   let css = fs.readFileSync(cssPath, 'utf8');
@@ -24,6 +28,13 @@ async function getTailwindCSS() {
     from: cssPath
   });
   cssStore = result.css;
+}
+
+async function getFavicons() {
+  let result = await favGen("./src/favicon.png", "./_site", {manifestData: {}, generateManifest: false, skipCache: false}).then(
+    (result) => {return favHtml(result)}
+    );
+  favicons = result;
 }
 
 function articleImageProcess({
@@ -79,18 +90,14 @@ let markdownLib = markdownIt({
 });
 
 /** @param {import("@11ty/eleventy").UserConfig} eleventyConfig */
-module.exports = function (eleventyConfig) {
+module.exports = (eleventyConfig) => {
 
   // Set Eleventy to use our markdown-it instance
   eleventyConfig.setLibrary('md', markdownLib);
   
-  // Test function
-  eleventyConfig.addFilter("uppercase", function(string) {
-    return string.toUpperCase();
-  });
-  
   // Run PostCSS and get the output
   eleventyConfig.on('eleventy.before', getTailwindCSS);
+  eleventyConfig.on('eleventy.before', getFavicons);
 
   // Less terminal output
   eleventyConfig.setQuietMode(true);
@@ -106,13 +113,18 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addWatchTarget(cssPath);
 
   // Optional filter to inline tailwind css
-  eleventyConfig.addFilter("inlineTailwind", function () {
+  eleventyConfig.addFilter("inlineTailwind", () => {
     return cssStore;
   });
 
   // Optional filter to inline Alpine.js
-  eleventyConfig.addFilter('inlineAlpine', function (filePath) {
+  eleventyConfig.addFilter('inlineAlpine', (filePath) => {
     return fs.readFileSync(filePath, 'utf8');
+  });
+
+  // Filter to add favicon data
+  eleventyConfig.addFilter("favicons", () => {
+    return favicons;
   });
 
   // Merge data instead of overriding
@@ -161,9 +173,6 @@ module.exports = function (eleventyConfig) {
 
   // Copy Image Folder to /_site
   eleventyConfig.addPassthroughCopy("./src/static/img");
-
-  // Copy favicon to route of /_site
-  eleventyConfig.addPassthroughCopy("./src/favicon.ico");
   
   // Fix for lack of filters access in pug.
   // https://github.com/11ty/eleventy/issues/1523

@@ -5,11 +5,13 @@ path: home
 layout: default.pug
 ---
 
-div(class="container mx-auto flex flex-col justify-center items-center")
+div(class="container relative mx-auto flex flex-col justify-center items-center")
+  img(src="/static/img/cardiff-night3.webp" x-show="darkMode" class="absolute top-0 -z-10 min-vw-full image-fade")
+  img(src="/static/img/cardiff-day3.webp" x-show="!darkMode" class="absolute top-0 -z-10 min-vw-full image-fade")
   h1.m-5 Cardiff based Marketing insights
-  p.my-4 The latest digital marketing and web development insights from consultant Liam Martin. 
+  p.m-4 The latest digital marketing and web development insights from consultant Liam Martin. 
 
-  p.my-5 If you need marketing tech or SEO advice then  
+  p.m-5 If you need marketing tech or SEO advice then  
     a.underline(href="/contact") get in touch.
 
   h2.mt-5 Blog Posts

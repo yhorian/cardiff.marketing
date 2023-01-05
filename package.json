@@ -26,6 +26,8 @@
   },
   "dependencies": {
     "alpinejs": "^3.7.1",
+    "eleventy-favicon": "^1.1.3",
+    "eleventy-plugin-gen-favicons": "^1.1.2",
     "markdown-it-anchor": "^8.6.6",
     "prismjs": "^1.26.0"
   }
