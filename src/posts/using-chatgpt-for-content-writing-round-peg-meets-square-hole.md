@@ -103,7 +103,7 @@ But that's not really what we want here. While content research is about getting
 
 We can get ChatGPT to produce a great executive summary on the subject. This is information we would have gained from looking at the top results. Surely we're saving time now, right?
 
-Wrong. You'll still need to look at the top results for the other two steps. You need to be able to judge their quality and how high a bar has been set to beat it. Cost savings are in time saving and we'll have save little to no time.
+Wrong. You'll still need to look at the top results for the other two steps. You need to be able to judge their quality and how high a bar has been set to beat it. Cost savings are in time saving and we'll have saved little to no time.
 
 To illustrate this point: You're up against a beastly article that's been no.1 for years. It's high-quality content with a lot of authority. You can hang your head in shame knowing that any attempt you make to beat them will still only get you 3-4 ranks behind. It'll take years of development just to catch up.
 
@@ -138,6 +138,7 @@ Especially if you didn't lean on it up until this point. You'll already have a h
 That's not bad. It's actually pretty good. "Makes content creation a breeze" is a great lead in that has **emotional weight**. It may not understand emotions but it's managed to learn from its sources that blog titles with emotional weight **perform better**. Nice.
 
 At this stage, I'm starting to wonder if I should have used it to help me write this article. 😕
+
 One of the best features of ChatGPT is that you can give it feedback and it'll take it on board. Just like a real content writer. So could that fit into our content writing workflow?
 
 ## Can ChatGPT help you write better content?
@@ -164,7 +165,7 @@ At some point, this AI had to start performing. This actually sounds like a real
 
 {{ {src: "src/static/img/ai-detected.png", _class: "rounded-3xl",  alt: "Originality.ai has no doubt that ChatGPT wrote this text.", height: "15em", label:true} | image | safe }}
 
-Oh, dear. As good as this introduction was, it has been flagged as AI content. A few months ago that might not have meant much but many sites are now getting penalised for exactly this. more AI generated your content appears then the [more likely you are to incur a penalty](https://www.searchenginejournal.com/google-says-ai-generated-content-is-against-guidelines/444916/). We *could* use this and hope that we don't get stung. But is it worth the risk?
+Oh, dear. As good as this introduction was, it has been flagged as AI content. A few months ago that might not have meant much but many sites are now getting penalised for exactly this. The more AI generated your content appears then the [more likely you are to incur a penalty](https://www.searchenginejournal.com/google-says-ai-generated-content-is-against-guidelines/444916/). We *could* use this and hope that we don't get stung. But is it worth the risk?
 
 If you want to future-proof your content, then producing an outline may be as far as ChatGPT can go.
 
