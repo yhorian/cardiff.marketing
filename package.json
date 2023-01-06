@@ -1,6 +1,5 @@
 {
   "scripts": {
-    "dev:netlify": "npx netlify-cms-proxy-server",
     "dev:eleventy": "npx eleventy --watch --serve",
     "dev": "npm-run-all --parallel dev:*",
     "build": "eleventy"

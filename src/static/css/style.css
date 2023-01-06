@@ -18,7 +18,7 @@ body {
 }
 
 a {
-  @apply hover:text-slate-700 dark:hover:text-slate-500;
+  @apply hover:text-slate-700;
 }
 
 article > * a {
