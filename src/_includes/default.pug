@@ -19,10 +19,12 @@ html(
         type="text/css",
         href="/static/css/prism-tomorrow.css"
       )
-    // Option between inline or external Alpine.js.
+    if page.url == "/contact/"
+      script(src="https://challenges.cloudflare.com/turnstile/v0/api.js", async, defer)
     // Option between inline or external tailwind css
     // link(rel="stylesheet" type="text/css" href="/static/css/style.css")
     style!= filters.inlineTailwind()
+    // Option between inline or external Alpine.js.
     script(src="/static/js/alpine.js", defer)
     // script(defer)!= filters.inlineAlpine('./node_modules/alpinejs/dist/cdn.min.js')
   body.bg-white.text-gray-700(class="dark:bg-gray-800 dark:text-white")
@@ -31,15 +33,3 @@ html(
     | !{ content }
 
     include ./partials/footer.pug
-
-    if page.url = "/"
-      script(async, defer).
-        if (window.netlifyIdentity) {
-          window.netlifyIdentity.on("init", (user) => {
-            if (!user) {
-              window.netlifyIdentity.on("login", () => {
-                document.location.href = "/admin/";
-              });
-            }
-          });
-        }
