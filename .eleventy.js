@@ -31,7 +31,7 @@ async function getTailwindCSS() {
 }
 
 async function getFavicons() {
-  let result = await favGen("./src/favicon.svg", "./_site", {manifestData: {}, generateManifest: false, skipCache: false}).then(
+  let result = await favGen("./src/static/img/cm-icon.png", "./_site", {manifestData: {}, generateManifest: false, skipCache: false}).then(
     (result) => {return favHtml(result)}
     );
   favicons = result;
@@ -81,7 +81,7 @@ function articleImageProcess({
 }
 
 // Set up markdown-it instance with anchor plugin
-let markdownLib = markdownIt({
+const markdownLib = markdownIt({
  html: true,
  breaks: true,
  linkify: true
