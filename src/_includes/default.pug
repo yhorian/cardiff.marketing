@@ -1,32 +1,41 @@
 doctype html
-html(lang='en' x-data="{ darkMode: localStorage.getItem('dark') === 'true'}" x-bind:class="{ 'dark': darkMode }" x-init="$watch('darkMode', val => localStorage.setItem('dark', val)); if (!localStorage.getItem('dark')) {let x = window.matchMedia('(prefers-color-scheme: dark)').matches;localStorage.setItem('dark', x); $data.darkMode = x};" )
+html(
+  lang="en",
+  x-data="{ darkMode: localStorage.getItem('dark') === 'true' }",
+  x-bind:class="{ 'dark': darkMode }",
+  x-init="$watch('darkMode', val => localStorage.setItem('dark', val)); if (!localStorage.getItem('dark')) {let x = window.matchMedia('(prefers-color-scheme: dark)').matches;localStorage.setItem('dark', x); $data.darkMode = x};"
+)
   head
     meta(charset="UTF-8")
-    meta(http-equiv="x-ua-compatible" content="ie=edge")
-    meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    meta(http-equiv="x-ua-compatible", content="ie=edge")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
     title #{ title }
-    meta(name="description" content=description)
-    link(rel="canonical" href=filters.url(settings.url + page.url))
-    | !{ filters.favicons()}
+    meta(name="description", content=description)
+    link(rel="canonical", href=filters.url(settings.url + page.url))
+    | !{ filters.favicons() }
     if prism
-      link(rel="stylesheet" type="text/css" href="/static/css/prism-tomorrow.css")
+      link(
+        rel="stylesheet",
+        type="text/css",
+        href="/static/css/prism-tomorrow.css"
+      )
     // Option between inline or external Alpine.js.
     // Option between inline or external tailwind css
     // link(rel="stylesheet" type="text/css" href="/static/css/style.css")
     style!= filters.inlineTailwind()
-    script(src="/static/js/alpine.js" defer)
+    script(src="/static/js/alpine.js", defer)
     // script(defer)!= filters.inlineAlpine('./node_modules/alpinejs/dist/cdn.min.js')
-  body(class="bg-white dark:bg-gray-800 text-gray-700 dark:text-white")
+  body.bg-white.text-gray-700(class="dark:bg-gray-800 dark:text-white")
     include ./partials/navbar.pug
 
-    | !{content}
+    | !{ content }
 
     include ./partials/footer.pug
 
     if page.url = "/"
-      script(async defer).
+      script(async, defer).
         if (window.netlifyIdentity) {
-          window.netlifyIdentity.on("init", user => {
+          window.netlifyIdentity.on("init", (user) => {
             if (!user) {
               window.netlifyIdentity.on("login", () => {
                 document.location.href = "/admin/";

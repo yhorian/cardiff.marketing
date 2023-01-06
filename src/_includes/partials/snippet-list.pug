@@ -1,5 +1,8 @@
-- let snippets = collections.snippet.reverse()
+- let snippets = collections.snippet.reverse();
 each post in snippets
-    a(href=post.url class="p-5 border rounded-2xl border-gray-200 hover:border-purple-400 shadow-lg hover:shadow-xl")
-        h2 #{ post.data.title }
-        p #{ post.data.description }
+  a.p-5.border.rounded-2xl.border-gray-200.shadow-lg(
+    href=post.url,
+    class="hover:border-purple-400 hover:shadow-xl"
+  )
+    h2 #{ post.data.title }
+    p #{ post.data.description }

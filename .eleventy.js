@@ -42,7 +42,7 @@ function articleImageProcess({
   alt = "",
   label = false,
   _class = false,
-  sizes = "(max-width: 1200px) 800px, 1200px",
+  sizes = "(max-width: 1000px) 800px, 1200px",
   widths = ["auto", "800", "1200"],
   formats = ["webp", "png"],
   lazy = true,
