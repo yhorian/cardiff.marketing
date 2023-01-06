@@ -11,7 +11,6 @@ const cssnano = require("cssnano");
 const emojiReadTime = require("@11tyrocks/eleventy-plugin-emoji-readtime");
 const markdownIt = require('markdown-it');
 const markdownItAnchor = require('markdown-it-anchor');
-
 const favGen = require("eleventy-plugin-gen-favicons/favicon-gen");
 const favHtml = require("eleventy-plugin-gen-favicons/html-gen");
 
