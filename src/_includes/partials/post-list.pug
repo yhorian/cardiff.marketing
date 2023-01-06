@@ -2,7 +2,7 @@
 each post in posts
   a.p-5.border.rounded-2xl.border-gray-200.shadow-lg(
     href=post.url,
-    class="hover:border-purple-400 hover:shadow-xl"
+    class="hover:border-slate-400 hover:shadow-xl"
   )
     | !{ filters.image({ src: post.data.thumbnail, alt: post.data.thumbnaildesc, _class: "drop-shadow-xl rounded-3xl object-fill max-w-xs md:max-h-52 md:max-w-full m-auto ", lazy: false}) }
     h2 #{ post.data.title }

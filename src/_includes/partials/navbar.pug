@@ -3,7 +3,7 @@ nav.sticky.top-0.bg-slate-200.z-10(class="dark:bg-slate-700")
     .flex.text-center.flex-grow
       a.flex.text-center.font-bold.text-lg.text-slate-200.bg-slate-700(
         href="/",
-        class="dark:text-slate-700 dark:bg-slate-200 hover:text-slate-500"
+        class="dark:text-slate-700 dark:bg-slate-200 hover:bg-slate-500 dark:hover:bg-slate-500 hover:text-slate-200"
       )
         svg.h-10(
           xmlns="http://www.w3.org/2000/svg",
@@ -21,13 +21,13 @@ nav.sticky.top-0.bg-slate-200.z-10(class="dark:bg-slate-700")
           each item in nav.items
             li.nav__item.mr-3
               a.text-ml.inline-block.no-underline.py-2.px-4(
-                class="hover:text-indigo-500",
+                class="hover:text-slate-500",
                 href=item.url
               ) #{ item.title }
           li.nav__item.mr-3
             button.px-3.py-2.rounded-lg.font-semibold(
               type="button",
-              class="hover:text-indigo-500 focus:outline-none",
+              class="hover:text-slate-500 focus:outline-none",
               @click="darkMode = !darkMode"
             )
               svg#theme-toggle-dark-icon.w-5.h-5(
