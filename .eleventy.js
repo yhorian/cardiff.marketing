@@ -31,7 +31,7 @@ async function getTailwindCSS() {
 }
 
 async function getFavicons() {
-  let result = await favGen("./src/favicon.png", "./_site", {manifestData: {}, generateManifest: false, skipCache: false}).then(
+  let result = await favGen("./src/favicon.svg", "./_site", {manifestData: {}, generateManifest: false, skipCache: false}).then(
     (result) => {return favHtml(result)}
     );
   favicons = result;
