@@ -20,5 +20,5 @@ module.exports = {
       display: ['dark']
     },
   },
-  plugins: [require("@tailwindcss/typography"),]
+  plugins: [require("@tailwindcss/typography"), ]
 };

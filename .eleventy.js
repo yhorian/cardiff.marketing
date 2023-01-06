@@ -31,9 +31,15 @@ async function getTailwindCSS() {
 }
 
 async function getFavicons() {
-  let result = await favGen("./src/static/img/cm-icon.png", "./_site", {manifestData: {}, generateManifest: false, skipCache: false}).then(
-    (result) => {return favHtml(result)}
-    );
+  let result = await favGen("./src/static/img/cm-icon.png", "./_site", {
+    manifestData: {},
+    generateManifest: false,
+    skipCache: false
+  }).then(
+    (result) => {
+      return favHtml(result)
+    }
+  );
   favicons = result;
 }
 
@@ -82,11 +88,11 @@ function articleImageProcess({
 
 // Set up markdown-it instance with anchor plugin
 const markdownLib = markdownIt({
- html: true,
- breaks: true,
- linkify: true
+  html: true,
+  breaks: true,
+  linkify: true
 }).use(markdownItAnchor, {
- permalink: false
+  permalink: false
 });
 
 /** @param {import("@11ty/eleventy").UserConfig} eleventyConfig */
@@ -94,7 +100,7 @@ module.exports = (eleventyConfig) => {
 
   // Set Eleventy to use our markdown-it instance
   eleventyConfig.setLibrary('md', markdownLib);
-  
+
   // Run PostCSS and get the output
   eleventyConfig.on('eleventy.before', getTailwindCSS);
   eleventyConfig.on('eleventy.before', getFavicons);
@@ -173,7 +179,7 @@ module.exports = (eleventyConfig) => {
 
   // Copy Image Folder to /_site
   eleventyConfig.addPassthroughCopy("./src/static/img");
-  
+
   // Fix for lack of filters access in pug.
   // https://github.com/11ty/eleventy/issues/1523
   global.filters = eleventyConfig.javascriptFunctions;

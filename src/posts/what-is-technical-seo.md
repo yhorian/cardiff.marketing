@@ -1,5 +1,5 @@
 ---
-title: How to Improve Your Website Ranking with Technical SEO Services 
+title: How to Improve Your Website Ranking with Technical SEO Services
 description: Technical SEO services can help you improve your website ranking by optimizing your website’s structure and content in order to maximize its visibility in search engine results pages.
 date: 2023-01-02
 tags:
@@ -8,7 +8,7 @@ tags:
   - Pagespeed
   - PageExperience
 thumbnail: src/static/img/technical-seo.jpg
-thumbnaildesc: Digital Marketing isn't easy - but we can make it easier. Image by macrovector on Freepik. 
+thumbnaildesc: Digital Marketing isn't easy - but we can make it easier. Image by macrovector on Freepik.
 prism: false
 ---
 
@@ -17,6 +17,7 @@ prism: false
 Technical SEO services can help you improve your website ranking. But what exactly is technical SEO? Put simply, it’s the practice of optimizing your website’s structure and content in order to maximize its visibility in search engine results pages (SERPs). There are many things that could be holding you back. Let's walk through a few techniques we can use to sound them out:
 
 ## Technical SEO Audit
+
 One of the most important elements of any successful technical SEO strategy is a comprehensive audit of your website. A technical SEO audit will analyze various aspects of your website, including page speed, indexability, crawlability, and structure. It will also examine how well your webpages are optimized for keywords and phrases that are relevant to your industry. This information can help you identify areas where improvements are necessary so that you can make changes to better optimize your site for search engine results.
 
 ## Search Console Setup & Optimization

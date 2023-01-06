@@ -9,7 +9,7 @@ tags:
   - javascript
 prism: true
 permalink: "/pug-in-eleventy-making-it-work/"
-thumbnail:  src/static/img/pugxeleventy.png
+thumbnail: src/static/img/pugxeleventy.png
 thumbnaildesc: Pug HTML code processed by Eleventy
 ---
 
@@ -49,6 +49,7 @@ module.exports = function(eleventyConfig) {
 This file is the key to customising Eleventy's output. Either with a ready to go Plugin or your own custom code using Eleventy's hooks such as Transform, Filter or Input/Output capture.
 
 For now, lets add a filter in there to demostrate the issue and how to get around it:
+
 ```js
 /** @param {import("@11ty/eleventy").UserConfig} eleventyConfig */
 module.exports = function(eleventyConfig) {
@@ -72,11 +73,11 @@ This adds the 'uppercase' filter that can be called in templates to take an inpu
 ```pug
 // index.pug
 doctype html
-html(lang='en')
+html(lang="en")
   head
     meta(charset="UTF-8")
-    meta(http-equiv="x-ua-compatible" content="ie=edge")
-    meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    meta(http-equiv="x-ua-compatible", content="ie=edge")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
     title Test Page
   body
     h1 #{ uppercase("my test page") }
@@ -121,11 +122,11 @@ This exports Eleventy's collection of functions (including Shortcodes) and exten
 ```pug
 // index.pug
 doctype html
-html(lang='en')
+html(lang="en")
   head
     meta(charset="UTF-8")
-    meta(http-equiv="x-ua-compatible" content="ie=edge")
-    meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    meta(http-equiv="x-ua-compatible", content="ie=edge")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
     title Test Page
   body
     h1 #{ filters.uppercase("my test page") }
@@ -268,7 +269,7 @@ html(lang='en')
 ```pug
 // footer.pug
 footer
-    p Written by: Me
+  p Written by: Me
 ```
 
 <div class="unstyled">
@@ -298,12 +299,12 @@ html(lang='en')
 
 ```pug
 // footer.pug
----
+- --
 author: Me
----
+- --
 #{ content }
 footer
-    p Written by: #{ author }
+  p Written by: #{ author }
 ```
 
 <div class="unstyled">
@@ -315,7 +316,7 @@ footer
 Uh oh, it's doing it again. But it's not as simple as switching to unescaped code again. We need to also add a pipe to the content function:
 
 ```pug
-| !{ content }
+!{ content }
 ```
 
 And our finished code:
@@ -337,12 +338,12 @@ html(lang='en')
 
 ```pug
 // footer.pug
----
+- --
 author: Me
----
+- --
 | !{ content }
 footer
-    p Written by: #{ author }
+  p Written by: #{ author }
 ```
 
 <div class="unstyled">
@@ -357,7 +358,7 @@ It may be easier to go with one of the more popular templating languages such as
 
 If you are new to Eleventy then take the opportunity to look at the many starter templates out there on Github. Here are a few that feature Pug:
 
- * [Cardiff.marketing source code](https://github.com/yhorian/cardiff.marketing)
- * [Pugsum: A 11ty starter kit using Pug Templates and TailwindCSS](https://github.com/vktrwlt/pugsum)
- * [11ty Pug Example](https://gitlab.com/cekvenich2/11pug)
- * [The Brutalist Blog Site Built & Designed By Muhammad D. R.](https://docs.miayam.io/)
+- [Cardiff.marketing source code](https://github.com/yhorian/cardiff.marketing)
+- [Pugsum: A 11ty starter kit using Pug Templates and TailwindCSS](https://github.com/vktrwlt/pugsum)
+- [11ty Pug Example](https://gitlab.com/cekvenich2/11pug)
+- [The Brutalist Blog Site Built & Designed By Muhammad D. R.](https://docs.miayam.io/)

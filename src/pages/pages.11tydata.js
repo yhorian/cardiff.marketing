@@ -1,9 +1,9 @@
 module.exports = {
-    eleventyComputed: {
+  eleventyComputed: {
     "author": data => (data.author) ? data.author : data.settings.author,
     "permalink": data => (data.permalink) ? data.permalink : filters.slugify(data.title) + "/",
-      },
-    "layout": "page.pug",
-    "tags": ["page"],
-    "alpine": true
-  };
+  },
+  "layout": "page.pug",
+  "tags": ["page"],
+  "alpine": true
+};

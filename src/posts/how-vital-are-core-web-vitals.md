@@ -10,6 +10,7 @@ description: Core Web Vitals measure the users experience loading a web page -
   lets look at how that impacts your marketing and SEO.
 thumbnaildesc: A good score on core web vitals. But is it worth the effort?
 ---
+
 Website performance has never been more important. In 2022, [Google updated their documentation](https://developers.google.com/search/docs/appearance/ranking-systems-guide) to better explain what factors feed into their algorithm. Google's Core Web Vitals (CWV) are part of Google's Page Experience measuring system. They measure user experience factors including page loading speed, interactivity, and visual stability. In conjunction with other factors, the Page Experience algorithm is consistently ranked the 3rd most important ranking factor by SEO professionals; beaten out only by "backlinks" and "content quality".
 
 ## Are Core Web Vitals?
