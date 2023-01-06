@@ -124,7 +124,7 @@ Surprisingly, yes.
 
 Especially if you didn't lean on it up until this point. You'll already have a handle on your topic, target audience, SERP competition and how to beat it. At this stage ChatGPT can absolutely step in and give it a bash. Let's see how it does with a basic prompt:
 
-### Can you create a blog post outline for an article on how ChatGPT can help you write content?
+**Can you create a blog post outline for an article on how ChatGPT can help you write content?**
 
 > Headline: "ChatGPT: The AI Writing Assistant That Makes Content Creation a Breeze"
 >
@@ -152,7 +152,7 @@ _How do we know an AI didn't write this paragraph?_
 
 There are AI detectors out there. [Originality.ai](https://originality.ai) and [writer.com](https://writer.com) both have tools that can help you spot AI written content. Lets see Originality.ai in action:
 
-#### ChatGPT - Can you write the introduction for this blog post:
+**ChatGPT - Can you write the introduction for this blog post:**
 
 > Sure, here's a possible introduction for the blog post:
 >

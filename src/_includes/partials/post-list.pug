@@ -4,6 +4,6 @@ each post in posts
     href=post.url,
     class="hover:border-slate-400 hover:shadow-xl"
   )
-    | !{ filters.image({ src: post.data.thumbnail, alt: post.data.thumbnaildesc, _class: "drop-shadow-xl rounded-3xl object-fill max-w-xs md:max-h-52 md:max-w-full m-auto ", lazy: false}) }
+    | !{ filters.image({ src: post.data.thumbnail, alt: post.data.thumbnaildesc, _class: "drop-shadow-xl rounded-3xl object-fill md:max-h-52 md:max-w-full m-auto mb-5", lazy: false}) }
     h2 #{ post.data.title }
     p #{ post.data.description }

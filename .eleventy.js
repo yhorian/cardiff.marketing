@@ -1,5 +1,5 @@
-const brokenLinksPlugin = require("eleventy-plugin-broken-links");
 const syntaxHighlight = require("@11ty/eleventy-plugin-syntaxhighlight");
+const pluginTOC = require('eleventy-plugin-nesting-toc');
 const Image = require("@11ty/eleventy-img");
 const postcss = require('postcss');
 const fs = require('fs');
@@ -89,9 +89,13 @@ function articleImageProcess({
 const markdownLib = markdownIt({
   html: true,
   breaks: true,
-  linkify: true
+  linkify: false
 }).use(markdownItAnchor, {
-  permalink: false
+  permalink: markdownItAnchor.permalink.linkInsideHeader({
+    class: "no-underline absolute -translate-x-full",
+    symbol: `<span aria-hidden="true">🔗</span>`,
+  placement: "before",
+  })
 });
 
 /** @param {import("@11ty/eleventy").UserConfig} eleventyConfig */
@@ -153,12 +157,12 @@ module.exports = (eleventyConfig) => {
 
   // Syntax Highlighting for Code blocks
   eleventyConfig.addPlugin(syntaxHighlight);
+  
+  // Generate list of heading anchors. Works in concert with markdown-it-anchor which creates the IDs
+  eleventyConfig.addPlugin(pluginTOC);
 
   // Plugin for article read time estimates
   eleventyConfig.addPlugin(emojiReadTime);
-
-  // Broken link checker
-  eleventyConfig.addPlugin(brokenLinksPlugin);
 
   // Copy Static Files to /_Site
   // alpine.js and style.css are being passed just in case you want to stop inlining them.
