@@ -22,7 +22,7 @@ a {
 }
 
 article > * a {
-  @apply visited:text-indigo-500;
+  @apply visited:text-indigo-500 text-white;
 }
 
 /* Code blocks */
