@@ -12,6 +12,8 @@ thumbnaildesc: A robot writing with a pen - courtesy of DALL-E 2.
 prism: false
 ---
 
+[[_toc_]]
+
 ## Round Peg Meets Square Hole
 
 ChatGPT is an evolution of GPT3 with the ability to adapt its work based on chat history. It's a huge leap and there is no doubt it's shaking up the world already. The biggest question in the SEO community is: Can ChatGPT do my work for me?

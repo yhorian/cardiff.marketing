@@ -13,6 +13,8 @@ thumbnail: src/static/img/pugxeleventy.png
 thumbnaildesc: Pug HTML code processed by Eleventy
 ---
 
+[[_toc_]]
+
 ## Getting started: How to get basic Eleventy features working with Pug
 
 Integrating Pug (formerly Jade) with Eleventy is a great way to maximize the power of both technologies. The combination of Pug's powerful and expressive templating language, along with Eleventy’s flexibility in content management, makes it possible to create dynamic and interactive websites quickly and easily. While Pug comes pre-installed with Eleventy; there are some kinks to it. In this blog post, I'll provide an overview of how you can get started using these two tools together to produce amazing sites at blazing speeds.

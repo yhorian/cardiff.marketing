@@ -1,5 +1,4 @@
 const syntaxHighlight = require("@11ty/eleventy-plugin-syntaxhighlight");
-const pluginTOC = require('eleventy-plugin-nesting-toc');
 const Image = require("@11ty/eleventy-img");
 const postcss = require('postcss');
 const fs = require('fs');
@@ -13,6 +12,7 @@ const markdownIt = require('markdown-it');
 const markdownItAnchor = require('markdown-it-anchor');
 const favGen = require("eleventy-plugin-gen-favicons/favicon-gen");
 const favHtml = require("eleventy-plugin-gen-favicons/html-gen");
+const markdownItToC = require("markdown-it-toc-done-right")
 
 const cssPath = "./src/static/css/style.css"
 const cssOutpath = "./src/static/css/tailwind.css"
@@ -93,10 +93,10 @@ const markdownLib = markdownIt({
 }).use(markdownItAnchor, {
   permalink: markdownItAnchor.permalink.linkInsideHeader({
     class: "no-underline absolute -translate-x-full",
-    symbol: `<span aria-hidden="true">🔗</span>`,
+    symbol: `<span aria-hidden="true" class="text-base">🔗</span>`,
   placement: "before",
   })
-});
+}).use( markdownItToC);
 
 /** @param {import("@11ty/eleventy").UserConfig} eleventyConfig */
 module.exports = (eleventyConfig) => {
@@ -109,7 +109,7 @@ module.exports = (eleventyConfig) => {
   eleventyConfig.on('eleventy.before', getFavicons);
 
   // Less terminal output
-  eleventyConfig.setQuietMode(true);
+  eleventyConfig.setQuietMode(false);
 
   // Force the use of full layout file names to speed building
   eleventyConfig.setLayoutResolution(false);
@@ -158,9 +158,6 @@ module.exports = (eleventyConfig) => {
   // Syntax Highlighting for Code blocks
   eleventyConfig.addPlugin(syntaxHighlight);
   
-  // Generate list of heading anchors. Works in concert with markdown-it-anchor which creates the IDs
-  eleventyConfig.addPlugin(pluginTOC);
-
   // Plugin for article read time estimates
   eleventyConfig.addPlugin(emojiReadTime);
 
