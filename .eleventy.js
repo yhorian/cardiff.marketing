@@ -3,8 +3,6 @@ const Image = require("@11ty/eleventy-img");
 const emojiReadTime = require("@11tyrocks/eleventy-plugin-emoji-readtime");
 const markdownIt = require('markdown-it');
 const markdownItAnchor = require('markdown-it-anchor');
-const favGen = require("eleventy-plugin-gen-favicons/favicon-gen");
-const favHtml = require("eleventy-plugin-gen-favicons/html-gen");
 const markdownItToC = require("markdown-it-toc-done-right")
 const PostCSSPlugin = require("eleventy-plugin-postcss");
 const postcssrc = require('postcss-load-config')
@@ -12,18 +10,11 @@ const criticalCss = require("eleventy-critical-css");
 
 console.log(`Running as ${process.env.NODE_ENV}.`);
 
+// Load PostCSS options
 var plugins, options = postcssrc({
   parser: true,
   map: 'inline'
 })
-
-function getFavicons() {
-  favGen("./src/static/img/cm-icon.png", "./_site", {
-    manifestData: {},
-    generateManifest: false,
-    skipCache: false
-  })
-}
 
 function articleImageProcess({
   src,
@@ -37,9 +28,9 @@ function articleImageProcess({
   height = false,
   width = false
 }) {
-  // Lazy return method for production that does no processing.
-  if (process.env.NODE_ENV == "prod") {
-  return `<figure><picture> 
+  // Lazy return method for dev that does no processing.
+  if (process.env.NODE_ENV == "dev") {
+    return `<figure><picture> 
       <img
         src="${src.replace("src", "")}"
         width="${width}"
@@ -106,22 +97,19 @@ const markdownLib = markdownIt({
 module.exports = (eleventyConfig) => {
 
   // Copy Static Files to /_Site
-  // alpine.js and style.css are being passed just in case you want to stop inlining them.
-  // You can switch from inline tailwind and a separate file if it gets too large (80kb+). This will speed up loading the site.
   eleventyConfig.setServerPassthroughCopyBehavior("copy");
   eleventyConfig.addPassthroughCopy({
     "./src/static/img": "./static/img",
     "./node_modules/alpinejs/dist/cdn.min.js": "./static/js/alpine.js",
-    "./node_modules/prismjs/themes/prism-tomorrow.css": "./static/css/prism-tomorrow.css"
+    "./node_modules/prismjs/themes/prism-tomorrow.css": "./static/css/prism-tomorrow.css",
+    "./src/favicon.ico": "./favicon.ico",
+    "./src/icon-192.png": "./icon-192.png",
+    "./src/icon-512.png": "./icon-512.png",
+    "./src/apple-touch-icon.png": "./apple-touch-icon.png",
   });
 
   // Set Eleventy to use our markdown-it instance
   eleventyConfig.setLibrary('md', markdownLib);
-
-  // Pug can't do async, generate the favicon code before the shortcode calls it.
-  if (process.env.NODE_ENV == "prod") {
-    eleventyConfig.on('eleventy.before', getFavicons);
-  }
 
   // Less terminal output
   eleventyConfig.setQuietMode(true);
@@ -131,11 +119,6 @@ module.exports = (eleventyConfig) => {
 
   // Automatic use of your .gitignore setting
   eleventyConfig.setUseGitIgnore(true);
-
-  // Filter to add favicon data
-  eleventyConfig.addFilter("favicons", () => {
-    return favicons
-  });
 
   // Merge data instead of overriding
   eleventyConfig.setDataDeepMerge(true);
@@ -176,7 +159,6 @@ module.exports = (eleventyConfig) => {
   // Inline critical CSS if on production. CSS is so small, this can be removed and all CSS inlined anyway.
   // Currently sets a listener for each page and gets a bit silly. Warning disabled as a FIX.
   if (process.env.NODE_ENV == "prod") {
-    process.setMaxListeners(0);
     eleventyConfig.addPlugin(criticalCss, {
       height: 1080,
       width: 1920,
