@@ -10,10 +10,11 @@ const markdownItToC = require("markdown-it-toc-done-right")
 const PostCSSPlugin = require("eleventy-plugin-postcss");
 const postcssrc = require('postcss-load-config')
 const criticalCss = require("eleventy-critical-css");
-
-console.log(`Running as ${process.env.NODE_ENV}`);
+const { postcss } = require("postcss-preset-env");
 
 var favicons = "";
+
+console.log(`Running as ${process.env.NODE_ENV}.`);
 
 var plugins, options = postcssrc({
   parser: true,
