@@ -4,7 +4,7 @@
     "build": "cross-env NODE_ENV=prod npx eleventy"
   },
   "devDependencies": {
-    "@11ty/eleventy": "^2.0.0-canary.24",
+    "@11ty/eleventy": "^2.0.0-canary.25",
     "@11ty/eleventy-plugin-syntaxhighlight": "^4.2.0",
     "@11tyrocks/eleventy-plugin-emoji-readtime": "^1.0.1",
     "@cardiff.marketing/pages-plugin-mailchannels": "github:yhorian/pages-plugin-mailchannels",
