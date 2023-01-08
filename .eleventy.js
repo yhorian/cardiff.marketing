@@ -78,7 +78,7 @@ function articleImageProcess({
     width="${(width) ? width : highsrc.width}"
     height="${(height) ? height : highsrc.height}"
     alt="${alt}"
-    ${(lazy) ? 'loading="lazy"': ''}
+    ${(lazy) ? 'loading="lazy"' : ''}
     ${(_class) ? 'class="' + _class + '"' : ''}
     decoding="async">`;
 
@@ -90,7 +90,7 @@ function articleImageProcess({
   }).join("\n")}${img}</picture>`;
 
   // Build the figure element
-  let figure = `<figure>${picture}${(label) ? '<figcaption>'+ alt + '</figcaption>' : ''}</figure>`;
+  let figure = `<figure>${picture}${(label) ? '<figcaption>' + alt + '</figcaption>' : ''}</figure>`;
 
   return figure;
 }
