@@ -71,19 +71,30 @@ function articleImageProcess({
   });
   let lowsrc = metadata.webp[0];
   let highsrc = metadata.webp[metadata.webp.length - 1];
-  return `<figure><picture> ${Object.values(metadata).map(imageFormat => {
-  return `<source type="${imageFormat[0].sourceType}" srcset="${imageFormat.map(entry => entry.srcset).join(", ")}" sizes="${sizes}">`;
-    }).join("\n")}
-    <img
-      src="${lowsrc.url}"
-      width="${(width) ? width : highsrc.width}"
-      height="${(height) ? height : highsrc.height}"
-      alt="${alt}"
-      ${(lazy) ? 'loading="lazy"': ''}
-      ${(_class) ? 'class="' + _class + '"' : ''}decoding="async"> </picture> 
-      ${(label) ? '<figcaption>'+ alt + '</figcaption>' : ''}
-      </figure>`
+
+  // Build the img element
+  let img = `<img
+    src="${lowsrc.url}"
+    width="${(width) ? width : highsrc.width}"
+    height="${(height) ? height : highsrc.height}"
+    alt="${alt}"
+    ${(lazy) ? 'loading="lazy"': ''}
+    ${(_class) ? 'class="' + _class + '"' : ''}
+    decoding="async">`;
+
+  // Build the picture element
+  let picture = `<picture> ${Object.values(metadata).map(imageFormat => {
+    return imageFormat.map(image => {
+      return `<source type="${image.sourceType}" srcset="${image.srcset}" sizes="${sizes}">`;
+    }).join("\n");
+  }).join("\n")}${img}</picture>`;
+
+  // Build the figure element
+  let figure = `<figure>${picture}${(label) ? '<figcaption>'+ alt + '</figcaption>' : ''}</figure>`;
+
+  return figure;
 }
+
 
 // Set up markdown-it instance with anchor plugin
 const markdownLib = markdownIt({
@@ -94,9 +105,9 @@ const markdownLib = markdownIt({
   permalink: markdownItAnchor.permalink.linkInsideHeader({
     class: "no-underline absolute -translate-x-full",
     symbol: `<span aria-hidden="true" class="text-base">🔗</span>`,
-  placement: "before",
+    placement: "before",
   })
-}).use( markdownItToC);
+}).use(markdownItToC);
 
 /** @param {import("@11ty/eleventy").UserConfig} eleventyConfig */
 module.exports = (eleventyConfig) => {
@@ -157,7 +168,7 @@ module.exports = (eleventyConfig) => {
 
   // Syntax Highlighting for Code blocks
   eleventyConfig.addPlugin(syntaxHighlight);
-  
+
   // Plugin for article read time estimates
   eleventyConfig.addPlugin(emojiReadTime);
 
