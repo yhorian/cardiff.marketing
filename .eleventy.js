@@ -1,33 +1,18 @@
 const syntaxHighlight = require("@11ty/eleventy-plugin-syntaxhighlight");
 const Image = require("@11ty/eleventy-img");
-const postcss = require('postcss');
 const fs = require('fs');
-const postcss_import = require("postcss-import");
-const tailwindcss_nesting = require("tailwindcss/nesting");
-const tailwindcss = require("tailwindcss");
-const autoprefixer = require("autoprefixer");
-const cssnano = require("cssnano");
 const emojiReadTime = require("@11tyrocks/eleventy-plugin-emoji-readtime");
 const markdownIt = require('markdown-it');
 const markdownItAnchor = require('markdown-it-anchor');
 const favGen = require("eleventy-plugin-gen-favicons/favicon-gen");
 const favHtml = require("eleventy-plugin-gen-favicons/html-gen");
 const markdownItToC = require("markdown-it-toc-done-right")
+const postcss = require('postcss');
+const postcssConfig = require('postcss-load-config');
 
-const cssPath = "./src/static/css/style.css"
-const cssOutpath = "./src/static/css/tailwind.css"
-var cssStore = ""
+const plugins = postcssConfig().then(({ plugins }) => { return plugins });
+
 var favicons = ""
-
-const plugins = [postcss_import, tailwindcss_nesting, tailwindcss, autoprefixer, cssnano];
-
-async function getTailwindCSS() {
-  let css = fs.readFileSync(cssPath, 'utf8');
-  let result = await postcss(plugins).process(css, {
-    from: cssPath
-  });
-  cssStore = result.css;
-}
 
 async function getFavicons() {
   let result = await favGen("./src/static/img/cm-icon.png", "./_site", {
@@ -104,8 +89,6 @@ module.exports = (eleventyConfig) => {
   // Set Eleventy to use our markdown-it instance
   eleventyConfig.setLibrary('md', markdownLib);
 
-  // Run PostCSS and get the output
-  eleventyConfig.on('eleventy.before', getTailwindCSS);
   eleventyConfig.on('eleventy.before', getFavicons);
 
   // Less terminal output
@@ -116,15 +99,6 @@ module.exports = (eleventyConfig) => {
 
   // Disable automatic use of your .gitignore
   eleventyConfig.setUseGitIgnore(false);
-
-  // Prevent any loops with async file writes to tailwind.
-  eleventyConfig.watchIgnores.add(cssOutpath);
-  eleventyConfig.addWatchTarget(cssPath);
-
-  // Optional filter to inline tailwind css
-  eleventyConfig.addFilter("inlineTailwind", () => {
-    return cssStore;
-  });
 
   // Optional filter to inline Alpine.js
   eleventyConfig.addFilter('inlineAlpine', (filePath) => {
@@ -165,16 +139,8 @@ module.exports = (eleventyConfig) => {
   // alpine.js and style.css are being passed just in case you want to stop inlining them.
   // You can switch from inline tailwind and a separate file if it gets too large (80kb+). This will speed up loading the site.
   eleventyConfig.addPassthroughCopy({
-    "./src/admin/config.yml": "./admin/config.yml",
     "./node_modules/alpinejs/dist/cdn.min.js": "./static/js/alpine.js",
-    "./node_modules/prismjs/themes/prism-tomorrow.css": "./static/css/prism-tomorrow.css",
-    "./src/static/css/tailwind.css": "./static/css/style.css",
-  });
-
-  // Stops partial builds on eleventy's server. Necessary for Tailwind CSS updates to be refreshed via Postcss plugin.
-  // Only a concern when you do 'npm run dev'
-  eleventyConfig.setServerOptions({
-    domdiff: false
+    "./node_modules/prismjs/themes/prism-tomorrow.css": "./static/css/prism-tomorrow.css"
   });
 
   // Copy Image Folder to /_site
@@ -186,6 +152,21 @@ module.exports = (eleventyConfig) => {
   eleventyConfig.setPugOptions({
     globals: ['filters'],
     debug: false
+  });
+
+  eleventyConfig.addTransform('postcss', async function(content, outputPath) {
+    if (outputPath.endsWith('.html')) {
+      let result = await postcss([
+        require('tailwindcss'),
+        require('autoprefixer')
+      ]).process(content, {
+        from: outputPath,
+        to: outputPath
+      });
+      return result.css;
+    }
+
+    return content;
   });
 
   // Markdown files will be run through the nunjucks parser. Lets us embed {% nunjuck code %}.

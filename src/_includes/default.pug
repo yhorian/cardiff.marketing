@@ -21,9 +21,6 @@ html(
       )
     if page.url == "/contact/"
       script(src="https://challenges.cloudflare.com/turnstile/v0/api.js", async, defer)
-    // Option between inline or external tailwind css
-    // link(rel="stylesheet" type="text/css" href="/static/css/style.css")
-    style!= filters.inlineTailwind()
     // Option between inline or external Alpine.js.
     script(src="/static/js/alpine.js", defer)
     // script(defer)!= filters.inlineAlpine('./node_modules/alpinejs/dist/cdn.min.js')
