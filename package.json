@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "dev:eleventy": "cross-env NODE_ENV=dev TAILWIND_MODE=watch npx eleventy --watch --serve",
+    "dev:eleventy": "cross-env NODE_ENV=dev npx eleventy --watch --serve",
     "build:eleventy": "cross-env NODE_ENV=prod npx eleventy",
     "dev:postcss": "",
     "build:postcss": "",
@@ -19,7 +19,6 @@
     "autoprefixer": "^10.4.13",
     "cross-env": "^7.0.3",
     "cssnano": "^5.1.14",
-    "eleventy-plugin-broken-links": "^2.0.3",
     "eleventy-plugin-gen-favicons": "^1.1.2",
     "eleventy-plugin-postcss": "^1.0.4",
     "markdown-it-anchor": "^8.6.6",
