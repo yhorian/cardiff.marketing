@@ -32,8 +32,8 @@ pre[class*="language-"] {
 
 .hero {
   @apply mx-auto;
-  max-width: calc(500/16)rem;
-  max-height: calc(400/16)rem;
+  max-width: 31.25rem;
+  max-height: 25rem;
 }
 
 figcaption {
@@ -51,4 +51,12 @@ figcaption {
 
 .min-vw-full {
   min-width: 100vw;
+}
+
+.card {
+  @apply w-full max-w-5xl grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 gap-4 my-8 px-4 lg:mx-0 justify-items-center;
+}
+
+.card-image {
+  @apply drop-shadow-xl rounded-3xl object-fill max-h-52 w-auto m-auto mb-5;
 }

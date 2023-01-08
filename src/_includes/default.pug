@@ -13,7 +13,8 @@ html(
     meta(name="description", content=description)
     link(rel="canonical", href=filters.url(settings.url + page.url))
     link(rel="stylesheet" type="text/css" href="/static/css/style.css")
-    | !{ filters.favicons() }
+    link(rel="icon" href="/favicon.ico" sizes="any")
+    link(rel="apple-touch-icon" href="/apple-touch-icon.png")
     if prism
       link(
         rel="stylesheet",
