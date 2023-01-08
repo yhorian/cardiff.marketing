@@ -1,33 +1,24 @@
 const syntaxHighlight = require("@11ty/eleventy-plugin-syntaxhighlight");
 const Image = require("@11ty/eleventy-img");
-const postcss = require('postcss');
 const fs = require('fs');
-const postcss_import = require("postcss-import");
-const tailwindcss_nesting = require("tailwindcss/nesting");
-const tailwindcss = require("tailwindcss");
-const autoprefixer = require("autoprefixer");
-const cssnano = require("cssnano");
 const emojiReadTime = require("@11tyrocks/eleventy-plugin-emoji-readtime");
 const markdownIt = require('markdown-it');
 const markdownItAnchor = require('markdown-it-anchor');
 const favGen = require("eleventy-plugin-gen-favicons/favicon-gen");
 const favHtml = require("eleventy-plugin-gen-favicons/html-gen");
 const markdownItToC = require("markdown-it-toc-done-right")
+const PostCSSPlugin = require("eleventy-plugin-postcss");
+const postcssrc = require('postcss-load-config')
+const criticalCss = require("eleventy-critical-css");
 
-const cssPath = "./src/static/css/style.css"
-const cssOutpath = "./src/static/css/tailwind.css"
-var cssStore = ""
-var favicons = ""
+console.log(`Running as ${process.env.NODE_ENV}`);
 
-const plugins = [postcss_import, tailwindcss_nesting, tailwindcss, autoprefixer, cssnano];
+var favicons = "";
 
-async function getTailwindCSS() {
-  let css = fs.readFileSync(cssPath, 'utf8');
-  let result = await postcss(plugins).process(css, {
-    from: cssPath
-  });
-  cssStore = result.css;
-}
+var plugins, options = postcssrc({
+  parser: true,
+  map: 'inline'
+})
 
 async function getFavicons() {
   let result = await favGen("./src/static/img/cm-icon.png", "./_site", {
@@ -95,8 +86,30 @@ function articleImageProcess({
   return figure;
 }
 
-
-// Set up markdown-it instance with anchor plugin
+function lazyImagineProcess({
+  src,
+  alt = "",
+  label = false,
+  _class = false,
+  sizes = "(max-width: 1000px) 800px, 1200px",
+  widths = ["auto", "800", "1200"],
+  formats = ["webp", "png"],
+  lazy = true,
+  height = false,
+  width = false
+}) {
+  return `<figure><picture> 
+      <img
+        src="${src.replace("src", "")}"
+        width="${width}"
+        height="${height}"
+        alt="${alt}"
+        ${(lazy) ? 'loading="lazy"': ''}
+        ${(_class) ? 'class="' + _class + '"' : ''}decoding="async"> </picture> 
+        ${(label) ? '<figcaption>'+ alt + '</figcaption>' : ''}
+        </figure>`
+}
+// Set up markdown-it instance with Anchor/Table of Contents plugin
 const markdownLib = markdownIt({
   html: true,
   breaks: true,
@@ -112,35 +125,31 @@ const markdownLib = markdownIt({
 /** @param {import("@11ty/eleventy").UserConfig} eleventyConfig */
 module.exports = (eleventyConfig) => {
 
+  // Copy Static Files to /_Site
+  // alpine.js and style.css are being passed just in case you want to stop inlining them.
+  // You can switch from inline tailwind and a separate file if it gets too large (80kb+). This will speed up loading the site.
+  eleventyConfig.setServerPassthroughCopyBehavior("copy");
+  eleventyConfig.addPassthroughCopy({
+    "./src/static/img": "./static/img",
+    "./node_modules/alpinejs/dist/cdn.min.js": "./static/js/alpine.js",
+    "./node_modules/prismjs/themes/prism-tomorrow.css": "./static/css/prism-tomorrow.css"
+  });
+
   // Set Eleventy to use our markdown-it instance
   eleventyConfig.setLibrary('md', markdownLib);
 
-  // Run PostCSS and get the output
-  eleventyConfig.on('eleventy.before', getTailwindCSS);
-  eleventyConfig.on('eleventy.before', getFavicons);
-
+  // Pug can't do async, generate the favicon code before the shortcode calls it.
+  if (process.env.NODE_ENV == "prod") {
+    eleventyConfig.on('eleventy.before', getFavicons);
+  }
   // Less terminal output
-  eleventyConfig.setQuietMode(false);
+  eleventyConfig.setQuietMode(true);
 
-  // Force the use of full layout file names to speed building
+  // Force the use of full layout file names to speed building. Can't use layouts with no extension if false.
   eleventyConfig.setLayoutResolution(false);
 
-  // Disable automatic use of your .gitignore
-  eleventyConfig.setUseGitIgnore(false);
-
-  // Prevent any loops with async file writes to tailwind.
-  eleventyConfig.watchIgnores.add(cssOutpath);
-  eleventyConfig.addWatchTarget(cssPath);
-
-  // Optional filter to inline tailwind css
-  eleventyConfig.addFilter("inlineTailwind", () => {
-    return cssStore;
-  });
-
-  // Optional filter to inline Alpine.js
-  eleventyConfig.addFilter('inlineAlpine', (filePath) => {
-    return fs.readFileSync(filePath, 'utf8');
-  });
+  // Automatic use of your .gitignore setting
+  eleventyConfig.setUseGitIgnore(true);
 
   // Filter to add favicon data
   eleventyConfig.addFilter("favicons", () => {
@@ -163,33 +172,11 @@ module.exports = (eleventyConfig) => {
   // Accessed in pug by doing "filters.year()"
   eleventyConfig.addFilter("year", () => `${new Date().getFullYear()}`);
 
-  // Image processing
-  eleventyConfig.addFilter('image', articleImageProcess);
-
   // Syntax Highlighting for Code blocks
   eleventyConfig.addPlugin(syntaxHighlight);
 
   // Plugin for article read time estimates
   eleventyConfig.addPlugin(emojiReadTime);
-
-  // Copy Static Files to /_Site
-  // alpine.js and style.css are being passed just in case you want to stop inlining them.
-  // You can switch from inline tailwind and a separate file if it gets too large (80kb+). This will speed up loading the site.
-  eleventyConfig.addPassthroughCopy({
-    "./src/admin/config.yml": "./admin/config.yml",
-    "./node_modules/alpinejs/dist/cdn.min.js": "./static/js/alpine.js",
-    "./node_modules/prismjs/themes/prism-tomorrow.css": "./static/css/prism-tomorrow.css",
-    "./src/static/css/tailwind.css": "./static/css/style.css",
-  });
-
-  // Stops partial builds on eleventy's server. Necessary for Tailwind CSS updates to be refreshed via Postcss plugin.
-  // Only a concern when you do 'npm run dev'
-  eleventyConfig.setServerOptions({
-    domdiff: false
-  });
-
-  // Copy Image Folder to /_site
-  eleventyConfig.addPassthroughCopy("./src/static/img");
 
   // Fix for lack of filters access in pug.
   // https://github.com/11ty/eleventy/issues/1523
@@ -198,6 +185,18 @@ module.exports = (eleventyConfig) => {
     globals: ['filters'],
     debug: false
   });
+
+  eleventyConfig.addPlugin(PostCSSPlugin, plugins, options);
+
+  if (process.env.NODE_ENV == "prod") {
+    eleventyConfig.addFilter('image', articleImageProcess);
+    eleventyConfig.addPlugin(criticalCss, {
+      height: 1080,
+      width: 1920,
+    });
+  } else {
+    eleventyConfig.addFilter('image', lazyImagineProcess);
+  }
 
   // Markdown files will be run through the nunjucks parser. Lets us embed {% nunjuck code %}.
   return {
