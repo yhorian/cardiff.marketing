@@ -1,8 +1,11 @@
 {
   "scripts": {
-    "dev:eleventy": "npx eleventy --watch --serve",
+    "dev:eleventy": "cross-env NODE_ENV=dev TAILWIND_MODE=watch npx eleventy --watch --serve",
+    "build:eleventy": "cross-env NODE_ENV=prod npx eleventy",
+    "dev:postcss": "",
+    "build:postcss": "",
     "dev": "npm-run-all --parallel dev:*",
-    "build": "eleventy"
+    "build": "npm-run-all --parallel build:*"
   },
   "devDependencies": {
     "@11ty/eleventy": "^2.0.0-canary.24",
@@ -14,13 +17,15 @@
     "@cloudflare/workers-types": "^4.20221111.1",
     "@tailwindcss/typography": "^0.5.0",
     "autoprefixer": "^10.4.13",
+    "cross-env": "^7.0.3",
     "cssnano": "^5.1.14",
     "eleventy-plugin-broken-links": "^2.0.3",
     "eleventy-plugin-gen-favicons": "^1.1.2",
+    "eleventy-plugin-postcss": "^1.0.4",
     "markdown-it-anchor": "^8.6.6",
     "markdown-it-image-lazy-loading": "^1.2.0",
     "npm-run-all": "^4.1.5",
-    "postcss": "^8.4.19",
+    "postcss": "^8.4.21",
     "postcss-cli": "^10.1.0",
     "postcss-import": "^15.1.0",
     "postcss-load-config": "^4.0.1",
@@ -31,8 +36,8 @@
     "wrangler": "^0.0.0-15cfd011"
   },
   "dependencies": {
-    "alpinejs": "^3.7.1",
-    "eleventy-plugin-nesting-toc": "^1.3.0",
+    "alpinejs": "^3.10.5",
+    "eleventy-critical-css": "^1.1.0",
     "markdown-it-toc-done-right": "^4.2.0",
     "prismjs": "^1.26.0"
   }

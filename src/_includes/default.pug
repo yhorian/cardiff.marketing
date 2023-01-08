@@ -12,6 +12,7 @@ html(
     title #{ title }
     meta(name="description", content=description)
     link(rel="canonical", href=filters.url(settings.url + page.url))
+    link(rel="stylesheet" type="text/css" href="/static/css/style.css")
     | !{ filters.favicons() }
     if prism
       link(
@@ -21,9 +22,7 @@ html(
       )
     if page.url == "/contact/"
       script(src="https://challenges.cloudflare.com/turnstile/v0/api.js", async, defer)
-    // Option between inline or external Alpine.js.
     script(src="/static/js/alpine.js", defer)
-    // script(defer)!= filters.inlineAlpine('./node_modules/alpinejs/dist/cdn.min.js')
   body.bg-white.text-gray-700(class="dark:bg-gray-800 dark:text-white")
     include ./partials/navbar.pug
 

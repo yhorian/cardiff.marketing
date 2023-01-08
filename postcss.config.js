@@ -1,10 +1,10 @@
 module.exports = {
     plugins: [
       require('postcss-import'),
-      require('tailwindcss'),
       require('autoprefixer'),
-      require('cssnano'),
+      require('tailwindcss'),
       require('postcss-pxtorem'),
-      require('postcss-preset-env')
+      require('postcss-preset-env'),
+      require('cssnano'),
     ]
   }
