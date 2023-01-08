@@ -3,8 +3,7 @@
 div(class="card")
   each post in posts
     a.p-5.border.rounded-2xl.border-gray-200.shadow-lg(
-      href=post.url,
-      class="hover:border-slate-400 hover:shadow-xl max-w-md"
+      href=post.url
     )
       | !{ filters.image({ src: post.data.thumbnail, alt: post.data.thumbnaildesc, _class: "card-image", lazy: false}) }
       h2 #{ post.data.title }

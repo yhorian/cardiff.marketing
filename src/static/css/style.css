@@ -60,3 +60,7 @@ figcaption {
 .card-image {
   @apply drop-shadow-xl rounded-3xl object-fill max-h-52 w-auto m-auto mb-5;
 }
+
+.card > a {
+  @apply hover:border-slate-400 hover:shadow-xl max-w-md backdrop-blur-xl;
+}

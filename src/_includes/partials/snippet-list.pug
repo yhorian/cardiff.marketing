@@ -3,8 +3,7 @@
 div(class="card")
   each post in snippets
     a.p-5.border.rounded-2xl.border-gray-200.shadow-lg(
-      href=post.url,
-      class="hover:border-slate-400 hover:shadow-xl"
+      href=post.url
     )
       h2 #{ post.data.title }
       p #{ post.data.description }

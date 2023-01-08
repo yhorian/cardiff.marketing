@@ -5,15 +5,15 @@ path: home
 layout: default.pug
 ---
 
-div(class="container relative mx-auto flex flex-col justify-center items-center")
-  picture(class="absolute top-0 -z-10 min-vw-full image-fade" x-show="darkMode")
+div(class="container mx-auto flex flex-col justify-center items-center")
+  picture(class="absolute top-0 -z-10 min-vw-full image-fade object-fill" x-show="darkMode")
     source(srcset="/static/img/cardiff-night-2.webp" type="image/webp")
     source(srcset="/static/img/cardiff-night-2.jpg" type="image/jpeg")
-    img(src="/static/img/cardiff-night-2.webp" alt="Far off, Cardiff Bay at night")
+    img(src="/static/img/cardiff-night-2.jpg" alt="Far off, Cardiff Bay at night")
   picture(class="absolute top-0 -z-10 min-vw-full image-fade" x-show="!darkMode")
     source(srcset="/static/img/cardiff-day-2.webp" type="image/webp")
     source(srcset="/static/img/cardiff-day-2.jpg" type="image/jpeg")
-    img(src="/static/img/cardiff-day-2.webp" alt="Far off, Cardiff Bay in the daytime")
+    img(src="/static/img/cardiff-day-2.jpg" alt="Far off, Cardiff Bay in the daytime")
   h1.m-5 Cardiff Marketing insights
   p.m-4 The latest digital marketing and web development insights from consultant 
     a(href="/contact" class="underline whitespace-nowrap hover:text-zinc-600") Liam Martin 

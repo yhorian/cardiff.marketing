@@ -88,13 +88,14 @@ const markdownLib = markdownIt({
 }).use(markdownItAnchor, {
   permalink: markdownItAnchor.permalink.linkInsideHeader({
     class: "no-underline absolute -translate-x-full",
-    symbol: `<span aria-hidden="true" class="text-base">🔗</span>`,
+    symbol: `<span aria-hidden="true" x-data="{ tooltip: false }" class="text-base">🔗</span>`,
     placement: "before",
   })
 }).use(markdownItToC);
 
 /** @param {import("@11ty/eleventy").UserConfig} eleventyConfig */
 module.exports = (eleventyConfig) => {
+  eleventyConfig.setServerOptions({domdiff: true});
 
   // Copy Static Files to /_Site
   eleventyConfig.setServerPassthroughCopyBehavior("copy");
