@@ -1,3 +1,4 @@
+// Using V2 of mailchannel plugin
 const myEmail = "info@cardiff.marketing"
 import mailChannelsPlugin from "@cardiff.marketing/pages-plugin-mailchannels";
 
