@@ -11,7 +11,7 @@ function emailFrom(data) {
   return {name: `${ data.name } form`, email: myEmail}
 }
 function formResponse() {
-  return Response.redirect('https://cardiff.marketing/about/', 302)
+  return Response.redirect('https://cardiff.marketing/thank-you/', 302)
 }
 
 function emailSubject(data) {
