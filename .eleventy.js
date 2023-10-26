@@ -6,7 +6,6 @@ const markdownItAnchor = require('markdown-it-anchor');
 const markdownItToC = require("markdown-it-toc-done-right")
 const PostCSSPlugin = require("eleventy-plugin-postcss");
 const postcssrc = require('postcss-load-config')
-const criticalCss = require("eleventy-critical-css");
 
 console.log(`Running as ${process.env.NODE_ENV}.`);
 
@@ -155,15 +154,6 @@ module.exports = (eleventyConfig) => {
 
   // Image processing plugin.
   eleventyConfig.addFilter('image', articleImageProcess);
-
-  // Inline critical CSS if on production. CSS is so small, this can be removed and all CSS inlined anyway.
-  // Currently sets a listener for each page and gets a bit silly. Warning disabled as a FIX.
-  if (process.env.NODE_ENV == "prod") {
-    eleventyConfig.addPlugin(criticalCss, {
-      height: 1080,
-      width: 1920,
-    });
-  }
 
   // Markdown files will be run through the nunjucks parser. Lets us embed {% nunjuck code %}.
   return {
