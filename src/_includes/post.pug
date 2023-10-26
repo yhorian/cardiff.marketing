@@ -1,0 +1,15 @@
+---
+layout: default.pug
+---
+
+div(class="container max-w-5xl mt-6 px-6")
+    div(class="pb-5 mb-5 border-b border-gray-100")
+        h1(class="font-bold text-4xl") #{title}
+        p(class="text-center text-base leading-6 font-thin text-gray-500 my-3") Published 
+            time #{ filters.readableDate(date) } 
+            | by 
+            a.underline(href="/about") #{ settings.author }
+        p.text-center= filters.emojiReadTime(content)     
+    | !{ filters.image({ src: thumbnail, alt: thumbnaildesc, lazy: false, _class: "hero shadow-xl rounded-3xl shadow-slate-600 dark:shadow-black my-5", height: "25em", width:"100%", label: true  }) }
+    article(class="mt-5 prose lg:prose-lg mx-auto dark:prose-invert prose-img:w-full prose-img:max-w-lg prose-img:mx-auto prose-img:shadow-2xl prose-img:rounded-3xl hover:prose-a:text-zinc-600 dark:hover:prose-a:text-black visited:prose-a:text-indigo-500")
+        | !{ content }

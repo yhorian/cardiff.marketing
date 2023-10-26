@@ -1,0 +1,34 @@
+---
+title: Cardiff Marketing Consultancy
+description: Cutting edge insights on Digital Marketing and Web Development from freelance consultant Liam Martin.
+layout: default.pug
+---
+
+section.parallax
+  figure
+    picture(x-show="darkMode")
+      source(srcset="/static/img/cardiff-night-2.webp" type="image/webp")
+      source(srcset="/static/img/cardiff-night-2.jpg" type="image/jpeg")
+      img(src="/static/img/cardiff-night-2.jpg" alt="Far off, Cardiff Bay at night")
+    picture(x-show="!darkMode")
+      source(srcset="/static/img/cardiff-day-2.webp" type="image/webp")
+      source(srcset="/static/img/cardiff-day-2.jpg" type="image/jpeg")
+      img(src="/static/img/cardiff-day-2.jpg" alt="Far off, Cardiff Bay in the daytime")
+
+  main(class="flex flex-col items-center justify-between")
+    h1.cloud Cardiff Marketing
+    h2.m-4(class="text-3xl")  Hire a freelance SEO Consultant - 
+      a(href="/contact" class="underline whitespace-nowrap hover:text-zinc-600") Liam Martin 
+    h3.mt-4(class="text-lg") Why hire a consultant over an agency?
+    div.p-5(class="backdrop-blur-3xl rounded-2xl font-medium  brightness-110 justify-self-auto")
+      p Agencies are expensive, tied up in red tape and less transparent than a consultant.
+      p.mt-5.font-semibold Hire me for:
+      ul.mt-5
+        li - Low hourly rates
+        li - A personal, flexible approach
+        li - Direct communication with the expert
+    h2.mt-5 Blog Posts
+    include /partials/post-list.pug
+    h2.mt-5 Code Snippets
+    include /partials/snippet-list.pug
+    

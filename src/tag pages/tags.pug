@@ -1,0 +1,16 @@
+---
+layout: tag-list.pug
+pagination:
+  data: collections
+  size: 1
+  alias: tag
+  addAllPagesToCollections: true
+  generatePageOnEmptyData: true
+eleventyComputed:
+  title: "| Tagged #{ tag }"
+permalink: "| #{ tag }/"
+---
+p This page isn't in the navigation, it needs to be linked somewhere else!
+p Here's a tag list:
+
+| !{ content }

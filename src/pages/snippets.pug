@@ -1,0 +1,17 @@
+---
+title: Recent Code Snippets
+eleventyExcludeFromCollections: true
+permalink: "| /snippets/"
+---
+
+section
+    each snippet in collections.snippet
+        article(class="my-10")
+            h2(class="font-bold text-3xl text-gray-900 mb-2 dark:text-white")
+                a(href=snippet.url) #{ snippet.data.title }
+            p(class="text-base leading-6 text-gray-500 mb-3 dark:text-white")
+                time #{ filters.readableDate(snippet.date) }
+                by #{ snippet.data.author }
+            if snippet.data.description
+                p(class="text-lg text-gray-500 mb-3 dark:text-white") #{ snippet.data.description }
+                a(href=snippet.url class="text-slate-500 font-bold text-lg") Read more →

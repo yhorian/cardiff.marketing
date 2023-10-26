@@ -1,0 +1,10 @@
+- let posts = collections.post.reverse();
+
+.cards
+  each post in posts
+    a.card(
+      href=post.url
+    )
+      | !{ filters.image({ src: post.data.thumbnail, alt: post.data.thumbnaildesc, lazy: false}) }
+      h2 #{ post.data.title }
+      p #{ post.data.description }
