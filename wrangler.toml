@@ -1,3 +1,4 @@
+name = "contacts"
 send_email = [
    	{type = "send_email", name = "Contact", destination_address = "info@cardiff.marketing"}
 ]

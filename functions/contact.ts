@@ -1,14 +1,11 @@
-// Tail the log with: npx wrangler pages deployment tail --project-name cardiff-marketing
+// Tail the log with: npx wrangler pages deployment tail --project-name cardiff-marketing-site
 // develop with: npx wrangler pages dev ./_site
-// import { EmailMessage } from "cloudflare:email";
-import { createMimeMessage } from "mimetext";
 
 const MAILGUN_URL = `https://api.mailgun.net/v3/cardiff.marketing/messages`;
 
 export const onRequestPost: PagesFunction = logPostData;
 
 async function logPostData(context) {
-    var env = context.env
     var formData = await context.request.formData();
     if (!turnstileCheck(formData, context)) { return new Response("Turnstile Check Failed.") }
     var html =  `<!DOCTYPE html>
@@ -23,26 +20,28 @@ async function logPostData(context) {
             </table>
           </body>
         </html>`;
-
-    const msg = createMimeMessage();
-    msg.setSender({ name: formData.get("name"), addr: formData.get("email") });
-    msg.setRecipient("info@cardiff.marketing");
-    msg.setSubject("Cardiff.marketing Inquiry");
-    msg.addMessage({
-        "contentType": 'text/html',
-        "data": html
-    });
-
-    var message = new EmailMessage(
-        formData.get('email'),
-        "info@cardiff.marketing",
-        msg.asRaw()
-    );
-    try {
-        await env.SEB.send(message);
-    } catch (e) {
-        return new Response(e.message);
-    }
+    let data = new URLSearchParams();
+    data.append('from', formData.get('email'));
+    data.append('to', 'info@cardiff.marketing');
+    data.append('subject', 'From Contact Form');
+    data.append('html', html);
+    var response = await fetch(MAILGUN_URL, {
+            method: 'POST',
+            headers: {
+              'Authorization': 'Basic ' + btoa("api:" + context.env.MAILGUN_KEY),
+              'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            body: data
+    })
+    if (response.status == 200) {  return new Response('', {
+        status: 302,
+        statusText: 'Found',
+        headers: {
+          'Location': '/thank-you',
+        },
+      })}
+    console.log(response.status)
+    console.log(await response.text())
     return new Response('There was a problem sending the email. An error has been logged.', {
         status: 512
     })
@@ -81,17 +80,3 @@ async function turnstileCheck(formData, context) {
     formData.delete("cf-turnstile-response");
     return true;
 }
-// Here's the response from the post:
-// 'static-form-name': 'contact',
-// name: 'test',
-// email: 'test@test.com',
-// message: 'testestestststs',
-// 'cf-turnstile-response': 'sdfsdfgsdfsdf'
-// curl -s --user 'api:sdfsdfsdf' \
-//      \
-//     -F from='Excited User <mailgun@cardiff.marketing>' \
-//     -F to=YOU@cardiff.marketing \
-//     -F subject='Hello' \
-//     -F text='Testing some Mailgun awesomeness!'
-
-async function emailSend() { }
