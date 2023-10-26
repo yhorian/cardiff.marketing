@@ -17,6 +17,7 @@
     "markdown-it-anchor": "^8.6.6",
     "markdown-it-image-lazy-loading": "^1.2.0",
     "markdown-it-toc-done-right": "^4.2.0",
+    "mimetext": "^3.0.16",
     "postcss": "^8.4.21",
     "postcss-load-config": "^4.0.1",
     "postcss-pxtorem": "^6.0.0",
