@@ -8,6 +8,7 @@ export const onRequestPost: PagesFunction = logPostData;
 async function logPostData(context) {
     var formData = await context.request.formData();
     if (!turnstileCheck(formData, context)) { return new Response("Turnstile Check Failed.") }
+    formData.delete('cf-turnstile-response')
     var html =  `<!DOCTYPE html>
         <html>
           <body>
