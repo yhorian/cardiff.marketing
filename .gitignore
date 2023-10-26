@@ -1,0 +1,15 @@
+_site/
+_tmp/
+node_modules/
+*git/
+package-lock.json
+.env
+docs/
+.cache/*
+
+# Local Netlify folder
+.netlify
+
+# VS Code dev
+*.code-workspace
+.vscode/

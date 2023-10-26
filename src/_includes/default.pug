@@ -1,0 +1,34 @@
+doctype html
+html(
+  lang="en",
+  x-data="{ darkMode: localStorage.getItem('dark') === 'true' }",
+  x-bind:class="{ 'dark': darkMode }",
+  x-init="$watch('darkMode', val => localStorage.setItem('dark', val)); if (!localStorage.getItem('dark')) {let x = window.matchMedia('(prefers-color-scheme: dark)').matches;localStorage.setItem('dark', x); $data.darkMode = x};"
+  )
+  head
+    script if (localStorage.dark === 'true') {document.documentElement.classList.add('dark')}
+    meta(charset="UTF-8")
+    meta(http-equiv="x-ua-compatible", content="ie=edge")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    title #{ title }
+    meta(name="description", content=description)
+    link(rel="canonical", href=filters.url(settings.url + page.url))
+    link(rel="stylesheet" type="text/css" href="/static/css/style.css")
+    link(rel="icon" href="/favicon.ico" sizes="any")
+    link(rel="apple-touch-icon" href="/apple-touch-icon.png")
+    if prism
+      link(
+        rel="stylesheet",
+        type="text/css",
+        href="/static/css/prism-tomorrow.css"
+      )
+    if page.url == "/contact/"
+      script(src="https://challenges.cloudflare.com/turnstile/v0/api.js", async, defer)
+    script(src="/static/js/alpine.js", defer)
+  body.bg-white.text-gray-700(class="dark:bg-gray-800 dark:text-white")
+
+    include ./partials/navbar.pug
+
+    | !{ content }
+
+    include ./partials/footer.pug

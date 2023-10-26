@@ -1,0 +1,8 @@
+---
+layout: default.pug
+---
+h1=tag
+div(class="w-full max-w-3xl grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 gap-4 my-8 px-4 lg:mx-0")
+    each item in collections[tag]
+        a(href=item.url)
+            h3.underline=item.data.title
