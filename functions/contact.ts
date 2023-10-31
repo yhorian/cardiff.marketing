@@ -1,19 +1,24 @@
 // Tail the log with: npx wrangler pages deployment tail --project-name cardiff-marketing-site
 // develop with: npx wrangler pages dev ./_site
+// .dev.vars contains secrets locally.
 
 const MAILGUN_URL = `https://api.mailgun.net/v3/cardiff.marketing/messages`;
 
 export const onRequestPost: PagesFunction = logPostData;
 
 async function logPostData(context) {
-    var formData = await context.request.formData();
-    if (!turnstileCheck(formData, context)) { return new Response("Turnstile Check Failed.") }
+    let formData = await context.request.formData();
+    const token = formData.get('cf-turnstile-response') ? formData.get('cf-turnstile-response').toString() : false;
+    const secret = context.env.TURNSTILE_KEY ? context.env.TURNSTILE_KEY.toString() : false;
+    const ip = context.request.headers.get('CF-Connecting-IP');
+    let turnstileResult = await turnstileCheck(token, secret, ip)
+    if (!turnstileResult) { return new Response("Turnstile Check Failed.") }
     formData.delete('cf-turnstile-response')
-    var html =  `<!DOCTYPE html>
+    let html =  `<!DOCTYPE html>
         <html>
           <body>
             <h1>New contact form submission</h1>
-            <div>At ${new Date().toISOString()}, you received a new ${context.name} form submission from ${context.request.headers.get("CF-Connecting-IP")}:</div>
+            <div>At ${new Date().toISOString()}, you received a new ${context.name} form submission from ${ip}:</div>
             <table>
             <tbody>
             ${[...formData.entries()].map(([field, value]) => `<tr><td><strong>${field}</strong></td><td>${value}</td></tr>`).join("\n")}
@@ -26,7 +31,7 @@ async function logPostData(context) {
     data.append('to', 'info@cardiff.marketing');
     data.append('subject', 'From Contact Form');
     data.append('html', html);
-    var response = await fetch(MAILGUN_URL, {
+    let response = await fetch(MAILGUN_URL, {
             method: 'POST',
             headers: {
               'Authorization': 'Basic ' + btoa("api:" + context.env.MAILGUN_KEY),
@@ -48,22 +53,15 @@ async function logPostData(context) {
     })
 }
 
-async function turnstileCheck(formData, context) {
-    let env = context.env;
-    let token, secret;
-    token = formData.get('cf-turnstile-response') ? formData.get('cf-turnstile-response').toString() : false;
-    secret = env.TURNSTILE_KEY ? env.TURNSTILE_KEY.toString() : false;
+async function turnstileCheck(token, secret, ip) {
     if (!token) {
-        return new Response(`Turnstile = true - but no token found. Check the widget is rendering inside the <form> of your page: https://developers.cloudflare.com/turnstile/get-started/client-side-rendering/.`, {
-            status: 512
-        })
+        console.log("Turnstile Failure: No Token " + ip);
+        return false
     };
     if (!secret) {
-        return new Response(`Turnstile token found - but no secrey key set. Set an Environment variable with your Turnstile secret called "TURNSTILE_KEY" under Pages > Settings > Environment variables.`, {
-            status: 512
-        });
+        console.log("Turnstile Failure: No Secret " + ip);
+        return false
     }
-    let ip = context.request.headers.get('CF-Connecting-IP');
     let captchaData = new FormData();
     captchaData.append('secret', secret);
     captchaData.append('response', token);
@@ -75,9 +73,9 @@ async function turnstileCheck(formData, context) {
     });
     let outcome = await result.json();
     if (!outcome.success) {
-        console.log("Token Failure from " + ip);
+        console.log("Turnstile Token Failure from " + ip);
         return false;
     }
-    formData.delete("cf-turnstile-response");
+    console.log("Turnstile success!")
     return true;
 }
