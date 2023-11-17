@@ -1,5 +1,9 @@
-"use strict";
-window.addEventListener('message', ({ data }) => {
-    if (data.webcmUpdateHeight)
-        document.getElementById(data.id).height = data.h;
-}, false);
+'use strict'
+
+window.addEventListener(
+  'message',
+  ({ data }) => {
+    if (data.webcmUpdateHeight) document.getElementById(data.id).height = data.h
+  },
+  false
+)
