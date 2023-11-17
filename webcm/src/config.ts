@@ -21,14 +21,16 @@ export type Config = {
 
 export function getConfig(configPath?: string) {
   let config: Config = defaultConfig
-  if(!configPath) {
-    console.log('Config path not provided, checking if the config file exists...')
-    const tryPath = path.resolve("./webcm.config.ts")
+  if (!configPath) {
+    console.log(
+      'Config path not provided, checking if the config file exists...'
+    )
+    const tryPath = path.resolve('./webcm.config.ts')
     if (fs.existsSync(tryPath)) {
       console.log(`Found config file: ${tryPath}, using it...`)
       configPath = tryPath
-    }else {
-      console.log("Config file not found, using defaults");
+    } else {
+      console.log('Config file not found, using defaults')
     }
   }
   if (configPath) {
