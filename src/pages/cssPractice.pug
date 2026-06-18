@@ -2,3 +2,122 @@
 title: cssPractice
 description: Practicing CSS
 ---
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport" content="width=device-width, initial-scale=1")
+    title CSS Selector Practice
+    style.
+      body {
+        font-family: system-ui, sans-serif;
+        margin: 0;
+        padding: 2rem;
+        background: #f4f4f5;
+        color: #18181b;
+      }
+      h1 {
+        font-size: 1.25rem;
+        margin: 0 0 1rem;
+      }
+      .harness {
+        margin-bottom: 1.5rem;
+      }
+      .harness input {
+        width: 100%;
+        max-width: 480px;
+        padding: 0.5rem 0.75rem;
+        font: inherit;
+        border: 1px solid #d4d4d8;
+        border-radius: 6px;
+      }
+      .harness .count {
+        margin-top: 0.4rem;
+        font-size: 0.85rem;
+        color: #71717a;
+      }
+      .harness .count.error {
+        color: #dc2626;
+      }
+      [data-match] {
+        outline: 3px solid #f59e0b;
+        outline-offset: 2px;
+      }
+      .ProductGrid_a3f9 {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+        gap: 1rem;
+        max-width: 720px;
+      }
+      .card_x7 {
+        background: #fff;
+        border: 1px solid #e4e4e7;
+        border-radius: 8px;
+        padding: 1rem;
+      }
+      .title {
+        margin: 0 0 0.5rem;
+        font-size: 1rem;
+      }
+      .price {
+        display: block;
+        margin-bottom: 0.75rem;
+        font-weight: 600;
+      }
+      .btn_9k2 {
+        font: inherit;
+        padding: 0.4rem 0.9rem;
+        border: 1px solid #18181b;
+        border-radius: 6px;
+        background: #18181b;
+        color: #fff;
+        cursor: pointer;
+      }
+      .btn_9k2:disabled {
+        opacity: 0.4;
+        cursor: not-allowed;
+      }
+  body
+    h1 CSS Selector Practice
+    .harness
+      input#sel(type="text" placeholder="Type a CSS selector, e.g. .card_x7[data-featured]" autocomplete="off" spellcheck="false")
+      .count#count 0 matches
+    section.ProductGrid_a3f9(data-component="product-list")
+      article.card_x7(data-product-id="1001" data-featured="true")
+        h3.title Wireless Headphones
+        span.price(data-currency="GBP") £89
+        button.btn_9k2(data-action="add-to-cart") Add
+      article.card_x7(data-product-id="1002")
+        h3.title USB Cable
+        span.price(data-currency="GBP") £5
+        button.btn_9k2(data-action="add-to-cart" disabled) Add
+      article.card_x7(data-product-id="1003" data-featured="true")
+        h3.title 4K Monitor
+        span.price(data-currency="GBP") £329
+        button.btn_9k2(data-action="notify") Notify me
+    script.
+      const input = document.getElementById('sel');
+      const count = document.getElementById('count');
+      const grid = document.querySelector('.ProductGrid_a3f9');
+
+      function run() {
+        document.querySelectorAll('[data-match]').forEach(el => el.removeAttribute('data-match'));
+        const value = input.value.trim();
+        count.classList.remove('error');
+        if (!value) {
+          count.textContent = '0 matches';
+          return;
+        }
+        let matches;
+        try {
+          matches = grid.querySelectorAll(value);
+        } catch (e) {
+          count.textContent = 'Invalid selector';
+          count.classList.add('error');
+          return;
+        }
+        matches.forEach(el => el.setAttribute('data-match', ''));
+        count.textContent = matches.length + (matches.length === 1 ? ' match' : ' matches');
+      }
+
+      input.addEventListener('input', run);
